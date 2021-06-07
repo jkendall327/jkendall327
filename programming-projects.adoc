@@ -1,0 +1,7 @@
+= Writing Portfolio
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+:homepage: https://example.org
+
+[.lead]
+This page lists some of my recent major programming projects...

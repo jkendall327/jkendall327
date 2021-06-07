@@ -1,0 +1,30 @@
+= Writing Portfolio
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+:homepage: https://example.org
+
+[.lead]
+This page lists some of my recent major copywriting work. The raw details can be found https://www.upwork.com/freelancers/~01edd15a574b27fc7b[on my Upwork profile].
+
+== Surfshark
+I've written several articles for the popular VPN service https://surfshark.com/[Surfshark] about how VPNs work and co-exist with other technology.
+
+The articles are short and written for international, non-technical readers.
+
+Example posts:
+
+* Lorem ipsum
+* Lorem ipsum
+* Lorem ipsum
+
+== PR Superstar
+I am a main contributor to the https://prsuperstar.co.uk/blog/[PR Superstar blog], a popular resource for public relations professionals. My work there explains various facets of the field (what is crisis communications?  how should we define corporate social responsibility?) as well as analyzing existing PR work done by others.
+
+The posts average to 2000 words each and are written for professionals and interested novices alike. The style of English is friendly and humorous without being colloquial.
+
+Example posts:
+
+* https://prsuperstar.co.uk/coca-cola-pr/[Coca-Cola's PR Magic: How to Stay on Top for Over a 100 Years]
+* https://prsuperstar.co.uk/cipr/[The CIPR: Everything You Need to Know]
+* https://prsuperstar.co.uk/fear-of-public-speaking/[How to Get Over the Fear of Public Speaking]
+
