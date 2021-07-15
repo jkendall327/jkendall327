@@ -1,20 +1,28 @@
 = Jack Kendall
 
-Hello, and welcome to my personal website. I'm Jack Kendall, a copywriter and programmer based in England.
+Hello, and welcome to my personal website. 
+
+I'm Jack Kendall, a copywriter and programmer based in England.
 
 == Portfolio and projects
+
 Please use these links to see my past writing work and programming projects.
 
 link:writing-portfolio.html[**Writing portfolio**]
 
 link:programming-projects.html[**Programming projects**]
 
+== Links
+
+link:https://github.com/jkendall327[My github profile]
+
 == What I've been reading
 
-* https://www.amazon.co.uk/Looming-Tower-Al-Qaedas-Road/dp/0141989246[The Looming Tower: Al Qaeda's Road to 9/11] by Lawrence Wright
 * https://www.amazon.co.uk/Learning-SQL-Generate-Manipulate-Retrieve/dp/1492057614[Learning SQL: Generate, Manipulate, and Retrieve Data] by Alan Beaulieu
+* https://www.amazon.co.uk/Looming-Tower-Al-Qaedas-Road/dp/0141989246[The Looming Tower: Al Qaeda's Road to 9/11] by Lawrence Wright
 * https://www.amazon.co.uk/History-Bible-Book-Its-Faiths-ebook/dp/B07KMQDKY4[A History of the Bible: The Book and Its Faiths] by John Barton
 
 == Credits
-Thanks to Asciidoc for providing the tools with which I created this site.
-Thanks to Github for hosting.
+
+Asciidoc for providing the tools with which I created this site.
+Github for hosting.
