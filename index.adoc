@@ -4,11 +4,15 @@ Hello, I'm Jack Kendall, a programmer and freelance copywriter based in the East
 
 == Portfolio and projects
 
-Please use these links to see my programming projects and writing work.
+Use these links to see my programming projects, writing portfolio and work experience.
+
+link:programming-projects.html[**Programming projects**]
 
 link:writing-portfolio.html[**Writing portfolio**]
 
-link:programming-projects.html[**Programming projects**]
+link:cv.html[**CV / Work experience**]
+
+You can find my work experience/CV here.
 
 == Links
 
