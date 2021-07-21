@@ -1,4 +1,4 @@
-= Writing Portfolio
+= Programming projects
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
