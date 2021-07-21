@@ -1,7 +1,50 @@
 = Writing Portfolio
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
-:homepage: https://example.org
 
-[.lead]
-This page lists some of my recent major programming projects...
+This page lists some of my major programming projects.
+
+I currently only work with .NET/C#.
+
+I'm not including various minor toy apps I've made just to learn specific concepts as they're not interesting to look at. The projects here are all things I made because I needed or wanted them.
+
+== QuietTime
+
+image:https://raw.githubusercontent.com/jkendall327/QuietTime/main/docs/main_window_screenshot.png[]
+
+I https://github.com/jkendall327/QuietTime:[describe this project on GitHub] as 'f.lux for your ears'. It's a WPF app that automatically caps your computer's volume. I made it for two reasons:
+
+* Preventing long-term hearing damage, which I was worried about
+* Stopping my new bluetooth headphones from maxing out my volume randomly
+
+QuietTime was my first attempting making an app with 'all the bells and whistles' -- logging and DI from day one, clean architecture, keyboard shortcuts, a responsive UI, formal releases, etc. My hope is that someone else out there in the world might actually find it useful, so I held myself to a high standard of quality.
+
+I'd like to improve it further with unit testing, localisation and UI theming, but it's currently feature-complete.
+
+== dotnet explanations
+
+OK, this one technically isn't a programming project.
+
+But over the past few months I've created https://github.com/jkendall327/dotnet-explanations:[a simple static site with clear, plain-English explanations] of tricky .NET and C# concepts.
+
+Almost all tutorials I've found online focus too rigidly on the mechanics of programming rather than making appeals to intuition. To counter that, I try to always foreground what problem a particular language feature or technology is meant to solve, and avoid jargon like the plague.
+
+== UK Tax Calculator
+
+image:https://raw.githubusercontent.com/jkendall327/UK-Tax-Calculator/master/TaxCrud/Image.png[]
+
+Since I left my retail job I've been link:writing-portfolio.html[working as a freelance copywriter]. I recently filed for my first self-employed tax return, which inspired me to make an app that would help the process along.
+
+The result was https://github.com/jkendall327/UK-Tax-Calculator:[a simple CRUD app that stored transactions, calculated their total and your outstanding tax]. The tax calculation was very simple and not suitable for real use, but I'm quite happy with the UI, which is a combination of two NuGet packages.
+
+This was my first project working seriously with databases (I used SQLite), which was very instructive.
+
+== DupFinder
+
+I have a lot of holiday photos in various qualities and sizes taking up space on my PC, so I'm always on the look-out for a good heuristic near-duplicate finder for images. I'm not satisfied with any currently existing solution, so https://github.com/jkendall327/DupFinder:[this project is my attempt to create one of my own].
+
+I made this before I got really comfortable with WPF, so the UI isn't spectacular, but it does showcase some interesting async work and algorithmic trickery.
+
+== Currently working on: an ASP.NET Core project
+
+My big weakness as a .NET developer currently is 'web stuff' in general. I'm currently working on a Razor pages project that will rectify that.
