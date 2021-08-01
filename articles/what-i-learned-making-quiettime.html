@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
-<title>Jack Kendall</title>
+<meta name="author" content="Jack Kendall">
+<title>What I learned making QuietTime</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,96 +438,156 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Jack Kendall</h1>
+<h1>What I learned making QuietTime</h1>
+<div class="details">
+<span id="author" class="author">Jack Kendall</span><br>
+<span id="email" class="email"><a href="mailto:jkendall3096@gmail.com">jkendall3096@gmail.com</a></span><br>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_not_being_as_scared_of_git">Not being (as) scared of Git</a></li>
+<li><a href="#_i_shouldnt_want_everything_that_i_want">I shouldn&#8217;t want everything that I want</a></li>
+<li><a href="#_cicd_is_cool_but_frustrating_to_set_up">CI/CD is cool, but frustrating to set up</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Hello, I&#8217;m Jack Kendall, a programmer and freelance copywriter based in the East Midlands of England.</p>
+<p>You can read this post on Medium here.</p>
+</div>
+<div class="paragraph">
+<p>I recently released the 1.0 version of QuietTime, my first 'serious' app.</p>
+</div>
+<div class="paragraph">
+<p>This naturally taught me a few things. I&#8217;m going to record those things here because it might be interesting to read&#8201;&#8212;&#8201;to myself, if nobody else.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_portfolio_and_projects">Portfolio and projects</h2>
+<h2 id="_not_being_as_scared_of_git">Not being (as) scared of Git</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Use these links to see my programming projects, writing portfolio and work experience.</p>
+<p>I used to think I was comfortable using Git, when in reality I was like the hapless people in this XKCD:</p>
 </div>
 <div class="paragraph">
-<p><a href="programming-projects.html"><strong>Programming projects</strong></a></p>
+<p><span class="image"><img src="https://imgs.xkcd.com/comics/git.png" alt="git"></span></p>
 </div>
 <div class="paragraph">
-<p><a href="writing-portfolio.html"><strong>Writing portfolio</strong></a></p>
+<p>More precisely, I had X major faults in how I used Git.</p>
 </div>
-<div class="paragraph">
-<p>You can find my work experience/CV here:</p>
-</div>
-<div class="paragraph">
-<p><a href="cv.html"><strong>CV / Work experience</strong></a></p>
-</div>
-<div class="paragraph">
-<p>You can read articles I&#8217;ve written here:</p>
-</div>
-<div class="paragraph">
-<p><a href="articles.html"><strong>Articles</strong></a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_links">Links</h2>
-<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="mailto:jkendall3096@gmail.com:">Email</a></p>
+<p>I didn&#8217;t care about a clean history.</p>
 </li>
 <li>
-<p><a href="https://github.com/jkendall327:">GitHub</a></p>
+<p>I was too scared to use rebases.</p>
 </li>
 <li>
-<p><a href="https://www.linkedin.com/in/jack-kendall-6b107811b/:">LinkedIn</a></p>
-</li>
-<li>
-<p><a href="https://www.upwork.com/freelancers/~01edd15a574b27fc7b:">Freelance writing profile on UpWork</a></p>
+<p>I was stingy with branches.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>My workflow on previous projects and the first half of QuietTime was to keep a set of long-running branches active at all times for sections of work&#8201;&#8212;&#8201;one branch for UI work, one for writing tests, one for improving the backend, etc.</p>
+</div>
+<div class="paragraph">
+<p>This worked, but led to messy merge conflicts every few weeks where I had to laboriously find bad commits, recreate entire branches or or simply throw work away because I wasn&#8217;t sure how to handle all the errors.</p>
+</div>
+<div class="paragraph">
+<p>As a result, the project&#8217;s history was full of noise: merge commits, tiny commits, reverse commits.</p>
+</div>
+<div class="paragraph">
+<p>Thankfully, this suffering led me to bite the bullet and finally understand <code>git rebase -i</code>.</p>
+</div>
+<div class="paragraph">
+<p>Now that I understand the basic workflow of 'create branch &#8594; commit regularly &#8594; squash commits &#8594; rebase &#8594; checkout &#8594; merge/fast-forward', life is much, much easier.</p>
+</div>
+<div class="paragraph">
+<p><strong>Lesson: don&#8217;t be afraid of learning the tools you use regularly.</strong></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_what_ive_been_reading_lately">What I&#8217;ve been reading lately</h2>
+<h2 id="_i_shouldnt_want_everything_that_i_want">I shouldn&#8217;t want everything that I want</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.amazon.co.uk/Learning-SQL-Generate-Manipulate-Retrieve/dp/1492057614">Learning SQL: Generate, Manipulate, and Retrieve Data</a> by Alan Beaulieu</p>
-</li>
-<li>
-<p><a href="https://www.amazon.co.uk/Looming-Tower-Al-Qaedas-Road/dp/0141989246">The Looming Tower: Al Qaeda&#8217;s Road to 9/11</a> by Lawrence Wright</p>
-</li>
-<li>
-<p><a href="https://www.amazon.co.uk/History-Bible-Book-Its-Faiths-ebook/dp/B07KMQDKY4">A History of the Bible: The Book and Its Faiths</a> by John Barton</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>For most of QuietTime&#8217;s development I was obsessed with the idea that the UI&#8217;s text should scale with the size of the window.</p>
+</div>
+<div class="paragraph">
+<p>Like all dangerously bad ideas, it holds a kernel of a good idea inside itself.</p>
+</div>
+<div class="paragraph">
+<p>The whole idea of WPF, after all, is that your UI is reactive and can scale, right? Why wouldn&#8217;t that include text?</p>
+</div>
+<div class="paragraph">
+<p>While there weren&#8217;t many resources online for this, there were&#8201;&#8212;&#8201;regrettably&#8201;&#8212;&#8201;enough for me to hack together a working solution.</p>
+</div>
+<div class="paragraph">
+<p>For those experienced with WPF, this meant stuffing every <code>Label</code> in the program inside a <code>ViewBox</code>.</p>
+</div>
+<div class="paragraph">
+<p>The result was ugly and bad for performance, but because I was set on the idea of scaling text, I thought I had to live with it.</p>
+</div>
+<div class="paragraph">
+<p>Mercifully, when I asked a developer community on Discord for advice, people quickly told me what I was doing was a bad idea from the root.</p>
+</div>
+<div class="paragraph">
+<p>This led me to fundamentally redesign the app, using more images throughout the UI to avoid the issue altogether.</p>
+</div>
+<div class="paragraph">
+<p><strong>Lesson: if you&#8217;re stuck on something and there aren&#8217;t any good resources for it, maybe you&#8217;re heading in the wrong direction.</strong></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_credits">Credits</h2>
+<h2 id="_cicd_is_cool_but_frustrating_to_set_up">CI/CD is cool, but frustrating to set up</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Asciidoc for site generation.</p>
+<p>When I started QuietTime, CI/CD seemed like witchcraft. The ability to compile, test, publish and deploy an app from a single commit seemed too good to be true.</p>
 </div>
 <div class="paragraph">
-<p>Github for hosting.</p>
+<p>For QuietTime, where I wanted to do everything 'the right way', I resolved to figure out CI/CD once and for all.</p>
+</div>
+<div class="paragraph">
+<p>The result was failure.</p>
+</div>
+<div class="paragraph">
+<p>My experiments centered around Github Actions for its convenience&#8201;&#8212;&#8201;nothing to set up except a .yaml file in the project root.</p>
+</div>
+<div class="paragraph">
+<p>I quickly learned the downside to CI/CD, however: testing your scripts.</p>
+</div>
+<div class="paragraph">
+<p>My goal was to publish a binary blob of QuietTime whenever I pushed to a 'release' branch, automatically create a GitHub release, and attach a .zip of the blob to that.</p>
+</div>
+<div class="paragraph">
+<p>While I was happy to find that there were pre-written packages for each of these steps, getting them to work in unison was a holy terror.</p>
+</div>
+<div class="paragraph">
+<p>Every time I made a change, I had to make a commit, push it to Github, then wait up to five minutes for the test run to succeed (or more likely) fail.</p>
+</div>
+<div class="paragraph">
+<p>The time investment each change represented quickly made the entire process frustrating beyond belief.</p>
+</div>
+<div class="paragraph">
+<p>While I eventually got a system halfway working, I learned soon afterwards that I&#8217;d hit GitHub&#8217;s upload cap through my repeated tests (as I was uploading a binary blob on each one).</p>
+</div>
+<div class="paragraph">
+<p>In the end, I threw in the towel and simply released QuietTime manually.</p>
+</div>
+<div class="paragraph">
+<p><strong>Lesson: study file formats and language syntax for CI/CD platforms extensively before trying to use them. Also, crib from known-good examples more liberally.</strong></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-08-01 18:52:43 +0100
+Last updated 2021-08-01 18:49:46 +0100
 </div>
 </div>
 </body>

@@ -1,0 +1,79 @@
+= What I learned making QuietTime
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+
+You can read this post on Medium here.
+
+I recently released the 1.0 version of QuietTime, my first 'serious' app.
+
+This naturally taught me a few things. I'm going to record those things here because it might be interesting to read -- to myself, if nobody else.
+
+== Not being (as) scared of Git
+
+I used to think I was comfortable using Git, when in reality I was like the hapless people in this XKCD:
+
+image:https://imgs.xkcd.com/comics/git.png[]
+
+More precisely, I had X major faults in how I used Git.
+
+* I didn't care about a clean history.
+* I was too scared to use rebases.
+* I was stingy with branches.
+
+My workflow on previous projects and the first half of QuietTime was to keep a set of long-running branches active at all times for sections of work -- one branch for UI work, one for writing tests, one for improving the backend, etc.
+
+This worked, but led to messy merge conflicts every few weeks where I had to laboriously find bad commits, recreate entire branches or or simply throw work away because I wasn't sure how to handle all the errors.
+
+As a result, the project's history was full of noise: merge commits, tiny commits, reverse commits.
+
+Thankfully, this suffering led me to bite the bullet and finally understand `git rebase -i`.
+
+Now that I understand the basic workflow of 'create branch -> commit regularly -> squash commits -> rebase -> checkout -> merge/fast-forward', life is much, much easier.
+
+*Lesson: don't be afraid of learning the tools you use regularly.*
+
+== I shouldn't want everything that I want
+
+For most of QuietTime's development I was obsessed with the idea that the UI's text should scale with the size of the window.
+
+Like all dangerously bad ideas, it holds a kernel of a good idea inside itself.
+
+The whole idea of WPF, after all, is that your UI is reactive and can scale, right? Why wouldn't that include text?
+
+While there weren't many resources online for this, there were -- regrettably -- enough for me to hack together a working solution.
+
+For those experienced with WPF, this meant stuffing every `Label` in the program inside a `ViewBox`. 
+
+The result was ugly and bad for performance, but because I was set on the idea of scaling text, I thought I had to live with it.
+
+Mercifully, when I asked a developer community on Discord for advice, people quickly told me what I was doing was a bad idea from the root.
+
+This led me to fundamentally redesign the app, using more images throughout the UI to avoid the issue altogether.
+
+*Lesson: if you're stuck on something and there aren't any good resources for it, maybe you're heading in the wrong direction.*
+
+== CI/CD is cool, but frustrating to set up
+
+When I started QuietTime, CI/CD seemed like witchcraft. The ability to compile, test, publish and deploy an app from a single commit seemed too good to be true.
+
+For QuietTime, where I wanted to do everything 'the right way', I resolved to figure out CI/CD once and for all.
+
+The result was failure.
+
+My experiments centered around Github Actions for its convenience -- nothing to set up except a .yaml file in the project root.
+
+I quickly learned the downside to CI/CD, however: testing your scripts.
+
+My goal was to publish a binary blob of QuietTime whenever I pushed to a 'release' branch, automatically create a GitHub release, and attach a .zip of the blob to that.
+
+While I was happy to find that there were pre-written packages for each of these steps, getting them to work in unison was a holy terror.
+
+Every time I made a change, I had to make a commit, push it to Github, then wait up to five minutes for the test run to succeed (or more likely) fail.
+
+The time investment each change represented quickly made the entire process frustrating beyond belief.
+
+While I eventually got a system halfway working, I learned soon afterwards that I'd hit GitHub's upload cap through my repeated tests (as I was uploading a binary blob on each one).
+
+In the end, I threw in the towel and simply released QuietTime manually.
+
+*Lesson: study file formats and language syntax for CI/CD platforms extensively before trying to use them. Also, crib from known-good examples more liberally.*

@@ -10,9 +10,13 @@ link:programming-projects.html[**Programming projects**]
 
 link:writing-portfolio.html[**Writing portfolio**]
 
+You can find my work experience/CV here:
+
 link:cv.html[**CV / Work experience**]
 
-You can find my work experience/CV here.
+You can read articles I've written here:
+
+link:articles.html[**Articles**]
 
 == Links
 
