@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
 <meta name="author" content="Jack Kendall">
-<title>Writing Portfolio</title>
+<title>Programming projects</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,7 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Writing Portfolio</h1>
+<h1>Programming projects</h1>
 <div class="details">
 <span id="author" class="author">Jack Kendall</span><br>
 <span id="email" class="email"><a href="mailto:jkendall3096@gmail.com">jkendall3096@gmail.com</a></span><br>
@@ -447,10 +447,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_quiettime">QuietTime</a></li>
+<li><a href="#_wallpapermaker">WallpaperMaker</a></li>
 <li><a href="#_dotnet_explanations">dotnet explanations</a></li>
 <li><a href="#_uk_tax_calculator">UK Tax Calculator</a></li>
 <li><a href="#_dupfinder">DupFinder</a></li>
-<li><a href="#_currently_working_on_an_asp_net_core_project">Currently working on: an ASP.NET Core project</a></li>
 </ul>
 </div>
 </div>
@@ -458,13 +458,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This page lists some of my major programming projects.</p>
+<p>This page lists my major programming projects.</p>
 </div>
 <div class="paragraph">
-<p>I currently only work with .NET/C#.</p>
+<p>I work with .NET/C#.</p>
 </div>
 <div class="paragraph">
-<p>I&#8217;m not including various minor toy apps I&#8217;ve made just to learn specific concepts as they&#8217;re not interesting to look at. The projects here are all things I made because I needed or wanted them.</p>
+<p>I&#8217;m not including various minor toy apps I&#8217;ve made just to learn specific concepts as they&#8217;re not interesting to look at.</p>
+</div>
+<div class="paragraph">
+<p>The projects here are all things I made because I needed or wanted them.</p>
+</div>
+<div class="ulist">
+<div class="title"><strong>Skills demonstrated</strong>:</div>
+<ul>
+<li>
+<p>UI design (QuietTime, DupFinder)</p>
+</li>
+<li>
+<p>SQL and CRUD (UK Tax Calculator)</p>
+</li>
+<li>
+<p>ASP.NET Core/web tech (WallpaperMaker)</p>
+</li>
+<li>
+<p>Image processing (DupFinder, WallpaperMaker)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -496,16 +516,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
+<h2 id="_wallpapermaker">WallpaperMaker</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/wallpapermaker.png" alt="wallpapermaker">
+</div>
+</div>
+<div class="paragraph">
+<p>This app <a href="https://github.com/jkendall327/WallpaperMaker:">converts an image of arbitrary size into a 1920x1080 jpg</a> suitable for a desktop wallpaper.</p>
+</div>
+<div class="paragraph">
+<p>It currently fills out the side panels by taking a random snapshot of the main image. I might change this in future.</p>
+</div>
+<div class="paragraph">
+<p>My big weakness is web stuff, so I made this ASP.NET Core webapp as a learning experience.</p>
+</div>
+<div class="paragraph">
+<p>Pages are served with Razor, image conversion through a backend API in the same project.</p>
+</div>
+<div class="paragraph">
+<p>Frighteningly, it also includes a little JavaScript.</p>
+</div>
+<div class="paragraph">
+<p>This is in active development. My plan is to try making a proper UI in one of the big three JS frameworks (probably Angular).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_dotnet_explanations">dotnet explanations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OK, this one technically isn&#8217;t a programming project.</p>
+<p>OK, this technically isn&#8217;t a programming project.</p>
 </div>
 <div class="paragraph">
-<p>But over the past few months I&#8217;ve created <a href="https://github.com/jkendall327/dotnet-explanations:">a simple static site with clear, plain-English explanations</a> of tricky .NET and C# concepts.</p>
+<p>Over the past few months I&#8217;ve created <a href="https://github.com/jkendall327/dotnet-explanations:">a simple static site with clear, plain-English explanations</a> of tricky .NET and C# concepts.</p>
 </div>
 <div class="paragraph">
-<p>Almost all tutorials I&#8217;ve found online focus too rigidly on the mechanics of programming rather than making appeals to intuition. To counter that, I try to always foreground what problem a particular language feature or technology is meant to solve, and avoid jargon like the plague.</p>
+<p>Almost all tutorials I&#8217;ve found online focus too rigidly on the mechanics of programming rather than making appeals to intuition.</p>
+</div>
+<div class="paragraph">
+<p>To counter that, I try to always foreground what problem a particular language feature or technology is meant to solve, and avoid jargon.</p>
 </div>
 </div>
 </div>
@@ -516,10 +567,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="image"><img src="https://raw.githubusercontent.com/jkendall327/UK-Tax-Calculator/master/TaxCrud/Image.png" alt="Image"></span></p>
 </div>
 <div class="paragraph">
-<p>Since I left my retail job I&#8217;ve been <a href="writing-portfolio.html">working as a freelance copywriter</a>. I recently filed for my first self-employed tax return, which inspired me to make an app that would help the process along.</p>
+<p>Since I left my retail job I&#8217;ve been <a href="writing-portfolio.html">working as a freelance copywriter</a>.</p>
 </div>
 <div class="paragraph">
-<p>The result was <a href="https://github.com/jkendall327/UK-Tax-Calculator:">a simple CRUD app that stored transactions, calculated their total and your outstanding tax</a>. The tax calculation was very simple and not suitable for real use, but I&#8217;m quite happy with the UI, which is a combination of two NuGet packages.</p>
+<p>I recently filed for my first self-employed tax return, which inspired me to make an app that would help the process along.</p>
+</div>
+<div class="paragraph">
+<p>The result was <a href="https://github.com/jkendall327/UK-Tax-Calculator:">a simple CRUD app that stored transactions, calculated their total and your outstanding tax</a>.</p>
+</div>
+<div class="paragraph">
+<p>The tax calculation was very simple and not suitable for real use, but I&#8217;m quite happy with the UI, which is a combination of two NuGet packages.</p>
 </div>
 <div class="paragraph">
 <p>This was my first project working seriously with databases (I used SQLite), which was very instructive.</p>
@@ -529,26 +586,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_dupfinder">DupFinder</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/dupfinder.png" alt="dupfinder">
+</div>
+</div>
 <div class="paragraph">
-<p>I have a lot of holiday photos in various qualities and sizes taking up space on my PC, so I&#8217;m always on the look-out for a good heuristic near-duplicate finder for images. I&#8217;m not satisfied with any currently existing solution, so <a href="https://github.com/jkendall327/DupFinder:">this project is my attempt to create one of my own</a>.</p>
+<p>I have a lot of holiday photos taking up space on my PC, so I&#8217;m always searching for a good heuristic near-duplicate finder for images.</p>
 </div>
 <div class="paragraph">
-<p>I made this before I got really comfortable with WPF, so the UI isn&#8217;t spectacular, but it does showcase some interesting async work and algorithmic trickery.</p>
+<p>I&#8217;m not satisfied with any currently existing solution, so <a href="https://github.com/jkendall327/DupFinder:">I made my my own</a>.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_currently_working_on_an_asp_net_core_project">Currently working on: an ASP.NET Core project</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>My big weakness as a .NET developer currently is 'web stuff' in general. I&#8217;m currently working on a Razor pages project that will rectify that.</p>
+<p>I made this before I got really comfortable with WPF, so the UI isn&#8217;t spectacular, but it does showcase some async work and interesting ways of comparing image data.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-07-21 10:18:16 +0100
+Last updated 2021-08-01 18:23:22 +0100
 </div>
 </div>
 </body>
