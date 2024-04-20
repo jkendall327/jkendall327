@@ -2,50 +2,36 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
-Skilled prose writer. Head of university publishing society. Experience with TEFL.
+Self-taught developer with 4+ years experience in .NET. Strong interest in best
+practices, automated testing and high-quality documentation.
 
 1st class honours degree in English from the University of York (2015 - 2018).
 
-Conversational in French and Japanese. Studying German. Formal translation training at university.
-
-Fluent computer user. Google Docs/Sheets, Linux, staff management/rota systems, CMS. Programming: .NET, C#, Monogame, WPF, Bash, web-scraping, game development.
-
 == Experience
 
-=== Freelance copywriting (2019 - Present)     
+=== DB Cargo UK - Technical Advancement Specialist (2022 - Present)
+
+Promotion to a new role focused on modernising a legacy solution. Some achievements:
+
+- Upgrading 100+ intertwined .NET Framework projects to .NET Core
+- Crafting a comprehensive developer documentation portal from scratch
+- Transitioning a Windows server backend to cloud-native services hosted on AWS Fargate using Docker
+- Moving developer teams from an on-prem TFS installation to Azure DevOps
+- Implementing OpenTelemetry to reduce monthly cloud spend by 10%+
+- Automating and standardising our build-test-deploy cycle across apps and environments
+- Curating and leading a training and upskilling course for other developers
+- Creating bespoke tooling to suit development and business needs
+
+=== DB Cargo UK - Junior Developer (2021 - 2022)
+
+Hands-on C# development with a large business-critical microservices platform. Technology used: ASP.NET (classic and Core), Winforms, SQL Server, MSMQ, Team Foundation Server, Git.
+
+Gained ‘real-world’ experience debugging a distributed system; personally resolved expensive (£100k+/day) business incidents and outages. Specified, architected, implemented and deployed successful new projects with similar projected business value.
+
+Also trained in OutSystems, a low-code platform, and the UI automation suite Leapwork.
+
+=== Freelance copywriting (2019 - 2021)
 
 Content creation, copywriting, editing for domestic and international clients. 
 
-Topics include technology, marketing, science. $5k+ total revenue.
-
-=== Betfred (Assistant Manager) (2017 - 2020)    
-
-Open/closer trust with shop keys in high-pressure retail environment. 
-
-Trusted with £6000+ shop float, cash management, banking, marketing, creating staff rotas.
-
-=== University of York Publishing society (2015 – 2018)        
-
-Head of student publishing society The Looking Glass. Produced a yearly anthology of student fiction, sold for profit. 
-
-Oversaw submissions, editing, proofreading, typesetting and design. Organised live readings and engagements with local publishers.
-
-=== Borthwick Archives (2017)        
-
-Documented and repaired fragile documents of historical value at university library’s archival department. 
-
-Catalogued and preserved contemporary digital media items from the turn of the century.
-
-=== The 20-21 Visual Arts Centre (2016)    
-
-Volunteered at local art gallery writing exhibition labels and guidebooks for works on display. 
-
-Self-directed work, including original research, for public consumption.
-
-=== The Lindsey Lodge Hospice (2016)     
-
-Volunteer work at end-of-life hospice. 
-
-Produced and edited content for social media and in-house newsletter. Conducted interviews in-person and over the phone with general public. 
-
-Created information brochure for Hospice donors regarding an end-of-year social night.       
+Topics included technology, marketing, science.
