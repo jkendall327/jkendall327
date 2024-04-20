@@ -15,5 +15,3 @@ link:articles.html[**Writing**]
 * https://github.com/jkendall327:[GitHub]
 
 * https://www.linkedin.com/in/jack-kendall-6b107811b/:[LinkedIn]
-
-* https://www.upwork.com/freelancers/~01edd15a574b27fc7b:[Freelance writing profile on UpWork]

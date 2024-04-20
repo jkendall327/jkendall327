@@ -3,9 +3,7 @@ Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
 Self-taught developer with 4+ years experience in .NET. Strong interest in best
-practices, automated testing and high-quality documentation.
-
-1st class honours degree in English from the University of York (2015 - 2018).
+practices, automated testing and high-quality documentation. 1st class honours degree in English from the University of York (2015 - 2018).
 
 == Experience
 
