@@ -2,19 +2,11 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
-This page lists my major programming projects.
+This page lists some of the programming projects I did for fun before I started working with software in a professional capacity. I keep this listing up primarily for historical interest.
 
-I work with .NET/C#.
+Everything here was made with .NET/C#.
 
-I'm not including various minor toy apps I've made just to learn specific concepts as they're not interesting to look at. 
-
-The projects here are all things I made because I needed or wanted them.
-
-.*Skills demonstrated*:
- * UI design (QuietTime, DupFinder)
- * SQL and CRUD (UK Tax Calculator)
- * ASP.NET Core/web tech (WallpaperMaker)
- * Image processing (DupFinder, WallpaperMaker)
+I'm not including various minor toy apps I've made just to learn specific concepts as they're not interesting to look at. The projects here are all things I made because I needed or wanted them.
 
 == QuietTime
 
