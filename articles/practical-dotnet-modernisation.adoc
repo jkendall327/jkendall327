@@ -1,0 +1,68 @@
+= .NET modernisation: a view from the trenches
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+
+Over the past year I've modernised a large enterprise .NET solution consisting of over a hundred projects. This page will list some of my experiences from this and practical tips that are of use to others. Emphasis on practical -- everyone knows writing unit tests is great, and all, but I want to get down into the nuts-and-bolts of it all.
+
+This will be focused on the 'raw code'. That is, I won't talk about the improvements I made to our CI/CD pipelines or releases processes. Those are interesting and important, but what I did there likely isn't cleanly applicable to anyone else's organisation, whereas .NET is .NET, no matter who's using it.
+
+A quick note on terminology: I'll use '.NET Core' to refer to anything from 3.1 onwards, even though modern versions are just called '.NET', e.g. '.NET 8'. This is to make the contrast clear when I bring up .NET Framework or .NET Standard.
+
+== The battlefield
+Let's start with an overview of what I was tackling. In many ways it was the archetypical legacy solution, but like unhappy families, every legacy codebase is frustrating in its own way.
+
+The solution centered around a home-grown ERP WinForms desktop app originally written in the early 2010s. What the app did is highly industry-specific and not particularly important. It was a great example of the 'distributed monolith' architecture pattern: around the core desktop project floated a nebulous orbit of webapps and Windows services, all ostensibly independent but in actuality highly conjoined to each other. I won't iterate the difficulties of working with that architectural style, but suffice to say it was very hard to to discern whether making a change in project A would affect projects B, C or Z.
+
+You can assume that, unless stated otherwise, every bit of code started out at a late version of .NET Framework (4.8 specifically). This was highly useful as it made .NET Standard a viable strategy, which I'll outline later.
+
+=== The web apps
+These were a rather mixed bag. We had a dozen or so APIs in total -- thankfully nothing that served the public internet or outside consumers. One or two of these were already on .NET Core, though still several years out of date; nothing was on .NET 6 or above.
+
+Two particularly thorny projects were on legacy ASP.NET (as opposed to ASP.NET Core). This meant they couldn't be built when I ran a simple `dotnet build` on the solution file, which was a personal goal of mine.
+Thankfully, these were already on life support and not getting any meaningful code updates.
+
+=== The services
+We had twenty or so backend services that ran as Windows services on an AWS EC2 instance to mimic a traditional Windows server environment.
+
+Some of these manifestly didn't need to exist; for example, one service ran all day, but the only work it did was send out emails at a specified time every morning, something that could be done with Amazon SNS.
+
+The more interesting fact, however, is that they were run with an ingeniously janky homegrown version of Microsoft.Extensions.Hosting. I'll refer to it as 'Hoster' to protect the innocent.
+
+Hoster worked by dynamically loading assemblies at runtime. You built your projects as libraries, compiling to simple .dlls, and supplied a config file specifying the name of the method and type that would serve as your entrypoint.
+
+The promise of Hoster was that it setup logging for you, handled graceful restarts and shutdowns, and supported arbitrary numbers of projects running under one executable. You could theoretically even add or remove projects between app invocations by just removing their config file, though in practice this was never done.
+
+Naturally this solution gave us plenty of problems. It was horribly brittle -- without knowing the special places you had to put .dlls and configs, things failed silently. Exceptions in the hosted code would not reliably be transmitted to the Hoster shell. Dynamically loading the assemblies led to days of pain with binding exceptions, and was also only supported on .NET Framework. The implementation used AppDomains, which were essentially deprecated in .NET Core. Deployment was unnecessarily complex; we had to marshal together not only the correct version of Hoster, but all the code we actually cared about. It was a quintessential example of taking flexibility too far. And the vast majority of the time, we only ever hosted one service per executable anyway, so its flexibility was of little use. Hoster was written before Microsoft.Extensions.Hosting, and it wasn't a bad bit of work for the time. But it was sorely past its use-by date.
+
+=== The UI
+I think every .NET dev has touched this kind of old Winforms app at some point. Lots of complex, bespoke forms built up of DevExpress widgets customised into unrecognisability. Code-behind files that easily broke five thousand lines in length.
+
+...TBD...
+
+== Strategies
+In my first months on the job, the team lead attempted to upgrade the UI project to .NET 5. After a week of struggle, they only got it down to a hundred compilation errors. From that it was clear to me that any successful modernisation drive would need to work incrementally, and from the bottom up. In practice, that meant the following:
+
+1. Analyse the project hierarchy in the solution.
+2. Find the 'lowest' projects, that is, simple libraries that had no dependencies.
+3. Transition those projects to .NET Standard 2.0.
+4. Work on the next layer up. If all of a project's dependencies were .NET Standard, it too could go to .NET Standard (or .NET Core, if it was an executable).
+
+This was a simple algorithm, but an effective one.
+
+It let me shift the solution's code off of .NET Framework in a seamless, low-risk manner. It built a safe bedrock that future work could stand on top of. Around twenty of our projects fell into this simple case, and I upgraded most of them in a single Monday at the start of the project. In many cases it was as simple as changing the <TargetFramework> property in their .csproj; I'll outline some of the more complex cases later. Incidentally, this made it very easy to check my overall progress as the modernisation advanced. I could Ctrl-Shift-F for '<TargetFramework>' to quickly see how many projects were on net48, netstandard2.0, etc. Metrics like that, even rough-and-ready ones, were vital for communication to the bosses who wanted to know how my work was progressing.
+
+You may wonder why I'm specifying .NET Standard 2.0, when a 2.1 exists. The answer is pretty simple. 2.0 can interoperate seamlessly with both .NET Framework and .NET Core. .NET Framework projects can't use .NET Standard 2.1.
+
+...TBD...
+
+=== SDK-style .csprojs
+
+=== Automated tooling
+
+=== The compatibility shim
+
+== Pain-points
+
+=== WCF
+
+=== EF6
