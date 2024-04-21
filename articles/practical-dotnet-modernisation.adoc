@@ -37,26 +37,26 @@ Naturally this solution gave us plenty of problems. It was horribly brittle -- w
 === The UI
 I think every .NET dev has touched this kind of old Winforms app at some point. Lots of complex, bespoke forms built up of DevExpress widgets customised into unrecognisability. Code-behind files that easily broke five thousand lines in length.
 
-...TBD...
+This is the one part of the solution I've yet to seriously touch, because it's obviously business-critical and has a lot of moving parts. Watch this space.
 
 == Strategies
 In my first months on the job, the team lead attempted to upgrade the UI project to .NET 5. After a week of struggle, they only got it down to a hundred compilation errors. From that it was clear to me that any successful modernisation drive would need to work incrementally, and from the bottom up. In practice, that meant the following:
 
 1. Analyse the project hierarchy in the solution.
-2. Find the 'lowest' projects, that is, simple libraries that had no dependencies.
-3. Transition those projects to .NET Standard 2.0.
-4. Work on the next layer up. If all of a project's dependencies were .NET Standard, it too could go to .NET Standard (or .NET Core, if it was an executable).
+2. Find the 'lowest' projects, that is, simple libraries that had no references to other projects.
+3. Transition those fundamental projects to .NET Standard 2.0.
+4. Repeat on the next layer up. If all of a project's dependencies were .NET Standard, it too could go to .NET Standard (or .NET Core, if it was an executable).
 
 This was a simple algorithm, but an effective one.
 
 It let me shift the solution's code off of .NET Framework in a seamless, low-risk manner. It built a safe bedrock that future work could stand on top of. Around twenty of our projects fell into this simple case, and I upgraded most of them in a single Monday at the start of the project. In many cases it was as simple as changing the <TargetFramework> property in their .csproj; I'll outline some of the more complex cases later. Incidentally, this made it very easy to check my overall progress as the modernisation advanced. I could Ctrl-Shift-F for '<TargetFramework>' to quickly see how many projects were on net48, netstandard2.0, etc. Metrics like that, even rough-and-ready ones, were vital for communication to the bosses who wanted to know how my work was progressing.
 
-You may wonder why I'm specifying .NET Standard 2.0, when a 2.1 exists. The answer is pretty simple. 2.0 can interoperate seamlessly with both .NET Framework and .NET Core. .NET Framework projects can't use .NET Standard 2.1.
+You may wonder why I'm specifying .NET Standard 2.0, when a 2.1 exists. The answer is pretty simple. 2.0 can interoperate seamlessly with both .NET Framework and .NET Core. .NET Framework projects can't use .NET Standard 2.1. This actually gave me a lot of trouble when it came to dealing with Entity Framework 6, which I'll talk about later.
 
 === Dealing with dependencies
-A project with no dependencies is easy to upgrade than one which does. So naturally we should try to trim down the dependencies of our projects as much as possible.
+Assume in this section, and really this entire document, that when I say 'dependency' I mean a reference between projects. NuGet packages can sometimes be troublesome, if they only support specific framework versions -- EF6 comes to mind -- but they are generally a lesser concern. To put it simply, a project is only allowed to reference projects with a lower-or-matching framework version, or .NET Standard. .NET Framework can't depend on .NET Core and vice versa. One of the biggest issues when modernising a big solution is untangling the Gordian knot of project dependencies, slowly carving out an island of .NET Standard code that you can ride, raft-like, to safety.
 
-Naturally this isn't important if the dependencies are themselves .NET Standard already. The bottom-up approach should make this the case a lot of the time, but it's not feasible to follow with 100% consistency, so sometimes you'll need to deal with a .NET Framework dependency.
+Anyway, let's not get carried away with metaphors. A project with no dependencies is easier to upgrade than one which does. So naturally we should try to trim down the dependencies of our projects as much as possible. Naturally this isn't important if the dependencies are themselves .NET Standard already. The bottom-up approach should make this the case a lot of the time, but it's not feasible to follow with 100% consistency, so sometimes you'll need to migrate away from a .NET Framework dependency.
 
 Trimming dependencies takes two forms: removing unnecessary dependencies and narrowing your dependencies.
 
@@ -70,15 +70,20 @@ What about 'narrowing' your dependencies? This means only depending on what you 
 Fixing the first step is fairly easy. Reference the project you need directly. Transitive project dependencies are useful, but they also hide information, and during a modernisation drive that should be avoided.
 I didn't have access to any fancy tools like NDepend to map out the project hierarchy in my solution, so I just played this part by ear. Note that this usually requires the projects in questions to have SDK-style .csprojs, which I talk about in a later point.
 
-As for 2), this is where you get into splitting up projects or reorganising code.
+As for 2), this is where we get into splitting up projects or reorganising code.
+
+A project might be 'held back' to .NET Framework by one small little class that happens to use WCF or an API that's not supported on later versions. In those cases it's often valuable to extract that 1% of the project out to somewhere else, potentially even its own project. This does lead to solution bloat, but sometimes things have to get worse before they can get better. You can also take the route of quarantining all the legacy code into its own project. Besides making other projects safe to upgrade, it also makes it very clear to other developers that they should avoid using anything in the legacy project for new work, if at all possible.
 
 === SDK-style .csprojs
 
 === Automated tooling
 
 === The compatibility shim
+I told a white lie previously when I said that .NET Core could only interoperate with .NET Standard seamlessly. .NET Core assemblies will, in fact, try to 'just work' with .NET Framework dependencies. In a lot of cases, this will be fine and you won't notice the difference. But you get very few guarantees, working this way; if the runtime encounters something it can't handle it reserves the right to explode at runtime. So this should be considered a last resort. You'll thankfully get some very noticeable compiler warnings when you do this, which is actually quite useful, as it's easy to do this accidentally via transitive dependencies.
 
 == Pain-points
+
+=== SOAP
 
 === WCF
 

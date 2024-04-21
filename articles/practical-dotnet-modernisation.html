@@ -465,6 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_pain_points">Pain-points</a>
 <ul class="sectlevel2">
+<li><a href="#_soap">SOAP</a></li>
 <li><a href="#_wcf">WCF</a></li>
 <li><a href="#_ef6">EF6</a></li>
 </ul>
@@ -535,7 +536,7 @@ Thankfully, these were already on life support and not getting any meaningful co
 <p>I think every .NET dev has touched this kind of old Winforms app at some point. Lots of complex, bespoke forms built up of DevExpress widgets customised into unrecognisability. Code-behind files that easily broke five thousand lines in length.</p>
 </div>
 <div class="paragraph">
-<p>&#8230;&#8203;TBD&#8230;&#8203;</p>
+<p>This is the one part of the solution I&#8217;ve yet to seriously touch, because it&#8217;s obviously business-critical and has a lot of moving parts. Watch this space.</p>
 </div>
 </div>
 </div>
@@ -552,13 +553,13 @@ Thankfully, these were already on life support and not getting any meaningful co
 <p>Analyse the project hierarchy in the solution.</p>
 </li>
 <li>
-<p>Find the 'lowest' projects, that is, simple libraries that had no dependencies.</p>
+<p>Find the 'lowest' projects, that is, simple libraries that had no references to other projects.</p>
 </li>
 <li>
-<p>Transition those projects to .NET Standard 2.0.</p>
+<p>Transition those fundamental projects to .NET Standard 2.0.</p>
 </li>
 <li>
-<p>Work on the next layer up. If all of a project&#8217;s dependencies were .NET Standard, it too could go to .NET Standard (or .NET Core, if it was an executable).</p>
+<p>Repeat on the next layer up. If all of a project&#8217;s dependencies were .NET Standard, it too could go to .NET Standard (or .NET Core, if it was an executable).</p>
 </li>
 </ol>
 </div>
@@ -569,15 +570,15 @@ Thankfully, these were already on life support and not getting any meaningful co
 <p>It let me shift the solution&#8217;s code off of .NET Framework in a seamless, low-risk manner. It built a safe bedrock that future work could stand on top of. Around twenty of our projects fell into this simple case, and I upgraded most of them in a single Monday at the start of the project. In many cases it was as simple as changing the &lt;TargetFramework&gt; property in their .csproj; I&#8217;ll outline some of the more complex cases later. Incidentally, this made it very easy to check my overall progress as the modernisation advanced. I could Ctrl-Shift-F for '&lt;TargetFramework&gt;' to quickly see how many projects were on net48, netstandard2.0, etc. Metrics like that, even rough-and-ready ones, were vital for communication to the bosses who wanted to know how my work was progressing.</p>
 </div>
 <div class="paragraph">
-<p>You may wonder why I&#8217;m specifying .NET Standard 2.0, when a 2.1 exists. The answer is pretty simple. 2.0 can interoperate seamlessly with both .NET Framework and .NET Core. .NET Framework projects can&#8217;t use .NET Standard 2.1.</p>
+<p>You may wonder why I&#8217;m specifying .NET Standard 2.0, when a 2.1 exists. The answer is pretty simple. 2.0 can interoperate seamlessly with both .NET Framework and .NET Core. .NET Framework projects can&#8217;t use .NET Standard 2.1. This actually gave me a lot of trouble when it came to dealing with Entity Framework 6, which I&#8217;ll talk about later.</p>
 </div>
 <div class="sect2">
 <h3 id="_dealing_with_dependencies">Dealing with dependencies</h3>
 <div class="paragraph">
-<p>A project with no dependencies is easy to upgrade than one which does. So naturally we should try to trim down the dependencies of our projects as much as possible.</p>
+<p>Assume in this section, and really this entire document, that when I say 'dependency' I mean a reference between projects. NuGet packages can sometimes be troublesome, if they only support specific framework versions&#8201;&#8212;&#8201;EF6 comes to mind&#8201;&#8212;&#8201;but they are generally a lesser concern. To put it simply, a project is only allowed to reference projects with a lower-or-matching framework version, or .NET Standard. .NET Framework can&#8217;t depend on .NET Core and vice versa. One of the biggest issues when modernising a big solution is untangling the Gordian knot of project dependencies, slowly carving out an island of .NET Standard code that you can ride, raft-like, to safety.</p>
 </div>
 <div class="paragraph">
-<p>Naturally this isn&#8217;t important if the dependencies are themselves .NET Standard already. The bottom-up approach should make this the case a lot of the time, but it&#8217;s not feasible to follow with 100% consistency, so sometimes you&#8217;ll need to deal with a .NET Framework dependency.</p>
+<p>Anyway, let&#8217;s not get carried away with metaphors. A project with no dependencies is easier to upgrade than one which does. So naturally we should try to trim down the dependencies of our projects as much as possible. Naturally this isn&#8217;t important if the dependencies are themselves .NET Standard already. The bottom-up approach should make this the case a lot of the time, but it&#8217;s not feasible to follow with 100% consistency, so sometimes you&#8217;ll need to migrate away from a .NET Framework dependency.</p>
 </div>
 <div class="paragraph">
 <p>Trimming dependencies takes two forms: removing unnecessary dependencies and narrowing your dependencies.</p>
@@ -603,7 +604,10 @@ Thankfully, these were already on life support and not getting any meaningful co
 I didn&#8217;t have access to any fancy tools like NDepend to map out the project hierarchy in my solution, so I just played this part by ear. Note that this usually requires the projects in questions to have SDK-style .csprojs, which I talk about in a later point.</p>
 </div>
 <div class="paragraph">
-<p>As for 2), this is where you get into splitting up projects or reorganising code.</p>
+<p>As for 2), this is where we get into splitting up projects or reorganising code.</p>
+</div>
+<div class="paragraph">
+<p>A project might be 'held back' to .NET Framework by one small little class that happens to use WCF or an API that&#8217;s not supported on later versions. In those cases it&#8217;s often valuable to extract that 1% of the project out to somewhere else, potentially even its own project. This does lead to solution bloat, but sometimes things have to get worse before they can get better. You can also take the route of quarantining all the legacy code into its own project. Besides making other projects safe to upgrade, it also makes it very clear to other developers that they should avoid using anything in the legacy project for new work, if at all possible.</p>
 </div>
 </div>
 <div class="sect2">
@@ -616,13 +620,19 @@ I didn&#8217;t have access to any fancy tools like NDepend to map out the projec
 </div>
 <div class="sect2">
 <h3 id="_the_compatibility_shim">The compatibility shim</h3>
-
+<div class="paragraph">
+<p>I told a white lie previously when I said that .NET Core could only interoperate with .NET Standard seamlessly. .NET Core assemblies will, in fact, try to 'just work' with .NET Framework dependencies. In a lot of cases, this will be fine and you won&#8217;t notice the difference. But you get very few guarantees, working this way; if the runtime encounters something it can&#8217;t handle it reserves the right to explode at runtime. So this should be considered a last resort. You&#8217;ll thankfully get some very noticeable compiler warnings when you do this, which is actually quite useful, as it&#8217;s easy to do this accidentally via transitive dependencies.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_pain_points">Pain-points</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_soap">SOAP</h3>
+
+</div>
 <div class="sect2">
 <h3 id="_wcf">WCF</h3>
 
@@ -636,7 +646,7 @@ I didn&#8217;t have access to any fancy tools like NDepend to map out the projec
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-04-21 08:47:48 +0100
+Last updated 2024-04-21 12:10:42 +0100
 </div>
 </div>
 </body>
