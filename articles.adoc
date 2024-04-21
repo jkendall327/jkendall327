@@ -5,4 +5,5 @@ Jack Kendall <jkendall3096@gmail.com>
 On this page you can read various things I have written.
 
 link:articles/practical-dotnet-modernisation.html[**.NET modernisation: a view from the trenches (unfinished)**]
+
 link:articles/what-i-learned-making-quiettime.html[**What I learned making QuietTime**]
