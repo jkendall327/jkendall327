@@ -457,6 +457,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_strategies">Strategies</a>
 <ul class="sectlevel2">
+<li><a href="#_dealing_with_dependencies">Dealing with dependencies</a></li>
 <li><a href="#_sdk_style_csprojs">SDK-style .csprojs</a></li>
 <li><a href="#_automated_tooling">Automated tooling</a></li>
 <li><a href="#_the_compatibility_shim">The compatibility shim</a></li>
@@ -570,8 +571,40 @@ Thankfully, these were already on life support and not getting any meaningful co
 <div class="paragraph">
 <p>You may wonder why I&#8217;m specifying .NET Standard 2.0, when a 2.1 exists. The answer is pretty simple. 2.0 can interoperate seamlessly with both .NET Framework and .NET Core. .NET Framework projects can&#8217;t use .NET Standard 2.1.</p>
 </div>
+<div class="sect2">
+<h3 id="_dealing_with_dependencies">Dealing with dependencies</h3>
 <div class="paragraph">
-<p>&#8230;&#8203;TBD&#8230;&#8203;</p>
+<p>A project with no dependencies is easy to upgrade than one which does. So naturally we should try to trim down the dependencies of our projects as much as possible.</p>
+</div>
+<div class="paragraph">
+<p>Naturally this isn&#8217;t important if the dependencies are themselves .NET Standard already. The bottom-up approach should make this the case a lot of the time, but it&#8217;s not feasible to follow with 100% consistency, so sometimes you&#8217;ll need to deal with a .NET Framework dependency.</p>
+</div>
+<div class="paragraph">
+<p>Trimming dependencies takes two forms: removing unnecessary dependencies and narrowing your dependencies.</p>
+</div>
+<div class="paragraph">
+<p>By 'unnecessary', I mean a project dependency that is entirely unused and can be removed with no ill effect in the consumer. This happens more frequently than you might think in a legacy codebase with lots of churn; if a piece of code moves from HelperLibrary.Imp to BasicCode.Core, you might not realise the HelperLibrary reference is no longer needed. Manually auditing all your project references is a pain&#8201;&#8212;&#8201;the best approach I know of is to comment them out one-by-one in the .csproj, build the project and see if it breaks. It&#8217;s much better to use tooling for this. I use Rider as my daily driver, and it has a 'find unused references' feature which identifies unused assemblies most of the time. Doing this let me cut out dozens of dependency-links between projects and made more than a few of them entirely isolated (and, thereby, trivial to upgrade).</p>
+</div>
+<div class="paragraph">
+<p>What about 'narrowing' your dependencies? This means only depending on what you actually <strong>need</strong>. There are two scenarios where you can end up depending on more than what&#8217;s necessary.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You require code in project A, but you get it through a transitive dependency on project B, which you don&#8217;t need.</p>
+</li>
+<li>
+<p>You require some code in project A, but not all of it, or even a majority of it. In the extreme case, you have a reference to an entire project just to use one or two methods.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Fixing the first step is fairly easy. Reference the project you need directly. Transitive project dependencies are useful, but they also hide information, and during a modernisation drive that should be avoided.
+I didn&#8217;t have access to any fancy tools like NDepend to map out the project hierarchy in my solution, so I just played this part by ear. Note that this usually requires the projects in questions to have SDK-style .csprojs, which I talk about in a later point.</p>
+</div>
+<div class="paragraph">
+<p>As for 2), this is where you get into splitting up projects or reorganising code.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_sdk_style_csprojs">SDK-style .csprojs</h3>
@@ -603,7 +636,7 @@ Thankfully, these were already on life support and not getting any meaningful co
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-04-20 15:44:43 +0100
+Last updated 2024-04-21 08:47:48 +0100
 </div>
 </div>
 </body>
