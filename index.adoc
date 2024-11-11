@@ -8,6 +8,8 @@ link:cv.html[**Work experience**]
 
 link:articles.html[**Writing**]
 
+link:colophon.html[**Colophon**]
+
 == Links
 
 * mailto:jkendall3096@gmail.com:[Email]

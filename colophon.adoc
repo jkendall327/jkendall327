@@ -1,0 +1,19 @@
+= Colophon
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+
+This website is deliberately barebones. That way I can take long breaks from looking at it, and when I come back it's not hard to figure out how to get new content published. It also pushes me to focus more on content than spending a lot of time thinking up ingenious ways to put text on the internet.
+
+It's hosted via GitHub Pages. That means you can view the raw files for the website https://github.com/jkendall327/jkendall327:[here].
+
+I use https://asciidoctor.org/:[AsciiDoctor] to convert plaintext into styled HTML. I do this because it has some nice features over plain Markdown, like automatic tables-of-contents, and I like the default styling it uses.
+
+In practice that means:
+
+1. writing a post in AsciiDoc (saved as an `.adoc` file)
+2. running the `convert-all.sh` script in the repo linked above
+3. that script runs `asciidoctor` on every `.adoc` file in the repo
+4. `asciidoctor` generates corresponding .html files for them all
+5. I commit those .html files and push them up to GitHub
+
+As I said, deliberately simple.
