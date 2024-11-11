@@ -2,11 +2,11 @@
 
 Hi, I'm Jack. I'm a .NET programmer based in the East Midlands of England. In a past life I was a freelance copywriter. This site is my dusty little corner of the internet.
 
+link:articles.html[**Blog**]
+
+link:cv.html[**Experience**]
+
 link:programming-projects.html[**Programming projects**]
-
-link:cv.html[**Work experience**]
-
-link:articles.html[**Writing**]
 
 link:colophon.html[**Colophon**]
 
