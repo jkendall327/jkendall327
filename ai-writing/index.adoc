@@ -1,0 +1,12 @@
+# AI writing
+
+I have found that modern LLMs, specifically Claude Sonnet 3.5 (specifically the 'new' version sometimes dubbed '3.6' by enthusiasts), are surprisingly good at writing prose fiction.
+At some indeterminate point, they crossed the vague line of being enjoyable because it was impressive to see a computer spit out coherent words, to being enjoyable because the words themselves were interesting.
+
+A particular game I like is to use this prompt: `Please write a scene which includes the phrase '...''`.
+
+Where the phrase is some abstract sentence or snippet from the digital scrapbook I maintain.
+It's fascinating to see the ways the algorithm works to construct a scene, characters and dialogue around these free-floating signifiers.
+
+I've decided to catalogue some of the more interesting pieces I've generated here, both as a record and so I can easily share them with others.
+
