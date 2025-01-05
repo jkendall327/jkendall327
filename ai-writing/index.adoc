@@ -11,3 +11,26 @@ It's fascinating to see the ways the algorithm works to construct a scene, chara
 I've decided to catalogue some of the more interesting pieces I've generated here, both as a record and so I can easily share them with others.
 
 Note that this is certainly not an unbiased representation of Claude's output - I'm only sharing the ones I liked well enough to bother copying into VS Code and format. But I think it still shows the state of this bizarre, alien technology.
+
+Here's the AsciiDoc-formatted list with links for all the pages:
+
+* link:adam and eve should've kept eating.html[adam and eve should've kept eating]
+* link:anciently preceded by the.html[anciently preceded by the]
+* link:a silent witness to human suffering.html[a silent witness to human suffering]
+* link:did not deserve a quick death.html[did not deserve a quick death]
+* link:empty churches.html[empty churches]
+* link:highland river tribes.html[highland river tribes]
+* link:i might need you to kill.html[i might need you to kill]
+* link:i was dreaming of california again.html[i was dreaming of california again]
+* link:index.html[index]
+* link:foo.html[index]
+* link:leopold bloom at the museum.html[leopold bloom at the museum]
+* link:siddhartha speedruns enlightenment.html[siddhartha speedruns enlightenment]
+* link:the endless hat.html[the endless hat]
+* link:the noble steed 'bad idea'.html[the noble steed 'bad idea']
+* link:the return trip.html[the return trip]
+* link:the secondary mechanism.html[the secondary mechanism]
+* link:the skull in autumn.html[the skull in autumn]
+* link:The tale of the fallen egg-seeker.html[The tale of the fallen egg-seeker]
+* link:the water trick.html[the water trick]
+* link:vampires at the club.html[vampires at the club]
