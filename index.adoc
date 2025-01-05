@@ -8,7 +8,7 @@ link:cv.html[**Experience**]
 
 link:programming-projects.html[**Programming projects**]
 
-link:ai-writing/ai-writing.html[**AI writing**]
+link:ai-writing/index.html[**AI writing**]
 
 link:colophon.html[**Colophon**]
 

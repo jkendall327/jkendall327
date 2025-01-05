@@ -15,7 +15,7 @@ Note that this is certainly not an unbiased representation of Claude's output - 
 Here's the AsciiDoc-formatted list with links for all the pages:
 
 * link:anciently-preceded-by-the.html[Anciently Preceded By The]
-* link:adam-and-eve-should've-kept-eating.html[Adam and Eve Should've Kept Eating]
+* link:adam-and-eve.html[Adam and Eve Should've Kept Eating]
 * link:a-silent-witness-to-human-suffering.html[A Silent Witness to Human Suffering]
 * link:did-not-deserve-a-quick-death.html[Did Not Deserve a Quick Death]
 * link:empty-churches.html[Empty Churches]
