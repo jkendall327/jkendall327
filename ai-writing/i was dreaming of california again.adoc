@@ -21,3 +21,13 @@ I keep them in a shoebox under loose floorboards, wrapped in wax paper like that
 The box smells like sea salt now, though that's probably just my brain playing tricks. Hasn't been within five hundred miles of an ocean in three years. Funny how memory works – you think you're done with something, then your mind conjures up the smell of kelp and diesel fuel at three in the morning.
 
 The radiator gave up its ghost entirely. In the new silence, I could hear my upstairs neighbor pacing. Back and forth, back and forth, like he was counting steps to somewhere. I wondered if he had a box of his own up there, full of things he couldn't quite throw away.
+
+## Original prompts
+
+I can't find the original Claude chat, but as best I remember, the original prompt for this was:
+
+> I was dreaming of California again. Memories I can't explain, memories I never wanted to see again. But I dreamt them all the same.
+
+And:
+
+> And yeah, I still have the pictures. The photographs and the drawings. Of course I do. Never one to miss an opportunity to hurt myself, looking at things I could've had.

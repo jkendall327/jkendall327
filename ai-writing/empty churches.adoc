@@ -37,3 +37,11 @@ Sarah thought of the green stains she'd noticed on several coffin nails—she'd 
 As the sun set, she stood in the church doorway, examining the worn stone threshold. The deep grooves she'd initially attributed to centuries of foot traffic had an odd pattern to them. They were deepest at the edges, as if something had been repeatedly laid across the threshold—perhaps chains or heavy rope, worn away long ago but leaving their mark in the stone.
 
 None of these details proved anything conclusively. But as Sarah updated her site journal that evening, she found herself writing around the edges of a possibility that seemed too fantastic to name—yet somehow felt more plausible than any conventional explanation she could devise.
+
+## Original prompts
+
+The above is a stitching-together of the outputs to these prompts:
+
+> I'd like you to write a scene about an archaeologist excavating a Medieval French church, only to realise that all of the graves in the attached graveyard are empty
+
+> Let's continue with them finding some understated clues which point towards the graves being empty because of vampirism back in the Medieval era. I really do want these clues to be understated, and for the scene to have a sense of verisimilitude.

@@ -10,3 +10,4 @@ It's fascinating to see the ways the algorithm works to construct a scene, chara
 
 I've decided to catalogue some of the more interesting pieces I've generated here, both as a record and so I can easily share them with others.
 
+Note that this is certainly not an unbiased representation of Claude's output - I'm only sharing the ones I liked well enough to bother copying into VS Code and format. But I think it still shows the state of this bizarre, alien technology.

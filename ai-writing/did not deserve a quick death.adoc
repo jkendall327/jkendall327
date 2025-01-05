@@ -19,3 +19,7 @@ She began photographing the artifact from various angles, trying to maintain pro
 "That's the strange part," Martinez replied. "It was discovered in a bog in northern Wales, wrapped in preserved leather and sealed in a box of yew wood. Almost as if someone wanted to ensure it would survive the centuries."
 
 Jensen lowered her camera slowly. "Or as if they were trying to make sure it would be found."
+
+## Original prompt
+
+> I'd like you to write a scene which includes this line: 'Whoever crafted this tool did not believe their enemies deserved a quick death.'

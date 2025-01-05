@@ -25,3 +25,19 @@ Charon nodded, and for the first time in uncounted ages, the ferry turned back b
 "Clever one," Charon murmured as Marcus stepped onto familiar soil, his body feeling suddenly heavy and real. "But remember—third trip is one-way only."
 
 Marcus nodded, patting his pocket where he kept one last coin. Just in case. After all, you never know when you might need a reliable ferryman.
+
+## Original prompt
+
+I am, frustratingly, unable to find the original Claude chat for this story. I believe my prompt was something like
+
+> I'd like you to write a story about the first guy to ever think to pay Charon for a return trip
+
+## Commentary
+
+This piece is a good example of how LLMs can be funny when you nudge them away from their natural inclination for goofy, laugh-out-loud aw-shucks humour. Marcus calling all the other shades in Hades 'amateur hour' is wonderful.
+
+I also particularly like this line:
+
+> When they reached the far shore, Marcus didn't disembark with the other shades. "I believe," he said, "I paid for a return trip."
+
+The sense of rhythm in the second sentence is very well-done.
