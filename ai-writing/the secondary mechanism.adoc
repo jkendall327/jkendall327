@@ -17,3 +17,19 @@ This was merely a prelude to the "temporal echo" controversy of 2074, when orbit
 But perhaps nothing could have prepared the scientific community for the "topology transitions" predicted by Yoshida's extension of the mechanism. Her mathematical proof that certain quantum states could temporarily modify the large-scale topology of space itself was initially treated as a mathematical curiosity - surely such states could never be physically realized. When her team successfully created a laboratory-scale "spatial knot" in 2076, the resulting spacetime distortion was detected by gravitational wave observatories worldwide. As noted in Nature's year-end review: "At this point, the physics community has largely stopped declaring any prediction of the secondary mechanism 'impossible' - we have been proven wrong too many times."
 
 The culmination came with the "quantum gravity cascade" experiments of 2078, which demonstrated that properly configured quantum systems could create self-reinforcing gravitational feedback loops, leading to stable microscopic spacetime structures previously thought to be ruled out by basic principles of general relativity. As Howardson himself reportedly remarked when shown the results, "Had someone described these consequences to me in 2058, I would have immediately abandoned the entire line of research as obviously incorrect."
+
+## Original prompts
+
+The above is a stitching-together of responses to the following prompts:
+
+> i'd like you to write a passage from a hypothetical academic paper, from 60 or so years in the future, which contains this line: '...Howardson's infamous 'secondary mechanism', which he explained only briefly in marginal publications, but which nevertheless grew to become the foundation of an ultimately successful theory of quantum gravity...'
+
+> write another part from this paper, which details the great intellectual labour that went (mostly in vain) into trying to understand why and how the 'secondary mechanism', as opposed to just using it
+
+> and now a following section on how, once the secondary mechanism was recognised, it led people down several incredible bizarre rabbit holes which at first seemed nonsensical - despite being logical outcomes of the mechanism - to the degree that they called the validity of the mechanism itself into jeopardy. and yet, each and every one of them was eventually vindicated, baffling scientists globally
+
+## Commentary
+
+Claude's use of incidental detail here is very good, as well as its mimicry of tone.
+
+This generation gave me the fleeting idea to try and build it out into a real metafictional story of sorts - a history of the 'secondary mechanism' in all its detail. But I think it's most amusing when treated briefly like this. I asked Claude for a further continuation, focusing on Howardson himself, but unfortunately it wasn't very funny.

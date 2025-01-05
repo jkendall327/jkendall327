@@ -55,3 +55,19 @@ The sun climbed higher. Moses stood, his knees stiff from the crouch. He looked 
 As he walked away, he thought he caught the faintest whisper, like sand shifting in a breeze: "The first is the hardest."
 
 But perhaps it was just the wind.
+
+## Original prompts
+
+The above is a stitching-together of the responses to the following prompts:
+
+> write a non-comedic story where god sheepishly admits to moses that 'i might need you to kill'
+
+> can you now write the first time Moses does actually have to kill for God?
+
+## Commentary
+
+This might be my personal favourite piece of writing from Claude, on an aesthetic level. I think the minimalist and psychological approach lends it a lot of quiet depth. There is an undercurrent of comedy to the first section ('I'll work on my communication skills'), but the piece as a whole is very dark in how it helps us feel the terrible weight that Moses would've felt.
+
+I particularly love the line "That’s not how this works. You know that’s not how this works."
+
+My original prompt was inspired by link:https://www.youtube.com/watch?v=JCrB1XutygY[this song by The Thermals], a punk band.

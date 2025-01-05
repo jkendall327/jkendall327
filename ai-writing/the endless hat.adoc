@@ -17,3 +17,13 @@ Only once did anyone dare ask him why he needed such a tall hat. It was a fresh-
 The article never ran. The journalist switched careers and became a haberdasher, specializing in perfectly normal, reasonably-sized hats.
 
 As for the seventeenth cigar in the hat band – some say on still nights you can see its glow above the clouds, a tiny red star that never moves, marking the spot where J. Bartholomew Crude's ambition finally ran out of atmosphere.
+
+## Original prompt
+
+> write a story about an oil baron who constantly smokes seventeen cigars and whose hat reaches to the stratosphere
+
+## Commentary
+
+Crude using his hat as a dowsing rod is a completely original detail invented by Claude which made me laugh out loud on first reading.
+
+Amusingly, though, it gets the maths wrong on his seventeen cigars. He has four in each hand (eight total), three in his breast pocket (eleven), two behind each ear (fifteen) and two clenched between his teeth (seventeen). It then says the seventeenth is tucked into his hat band, but that's the eighteenth.
