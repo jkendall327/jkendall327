@@ -11,3 +11,11 @@ My new friends are scattered throughout the space, their movements too quick and
 I should be terrified. Instead, I feel an eerie calm, my heart somehow beating in sync with that relentless rhythm. The woman from the bar appears beside me, her cold hand taking mine. "Do you want to see something interesting?" she asks, her smile revealing just a hint of something sharp.
 
 I know I should say no. I know this isn't going to end well. But the music has me now, has all of us, locked in its perfect, eternal loop. I squeeze her hand and let her lead me deeper into the darkness between the strobes.
+
+## Original prompt
+
+> i once saw a comment on a techno song which said this: 'Whenever I find myself all coked up hanging out with vampires, they always take me to the same underground club with a single strobe light playing this track on repeat.' can you write a scene based on this description
+
+## Commentary
+
+Claude got the hallucinatory vibe I wanted really well, given I didn't even really allude to it in my original prompt. I was surprised and impressed at its restraint; 'just a hint of something sharp' is a cracking way of making it clear what's going out without coming out and saying it. Lesser LLMs have real trouble with the 'don't think of elephants' problem and would have blithely used the word 'vampire' in their take on this task.

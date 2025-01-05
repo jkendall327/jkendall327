@@ -17,3 +17,11 @@ A crow lands nearby, eyeing the skull with professional interest. The skull pays
 As I retreat, I hear the skull calling after me: "If you're interested in learning more about multiple independently targetable reentry vehicles, I'm here most days. Not like I'm going anywhere!"
 
 The last thing I hear, before the forest swallows the scene entirely, is the skull beginning to lecture the crow about the strategic implications of hypersonic glide vehicles.
+
+## Original prompt
+
+> write a scene where you're walking through a beautiful autumn forest and a skull on the ground starts casually talking about nuclear warfare
+
+## Commentary
+
+The best part about this generation is the skull's final line, 'Not like I'm going anywhere!'. I also appreciated how Claude didn't try to explain this situation which was meant to be inexplicable.

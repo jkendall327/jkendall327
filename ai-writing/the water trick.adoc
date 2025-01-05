@@ -9,3 +9,13 @@ That evening, Betty from two doors down told her that Marcus had left town sudde
 A week later, Sarah received a letter with no return address. Inside was a single sheet of paper with a waterstain obscuring most of the text. The only legible words were at the bottom: "The trick is knowing when to stop."
 
 She recycled the letter and decided that maybe it was better not to think too hard about what had happened to Marcus. Some mysteries, she figured, were better left unsolved – especially ones involving creative accounting.
+
+## Original prompt
+
+> write a short scene which includes this line: '...a way of apparently doing his taxes in half the time, which he ominously called "the water trick"...'
+
+## Commentary
+
+I was legitimately shocked when I first saw 'The trick is knowing when to stop'. This was one of my first attempts at generating microfiction with Claude, and the way it played back to my original prompt there felt very natural and literary.
+
+I asked Claude to try expanding this story with more details, but I felt it lost a lot of the immediacy and mystery of the original attempt. There's a great sense of mystery produced by the waterstained letter -- though the final paragraph falls into some massive GPT-isms.
