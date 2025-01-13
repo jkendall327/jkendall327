@@ -12,26 +12,24 @@ I've decided to catalogue some of the more interesting pieces I've generated her
 
 Note that this is certainly not an unbiased representation of Claude's output - I'm only sharing the ones I liked well enough to bother copying into VS Code and format. But I think it still shows the state of this bizarre, alien technology.
 
-Here's the AsciiDoc-formatted list with links for all the pages:
-
-* link:anciently-preceded-by-the.html[Anciently Preceded By The]
-* link:adam-and-eve.html[Adam and Eve Should've Kept Eating]
-* link:a-silent-witness-to-human-suffering.html[A Silent Witness to Human Suffering]
-* link:did-not-deserve-a-quick-death.html[Did Not Deserve a Quick Death]
-* link:empty-churches.html[Empty Churches]
-* link:highland-river-tribes.html[Highland River Tribes]
-* link:i-might-need-you-to-kill.html[I Might Need You to Kill]
-* link:i-was-dreaming-of-california-again.html[I Was Dreaming of California Again]
-* link:leopold-bloom-at-the-museum.html[Leopold Bloom at the Museum]
-* link:siddhartha-speedruns-enlightenment.html[Siddhartha Speedruns Enlightenment]
-* link:the-endless-hat.html[The Endless Hat]
-* link:the-noble-steed-bad-idea.html[The Noble Steed Bad Idea]
-* link:the-return-trip.html[The Return Trip]
-* link:the-secondary-mechanism.html[The Secondary Mechanism]
-* link:the-skull-in-autumn.html[The Skull in Autumn]
-* link:the-tale-of-the-fallen-egg-seeker.html[The Tale of the Fallen Egg Seeker]
-* link:the-water-trick.html[The Water Trick]
-* link:vampires-at-the-club.html[Vampires at the Club]
+* link:anciently-preceded-by-the.html[anciently preceded by the]
+* link:adam-and-eve.html[adam and eve]
+* link:a-silent-witness-to-human-suffering.html[a silent witness]
+* link:did-not-deserve-a-quick-death.html[did not deserve a quick death]
+* link:empty-churches.html[empty churches]
+* link:highland-river-tribes.html[highland river tribes]
+* link:i-might-need-you-to-kill.html[I might need you to kill]
+* link:i-was-dreaming-of-california-again.html[I was dreaming of California again]
+* link:leopold-bloom-at-the-museum.html[Leopold Bloom at the museum]
+* link:siddhartha-speedruns-enlightenment.html[Siddhartha speedruns enlightenment]
+* link:the-endless-hat.html[the endless hat]
+* link:the-noble-steed-bad-idea.html[the noble steed 'bad idea']
+* link:the-return-trip.html[the return trip]
+* link:the-secondary-mechanism.html[the secondary mechanism]
+* link:the-skull-in-autumn.html[the skull in autumn]
+* link:the-tale-of-the-fallen-egg-seeker.html[the tale of the fallen egg seeker]
+* link:the-water-trick.html[the water trick]
+* link:vampires-at-the-club.html[vampires at the club]
 
 ---
 
