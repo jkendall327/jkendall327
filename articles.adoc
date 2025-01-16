@@ -2,8 +2,8 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
-On this page you can read various things I have written.
+link:articles/openai-agi-definition-is-marxist.html[OpenAI's definition of AGI is Marxist]
 
-link:articles/practical-dotnet-modernisation.html[**.NET modernisation: a view from the trenches (unfinished)**]
+link:articles/practical-dotnet-modernisation.html[.NET modernisation: a view from the trenches (unfinished)]
 
-link:articles/what-i-learned-making-quiettime.html[**What I learned making QuietTime**]
+link:articles/what-i-learned-making-quiettime.html[What I learned making QuietTime]
