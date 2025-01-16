@@ -1,0 +1,133 @@
+= OpenAI's definition of AGI is Marxist
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+
+OpenAI's https://openai.com/our-structure/['Our structure' page] contains the following quote:
+
+> Since the beginning, we have believed that powerful AI, culminating in AGI—meaning a highly autonomous system that outperforms humans at most economically valuable work—has the potential to reshape society and bring tremendous benefits, along with risks that must be safely addressed...
+
+What always struck me about this was the definition given for artificial general intelligence: a system that 'outperforms humans at most economically valuable work'.
+
+Let's think about that definition, and how it relates to Marx.
+
+## Initial caveats
+
+- Marxism is a theoretical approach—we say that we take a Marxist approach in analysing something. If you like, you can replace it mentally with 'class-based analysis' or 'economically-minded analysis'
+- Saying 'OpenAI's definition is Marxist' doesn't mean 'Sam Altman is a communist'
+- Whether Marx was empirically right or wrong about our real world works, while interesting, isn't relevant when we're talking about theoretical concerns and definitions
+- This essay sticks to physical examples for simplicity, but for Marx value can also relate to satisfying psychological desires, convenience, etc.
+
+## Marx and the problem of profit
+
+Marx was very interested in understanding the economic world around him. A fundamental part of his theory of capitalist was how human labour interacted with market forces.
+
+For Marx, a *commodity* is something which is traded on marketplaces. You can think of commodities as solidified lumps of value. Their accepted market price always reflects the labour that went into making them out of raw materials—on average, anyway. A given product might not match the calculations exactly, but as a whole, the price of things trend towards reflecting the amount of labour required to produce them.
+
+I'm not going to explain why Marx believes this, because it being true or not isn't relevant. Accept it as a given.
+
+Commodities present a problem. If the accepted market price for a commodity is always tied to its labour-value, how can companies consistently make a profit? We know empirically that they *do*, so there must be an explanation.
+
+You can't just say 'well, they cut some corners in the manufacturing process'. That's a reduction in the labour which went into shaping the commodity from raw materials, and so it should impact the market price.
+
+Marx squared this circle by presenting human labour as a commodity itself. This isn't too shocking; you can buy and sell labour like anything else, except we use the word 'wages' when we talk about purchasing it.
+
+By itself, this doesn't solve the problem. If labour is a commodity, it requires other labour to be shaped (all the effort that went into raising, feeding and clothing the worker) and this should inexorably impact the market price of the labour they have to sell. The equations all balance.
+
+The poor capitalist still has no way to make profit. What's the solution?
+
+(By the way, the Marxist term for this problem, how profit happens, is called https://en.wikipedia.org/wiki/Valorisation)[valorisation].)
+
+## Marx and human intelligence
+
+I would now like to present a quote from https://www.marxists.org/archive/marx/works/1867-c1/ch07.htm[chapter seven of Capital]. It's the crux of my entire argument, so it's worth reading carefully.
+
+> Labour is, in the first place, a process in which both man and Nature participate, and in which man of his own accord starts, regulates, and controls the material re-actions between himself and Nature. He opposes himself to Nature as one of her own forces, setting in motion arms and legs, head and hands, the natural forces of his body, in order to appropriate Nature’s productions in a form adapted to his own wants. 
+> 
+> By thus acting on the external world and changing it, he at the same time changes his own nature. He develops his slumbering powers and compels them to act in obedience to his sway. We are not now dealing with those primitive instinctive forms of labour that remind us of the mere animal. An immeasurable interval of time separates the state of things in which a man brings his labour-power to market for sale as a commodity, from that state in which human labour was still in its first instinctive stage. 
+> 
+> We pre-suppose labour in a form that stamps it as exclusively human. A spider conducts operations that resemble those of a weaver, and a bee puts to shame many an architect in the construction of her cells. But what distinguishes the worst architect from the best of bees is this, that the architect raises his structure in imagination before he erects it in reality. At the end of every labour-process, we get a result that already existed in the imagination of the labourer at its commencement. He not only effects a change of form in the material on which he works, but he also realises a purpose of his own that gives the law to his modus operandi, and to which he must subordinate his will. 
+> 
+> And this subordination is no mere momentary act. Besides the exertion of the bodily organs, the process demands that, during the whole operation, the workman’s will be steadily in consonance with his purpose. This means close attention. The less he is attracted by the nature of the work, and the mode in which it is carried on, and the less, therefore, he enjoys it as something which gives play to his bodily and mental powers, the more close his attention is forced to be.
+
+This is really a quite extraordinary paragraph. If Marx's prose is difficult for you to parse (understandable), here's a gloss:
+
+- Labour is when a human acts on the external world to change it.
+- It's different than what animals do.
+- 'The architect raises his structure in imagination before he erects in reality.'
+- Workers aren't just changing the physical world willy-nilly. They are putting their will into effect in the world.
+- This process is 'no mere momentary act'. It's something you have to focus on and pay attention to.
+
+Marx's argument is that human labour is fundamentally special compared to the work animals do (such as a pack-mule) because of our intelligence: our ability to envision a design before we enact it, to plan ahead of time, to focus on something.
+
+This special quality imbues human labour with an ability no other commodity has. It can produce more value than it requires to create or sustain.
+
+The wages a worker gets paid roughly work out to what's required to keep that person alive and working. (Once again, just assume that's true.) If people only worked as much as their wages were worth, the equation would be balanced, and profit wouldn't happen. But people *do* work more.
+
+Let's put it another way. You get paid $100 a day, which is enough to keep you fed and clothed and show up the next day. Unlike a spider or a bee, your human mind allows you to produce $100 of value for your employer in a lot less time than a day—an hour, maybe. But you don't get to go home after an hour. Instead you work for the rest of your shift, and all the surplus value you produce in that time goes to your employer.
+
+Your employer gives out your wages, and in return gets all the value you produce during your shift. They get back more than they give: this is the definition of profit and the problem is solved.
+
+(Why don't workers recognise this as unfair and demand they get paid the full measure of their labour? Well, answering that question takes you from theory to revolution.)
+
+## Immediate implications
+
+That was quite dense, so let's summarise.
+
+- Marx says that human intelligence is what lets us perform labour.
+- This special quality of labour lets us create more value than we need to sustain ourselves.
+- This in turn allows for the generation of profit.
+
+By now you have probably thought about how we can turn this process on its head.
+
+If human intelligence is a necessary component for producing profit—no commodity without human intelligence has the special characteristics required to get out more value than you put in—**is the ability to produce profit an unarguable sign of intelligence?**
+
+OpenAI believes so. Remember their definition of AGI: "a highly autonomous system that outperforms humans at most economically valuable work". Scrub out 'economically valuable' and replace it with 'profit-producing', if you like; the meaning is the same.
+
+Their definition relies on an assumption that intelligence is best understood through an economic lens, which is the same assumption made by Marx. Thus their definition is Marxist.
+
+## An initial test for AGI
+
+If we uncontroversially assume Marxism is entirely and completely correct, this presents a compelling way to tell if AGI has been achieved.
+
+A generally intelligent system is one which produces more value than that used for its upkeep and reproduction. We will know we have created AGI when it generates profit: that is, revenue greater than how much it cost to train the model, power the data centers, etc.
+
+## Tools and tool-use
+
+Ah, you may be thinking, but doesn't that mean we have AGI right now? I'm pretty sure the big corporations wouldn't be going all-in on AI if it wasn't bringing them a nice return.
+
+As it happens, they're currently all eating a massive loss on AI, in the hope that down the line their investments will pay off and they'll become richer than God. But even if we imagine Copilot or ChatGPT were profitable products right now, they wouldn't be AGI. To understand why we will need to add nuance to our test for AGI.
+
+Let's revisit Marx's quote.
+
+> He opposes himself to Nature as one of her own forces, setting in motion arms and legs, head and hands [...] he develops his slumbering powers and compels them to act in obedience to his sway. He not only effects a change of form in the material on which he works, but he also realises a purpose of his own [...] this subordination is no mere momentary act. Besides the exertion of the bodily organs, the process demands that, during the whole operation, the workman’s will be steadily in consonance with his purpose. This means close attention.
+
+Marx is clearly describing here what we might call 'agentic' AI. That is, systems which are able to instigate actions by themselves, to fulfil private desires, not those of external prompting humans.
+
+Currently, AI systems are just tools or automatons.
+
+For Marx, tools are calcified lumps of labour-value stuffed into a physical object. An engineer pours his labour-value into a new gizmo which does the work of ten men (there's the special character of labour again!); his labour now lives in the gizmo. Like a battery, you can use the gizmo to expend its stored-up labour whenever you like. Tools are used to enable *other* labour: a craftsman uses his hammer, a crafted thing, to craft other things. But also like a battery, the gizmo's store is finite. Eventually the gizmo breaks down, degrades, runs out of batteries, becomes generally useless unless someone pours more labour into it by repairing it.
+
+This model fits AI well. An incredible amount of value is poured into them, and then they are used by people all around the world to produce value.
+
+It might seem like AI models don't degrade or lose their stored labour-value, and as such don't count as tools. But it takes energy to power the computer every time AI inference runs, and that power is produced by labour. The data centers require janitors, etc. etc.
+
+Of course, humans also breakdown over time and require more labour for their upkeep, so this isn't only true of tools. What arguably makes human special is their agentic nature combined with their intelligence.
+
+## A revised test for AGI
+
+We'll know we have created AGI when we have a non-human agentic system that can produce profit.
+
+## Difficult and unanswered questions
+
+By no means is this essay meant to be a definitive statement on these subjects. My recollection of Marx, by itself, is probably faulty in some areas—and people have been debating what he really meant for over a hundred years anyway.
+
+I think the core conceit, a Marxist understanding of human intelligence, is useful tool for thinking about AGI. That's probably why OpenAI chose it, after all.
+
+But, in the interest of being intellectually honest, here are some questions that came to mind while writing this which I don’t have the answers to:
+
+- How on earth are we ever going to measure if an AI system is profitable?
+- What exactly does it mean to be 'agentic'?
+- Is the way that human beings instigate action really all that different from how AI systems act in response to prompting?
+- Does intelligence really have to be human-like to count as profit-producing, in the Marxist sense?
+- Does the creation of surplus value (having to work your shift after you've generated $100 in value) require agent-like behaviour?
+- Is it possible for a tool to become a profit-producing intelligence? What does that transition look like? Can humans be tools?
