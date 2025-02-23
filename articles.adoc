@@ -2,6 +2,8 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
+link:articles/state-and-time-and-types[State and time and types]
+
 link:articles/openai-agi-definition-is-marxist.html[OpenAI's definition of AGI is Marxist]
 
 link:articles/practical-dotnet-modernisation.html[.NET modernisation: a view from the trenches (unfinished)]
