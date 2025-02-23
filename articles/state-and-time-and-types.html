@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Siddhartha speedruns enlightenment</title>
+<meta name="author" content="Jack Kendall">
+<title>State and time and types</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,150 +440,155 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
+<h1>State and time and types</h1>
+<div class="details">
+<span id="author" class="author">Jack Kendall</span><br>
+<span id="email" class="email"><a href="mailto:jkendall3096@gmail.com">jkendall3096@gmail.com</a></span><br>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_problems_with_state">Problems with state</a></li>
+<li><a href="#_time_in_the_type_system">Time in the type system</a></li>
+<li><a href="#_the_direction_of_mutation">The direction of mutation</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_siddhartha_speedruns_enlightenment">Siddhartha speedruns enlightenment</h2>
+<h2 id="_problems_with_state">Problems with state</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>What&#8217;s poppin' chat! SiddharthaGaming here coming at you live from underneath this bodhi tree. We&#8217;re on day 49 of the meditation speedrun attempt, and I&#8217;ve got a feeling today might be the day we finally crack this suffering mechanic. Don&#8217;t forget to use your channel points to predict whether we&#8217;ll reach enlightenment this stream!</p>
+<p>I don&#8217;t think it&#8217;s any big revelation to say that one of the central challenges in programming is dealing with the problem of state. The development of languages over the history of the software industry can be seen pretty readily as an evolution in our approaches to dealing with state.</p>
 </div>
 <div class="paragraph">
-<p><strong>reading chat</strong> "Touch grass?" Bruh, I&#8217;ve been touching grass for literally seven weeks straight. I&#8217;m basically a grass touching world champion at this point.</p>
+<p>In the dark old times, it was the wild west, where we all used global mutable state and GOTO statements. The monsters that paradigm produced led to two offshoot children: OOP, which tried to tame state by compartmentalising it into little boxes, and functional programming, which tried to neuter state by removing mutability, its most vexing feature. Newer languages like Rust attempt to thread the needle by giving us back mutability, but only in ways the language can check are coherent.</p>
 </div>
 <div class="paragraph">
-<p>Yo hold up&#8230;&#8203; hold up chat&#8230;&#8203; I think&#8230;&#8203; I think something&#8217;s happening&#8230;&#8203;</p>
+<p>It&#8217;s unfortunate that state is so difficult to work with, since it&#8217;s the basis for doing almost anything interesting with a computer. While there are multiple reasons it&#8217;s annoying, one angle I keep circling back to is that mutable state introduces a new layer of dimensionality to code: the dimension of time.</p>
 </div>
 <div class="paragraph">
-<p><strong>eyes suddenly widen, jaw drops</strong></p>
+<p>If we imagine a program with absolutely zero mutable state, it&#8217;s like a photograph, or an image frozen in ice. Every fact we can say about its properties is true at every line of execution, or false at another line of execution.</p>
 </div>
 <div class="paragraph">
-<p>YOOOOOOO! Chat! Chat! You&#8217;re not gonna believe this! This is ACTUALLY INSANE! <strong>rapidly tapping temple with index finger</strong></p>
+<p>This doesn&#8217;t necessarily mean the program is deterministic. It could take different branches depending on a PRNG call, for instance, but we would still be able to confidently assert the nature of its state at any stage of its execution, no matter what branch it went down.</p>
 </div>
 <div class="paragraph">
-<p>Okay, okay, let me break this down - you know how we&#8217;ve been trying to figure out why everyone&#8217;s constantly stuck in these L-taking cycles? <strong>leans into camera</strong> Chat, it&#8217;s actually so simple - DESIRE IS THE ROOT OF ALL SUFFERING!</p>
+<p>If we introduce mutability (even just a tiny amount of it), the complexity increases dramatically. We typically think of program execution as a big list of statements that the CPU goes down one-by-one in a linear fashion. We all know that isn&#8217;t really true, what with branch predictors and all, but it&#8217;s a perfectly fine mental model for simple cases. But when we have mutability, we can&#8217;t base our reasoning just on our current statement and the statement before. To actually understand what&#8217;s going on, we have to keep track of all the effects of all the prior statements, keeping a mental tally of all the mutations they&#8217;ve achieved in our head.</p>
 </div>
 <div class="paragraph">
-<p><strong>jumps up, runs around bodhi tree</strong></p>
+<p>That&#8217;s what I mean by the 'dimensionality' that time introduces. Instead of one 'line' we have to follow to understand the program, we now have at least two - the thread of execution and the thread of history, intersecting. Arguably we should even think of there being a temporal thread for every single thing in our program which can be mutated.</p>
 </div>
 <div class="paragraph">
-<p>ACTUAL POGGERS MOMENT! Can we get some enlightenment emotes in the chat?! This is the biggest discovery since xQc found out about juice!</p>
+<p>In effect we can&#8217;t understand any line of code without understanding all preceding lines of code in the entire program. This is very similar to the combinatorial explosion of possibility space people talk about when they talk about multithreaded programs.</p>
 </div>
 <div class="paragraph">
-<p><strong>sits back down, adjusts robe</strong></p>
+<p>Of course this problem isn&#8217;t so bad in practice, because we have techniques for managing it. When mutable state is properly encapsulated in a class, we are usually safe in ignoring it and can go about our lives. But the complexity is still 'really' there.</p>
 </div>
 <div class="paragraph">
-<p>But wait wait wait - there&#8217;s more! <strong>dramatic pause</strong> The suffering&#8230;&#8203; it has a SOURCE! And it has an END! And there&#8217;s a PATH! Chat, this is like finding all the speedrun strats at once!</p>
+<p>In one respect, functional programming does not really remove the problem of time. Instead it just shrinks things down to the degenerate case, where everything lives at exactly the same moment. In practical terms, that&#8217;s great, and more than enough to treat the problem as essentially solved.</p>
 </div>
 <div class="paragraph">
-<p><strong>reading donations</strong>
-"Sid, what&#8217;s the path?"
-"Touch more grass?"
-"Have you tried getting good?"</p>
-</div>
-<div class="paragraph">
-<p>No no no, listen - we need a whole new META! It&#8217;s called the Eightfold Path, and it&#8217;s gonna revolutionize the whole game! We&#8217;re talking Right View, Right Intention, Right Speech&#8230;&#8203; <strong>counts on fingers</strong> actually there&#8217;s eight of them, who would&#8217;ve guessed?</p>
-</div>
-<div class="paragraph">
-<p><strong>stands up, pointing at camera</strong></p>
-</div>
-<div class="paragraph">
-<p>Chat, this is not a drill! We just discovered the actual solution to the entire suffering mechanic! No cap, no bait, this is real! I&#8217;m literally shaking right now!</p>
-</div>
-<div class="paragraph">
-<p><strong>pacing excitedly</strong></p>
-</div>
-<div class="paragraph">
-<p>And the best part? This isn&#8217;t some pay-to-win strategy - anyone can do this! We&#8217;re gonna make suffering REAL REAL QUIET!</p>
-</div>
-<div class="paragraph">
-<p><strong>freezes, staring into middle distance</strong></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;chat, I think I just became a Buddha.</p>
-</div>
-<div class="paragraph">
-<p><strong>dabs</strong></p>
-</div>
-<div class="paragraph">
-<p>LETS GOOOOOOOOO! World first enlightenment speedrun! Can we get some POG in the chat?! Don&#8217;t forget to clip that moment!</p>
-</div>
-<div class="paragraph">
-<p><strong>composes self briefly</strong></p>
-</div>
-<div class="paragraph">
-<p>Okay, we need to make this information accessible to everyone. Mods, can we get a !dharma command in the chat? Also, don&#8217;t forget to join the Discord where we&#8217;ll be dropping the full guide. We&#8217;re about to create the most fire sangha community ever!</p>
-</div>
-<div class="paragraph">
-<p><strong>reading chat</strong>
-"Touch nirvana?"
-Literally just did, chat. Literally just did.</p>
-</div>
-<div class="paragraph">
-<p>Big shoutout to everyone who believed in the meditation meta! Special thanks to my five ascetic homies who stuck with me through the early streams - even though y&#8217;all were kind of pushing some weird strats with the whole extreme fasting thing. Sometimes the best path is the middle path, you know what I&#8217;m saying?</p>
-</div>
-<div class="paragraph">
-<p>Alright chat, I think that&#8217;s gonna do it for today&#8217;s stream. We made some ACTUAL HISTORY today! Don&#8217;t forget to smash that follow button, and remember - existence is suffering, but the sub button is eternal! Peace out, future Buddhas!</p>
+<p>But it&#8217;s unsatisfying for me.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_original_prompt">Original prompt</h2>
+<h2 id="_time_in_the_type_system">Time in the type system</h2>
 <div class="sectionbody">
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>could you write a scene where Siddhartha first realises the noble truths, and sees the path out of suffering, but he reacts to this like a twitch streamer - pogging out and mugging for his chat</p>
+<p>What I would really like is a programming language that foregrounds the notion of change over time: that makes it a first-class concept which we can work with explicitly. But what would this even look like? My mind grasps intuitively for features like Rust&#8217;s lifetimes, but they don&#8217;t seem like a good fit. They express the <strong>area</strong> in which a value is valid. Despite the name, the metaphor is spatial, not temporal. By comparing the areas that different lifetimes indicate, you can construct before-than and after-than relationships of a sort - 'this variable must go out of scope before this one does, because it has a smaller lifetime'.</p>
 </div>
-</blockquote>
+<div class="paragraph">
+<p>But this doesn&#8217;t provide a proper accounting for how a variable might actually change. If I have a mutable int that I increment in a loop, that is invisible to the forms of static validation the compiler offers me. And that feels concerning, given how important mutation is for breaking or not breaking my program. Who hasn&#8217;t been bitten by an off-by-one error?</p>
+</div>
+<div class="paragraph">
+<p>So what options do we have? Is there any hope? I think there are two gestures in this direction which are interesting.</p>
+</div>
+<div class="paragraph">
+<p>Refinement types, also called liquid types, are pretty intriguing. They let you specify a predicate over a type which will constrain its domain of values.
+This lets you, for instance, specify a special kind of int which can only be between one and ten, and that&#8217;s statically verified.
+That certainly helps us with mutation errors which would take us outside the valid bounds of our types: if it&#8217;s incoherent for a user&#8217;s age to go outside the range 18-90, refinement types will save us.
+But they won&#8217;t do anything to stop nonsense mutations which still meet our predicate, such as decrementing the user&#8217;s age in a HappyBirthday() method.</p>
+</div>
+<div class="paragraph">
+<p>Are linear types useful? They&#8217;re types which the compiler asserts can only be used once. After you use them, you have to throw them away or turn them into some other value.
+That certainly gives you a lot of visibility into when change happens, and it lets you achieve some very neat patterns. Rust only has a weaker form of linear types (affine types), and it can still express really powerful constructs like the typestate pattern.</p>
+</div>
+<div class="paragraph">
+<p>Linear and affine types are both forms of substructural typing. What&#8217;s interesting there is that they both focus on 'once' as the most important case.
+You must the value exactly once, you must use it at most once - there&#8217;s also 'relevant' types, which indicate 'at least once' usage.
+Would it be useful to have a form of substructural typing that encodes an arbitrary number of uses?
+You could imagine a 'quadrivial' type system that lets you specify a value is used exactly four times, for instance.
+(For a 'trivial' type system, you&#8217;d have to go to Javascript, ha, ha).</p>
+</div>
+<div class="paragraph">
+<p>A combination of refinement types and substructural types are a fearsome combination, to be sure. They&#8217;re probably enough to make software resilient for all mortal purposes.</p>
+</div>
+<div class="paragraph">
+<p>But I&#8217;m still not satisfied.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_commentary">Commentary</h2>
+<h2 id="_the_direction_of_mutation">The direction of mutation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is amusing mainly for how well Claude emulates the Twitch lexicon - unsurprising, in retrospect, since it&#8217;s no doubt been trained on innumerable chatlogs.</p>
+<p>I think what&#8217;s missing is a way to constrain the 'direction' of mutation. These systems let us control when mutation happens, and what the value has to look like post-mutation.
+But what if we tried to distinguish between fundamental kinds of mutation?
+There&#8217;s a concept in timekeeping of a monotonic clock, meaning a clock whose value is guaranteed to only ever increase (or stay the same, I think - I&#8217;m not an expert).
+Now that&#8217;s interesting. We&#8217;ve asserted that mutation can happen, but only in two of the three directions which are coherent for numbers - increments, decrements and stasis.</p>
 </div>
 <div class="paragraph">
-<p>I later asked Claude to revamp the scene:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Splendid and terrible. Could you now depict the moment of awakening in an understated, realistic style?</p>
-</div>
-</blockquote>
+<p>What if we could assert this for our types? Think back to my example of an int representing a user&#8217;s age. Outside of fiction, it&#8217;s a raw fact that humans only grow older, and
+so our ages are also strictly monotonic. Being able to represent this statically would forbid incoherent statements like accidentally decrementing a userAge variable.</p>
 </div>
 <div class="paragraph">
-<p>Its response there was decent but not too interesting, so I tweaked my request:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Actually, could you do it from the perspective of some random other person who happens to be observing Siddhartha? To them, of course, it looks like nothing much is happening. I have in mind Auden&#8217;s "Musee Des Beaux Arts" as a kind of touchpoint.</p>
-</div>
-</blockquote>
+<p>What other 'directions' can mutation express?</p>
 </div>
 <div class="paragraph">
-<p>That time Claude gave me something pretty good (though still not interesting enough to bother sharing). What I really liked, though, was the explanation it gave on its piece:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>I&#8217;ve written a piece that tries to capture something of Auden&#8217;s insight about how momentous events occur while ordinary life continues unaware around them. Like his observation of Breughel&#8217;s Icarus - where the ploughman might have heard the splash but had somewhere else to be - I&#8217;ve tried to show how the profound moment of enlightenment appeared as just another morning to someone preoccupied with their own pressing concerns. Would you like me to adjust anything about the perspective or tone?</p>
-</div>
-</blockquote>
+<p>Well, there is the transition between the 'normal' and 'special' values of a type. A lot of languages actually do consider this, in their approach to null-safety.
+You can&#8217;t simply take a non-null value and make it null, or vice versa. You either need to do it in a safe manner (like matching on an Option in Rust) or assert you know what you&#8217;re doing (calling .unwrap() on that Option).
+This is the compiler preventing a certain kind of mutation.</p>
 </div>
 <div class="paragraph">
-<p>Like emulating the voice of Twitch streamers, it&#8217;s not actually surprising that Claude was able to work with my reference to Auden and point out details of that text. But I do think it&#8217;s a striking example of the flexibility of these tools. You can give it input as vague as 'the kind of vibe from this poem I like' and the system will actually do something meaningful with it.</p>
+<p>Maybe tar-pit types are coherent. By this I mean types which let you mutate them however much you want, until they fall into one specific value, and after that they&#8217;re stuck there.
+Imagine a bool which can be either true or false, but once it&#8217;s false, you want it to stay false forever - maybe a flag indicating a payment has been made.
+In a sense the typestate pattern lets you express this pretty well, but this feels like a common enough desire there should be a dedicated way to express it.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s some other quickfire ideas for limiting the directions mutations might take:
+- A string which can only grow in length.
+- An append-only collection.
+- A hashset which maintains a constant size (values have to swap each other out).
+- A number which can only ever approach a limit (either decreasing or increasing towards it).
+- A number which must fluctuate in a repeating cycle, like a sine wave.
+- A number which can only grow <em>in an exponential fashion</em>, or must have an increasing rate of growth, etc.</p>
+</div>
+<div class="paragraph">
+<p>Of course, the degenerate case is the lack of direction, that is, stasis or immutability.</p>
+</div>
+<div class="paragraph">
+<p>What I think I&#8217;m gesturing towards here is that there are various 'fundamental' kinds of movement we can express, and it&#8217;s often only coherent for the things we represent in computer programs to have one of these patterns associated with them. You can certainly express a lot of the above constraints with refinement types, most likely, and of course it&#8217;s trivial to uphold those variants at runtime.</p>
+</div>
+<div class="paragraph">
+<p>But wouldn&#8217;t it be an interesting shift in perspective to not focus our assertions on the end-state of the value post-mutation, but on the <em>nature of the mutation itself</em>?</p>
+</div>
+<div class="paragraph">
+<p>I haven&#8217;t thought through what useful guarantees this approach would actually give us in a practical sense: maybe they&#8217;d be entirely useless.
+But it would probably let us encode some very interesting invariants at a 'low' level.
+Many more mutation mistakes could theoretically be caught and denied at the outset.</p>
+</div>
+<div class="paragraph">
+<p>I have no clue at all if anyone else has expressed this idea - I hope so, since I&#8217;d love to find some small esolang that tries to tackle this.
+Until then I&#8217;m going to keep mulling it over.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-01-05 15:05:36 UTC
+Last updated 2025-02-23 11:28:11 UTC
 </div>
 </div>
 </body>

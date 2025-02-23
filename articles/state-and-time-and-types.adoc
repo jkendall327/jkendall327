@@ -1,0 +1,91 @@
+= State and time and types
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+
+== Problems with state
+I don't think it's any big revelation to say that one of the central challenges in programming is dealing with the problem of state. The development of languages over the history of the software industry can be seen pretty readily as an evolution in our approaches to dealing with state.
+
+In the dark old times, it was the wild west, where we all used global mutable state and GOTO statements. The monsters that paradigm produced led to two offshoot children: OOP, which tried to tame state by compartmentalising it into little boxes, and functional programming, which tried to neuter state by removing mutability, its most vexing feature. Newer languages like Rust attempt to thread the needle by giving us back mutability, but only in ways the language can check are coherent.
+
+It's unfortunate that state is so difficult to work with, since it's the basis for doing almost anything interesting with a computer. While there are multiple reasons it's annoying, one angle I keep circling back to is that mutable state introduces a new layer of dimensionality to code: the dimension of time.
+
+If we imagine a program with absolutely zero mutable state, it's like a photograph, or an image frozen in ice. Every fact we can say about its properties is true at every line of execution, or false at another line of execution.
+
+This doesn't necessarily mean the program is deterministic. It could take different branches depending on a PRNG call, for instance, but we would still be able to confidently assert the nature of its state at any stage of its execution, no matter what branch it went down.
+
+If we introduce mutability (even just a tiny amount of it), the complexity increases dramatically. We typically think of program execution as a big list of statements that the CPU goes down one-by-one in a linear fashion. We all know that isn't really true, what with branch predictors and all, but it's a perfectly fine mental model for simple cases. But when we have mutability, we can't base our reasoning just on our current statement and the statement before. To actually understand what's going on, we have to keep track of all the effects of all the prior statements, keeping a mental tally of all the mutations they've achieved in our head.
+
+That's what I mean by the 'dimensionality' that time introduces. Instead of one 'line' we have to follow to understand the program, we now have at least two - the thread of execution and the thread of history, intersecting. Arguably we should even think of there being a temporal thread for every single thing in our program which can be mutated.
+
+In effect we can't understand any line of code without understanding all preceding lines of code in the entire program. This is very similar to the combinatorial explosion of possibility space people talk about when they talk about multithreaded programs.
+
+Of course this problem isn't so bad in practice, because we have techniques for managing it. When mutable state is properly encapsulated in a class, we are usually safe in ignoring it and can go about our lives. But the complexity is still 'really' there.
+
+In one respect, functional programming does not really remove the problem of time. Instead it just shrinks things down to the degenerate case, where everything lives at exactly the same moment. In practical terms, that's great, and more than enough to treat the problem as essentially solved.
+
+But it's unsatisfying for me.
+
+== Time in the type system
+What I would really like is a programming language that foregrounds the notion of change over time: that makes it a first-class concept which we can work with explicitly. But what would this even look like? My mind grasps intuitively for features like Rust's lifetimes, but they don't seem like a good fit. They express the *area* in which a value is valid. Despite the name, the metaphor is spatial, not temporal. By comparing the areas that different lifetimes indicate, you can construct before-than and after-than relationships of a sort - 'this variable must go out of scope before this one does, because it has a smaller lifetime'.
+
+But this doesn't provide a proper accounting for how a variable might actually change. If I have a mutable int that I increment in a loop, that is invisible to the forms of static validation the compiler offers me. And that feels concerning, given how important mutation is for breaking or not breaking my program. Who hasn't been bitten by an off-by-one error?
+
+So what options do we have? Is there any hope? I think there are two gestures in this direction which are interesting.
+
+Refinement types, also called liquid types, are pretty intriguing. They let you specify a predicate over a type which will constrain its domain of values.
+This lets you, for instance, specify a special kind of int which can only be between one and ten, and that's statically verified.
+That certainly helps us with mutation errors which would take us outside the valid bounds of our types: if it's incoherent for a user's age to go outside the range 18-90, refinement types will save us.
+But they won't do anything to stop nonsense mutations which still meet our predicate, such as decrementing the user's age in a HappyBirthday() method.
+
+Are linear types useful? They're types which the compiler asserts can only be used once. After you use them, you have to throw them away or turn them into some other value.
+That certainly gives you a lot of visibility into when change happens, and it lets you achieve some very neat patterns. Rust only has a weaker form of linear types (affine types), and it can still express really powerful constructs like the typestate pattern.
+
+Linear and affine types are both forms of substructural typing. What's interesting there is that they both focus on 'once' as the most important case.
+You must the value exactly once, you must use it at most once - there's also 'relevant' types, which indicate 'at least once' usage.
+Would it be useful to have a form of substructural typing that encodes an arbitrary number of uses?
+You could imagine a 'quadrivial' type system that lets you specify a value is used exactly four times, for instance.
+(For a 'trivial' type system, you'd have to go to Javascript, ha, ha).
+
+A combination of refinement types and substructural types are a fearsome combination, to be sure. They're probably enough to make software resilient for all mortal purposes.
+
+But I'm still not satisfied.
+
+== The direction of mutation
+I think what's missing is a way to constrain the 'direction' of mutation. These systems let us control when mutation happens, and what the value has to look like post-mutation.
+But what if we tried to distinguish between fundamental kinds of mutation?
+There's a concept in timekeeping of a monotonic clock, meaning a clock whose value is guaranteed to only ever increase (or stay the same, I think - I'm not an expert).
+Now that's interesting. We've asserted that mutation can happen, but only in two of the three directions which are coherent for numbers - increments, decrements and stasis.
+
+What if we could assert this for our types? Think back to my example of an int representing a user's age. Outside of fiction, it's a raw fact that humans only grow older, and
+so our ages are also strictly monotonic. Being able to represent this statically would forbid incoherent statements like accidentally decrementing a userAge variable.
+
+What other 'directions' can mutation express?
+
+Well, there is the transition between the 'normal' and 'special' values of a type. A lot of languages actually do consider this, in their approach to null-safety.
+You can't simply take a non-null value and make it null, or vice versa. You either need to do it in a safe manner (like matching on an Option in Rust) or assert you know what you're doing (calling .unwrap() on that Option).
+This is the compiler preventing a certain kind of mutation.
+
+Maybe tar-pit types are coherent. By this I mean types which let you mutate them however much you want, until they fall into one specific value, and after that they're stuck there.
+Imagine a bool which can be either true or false, but once it's false, you want it to stay false forever - maybe a flag indicating a payment has been made.
+In a sense the typestate pattern lets you express this pretty well, but this feels like a common enough desire there should be a dedicated way to express it.
+
+Here's some other quickfire ideas for limiting the directions mutations might take:
+- A string which can only grow in length.
+- An append-only collection.
+- A hashset which maintains a constant size (values have to swap each other out).
+- A number which can only ever approach a limit (either decreasing or increasing towards it).
+- A number which must fluctuate in a repeating cycle, like a sine wave.
+- A number which can only grow _in an exponential fashion_, or must have an increasing rate of growth, etc.
+
+Of course, the degenerate case is the lack of direction, that is, stasis or immutability.
+
+What I think I'm gesturing towards here is that there are various 'fundamental' kinds of movement we can express, and it's often only coherent for the things we represent in computer programs to have one of these patterns associated with them. You can certainly express a lot of the above constraints with refinement types, most likely, and of course it's trivial to uphold those variants at runtime.
+
+But wouldn't it be an interesting shift in perspective to not focus our assertions on the end-state of the value post-mutation, but on the _nature of the mutation itself_?
+
+I haven't thought through what useful guarantees this approach would actually give us in a practical sense: maybe they'd be entirely useless.
+But it would probably let us encode some very interesting invariants at a 'low' level.
+Many more mutation mistakes could theoretically be caught and denied at the outset.
+
+I have no clue at all if anyone else has expressed this idea - I hope so, since I'd love to find some small esolang that tries to tackle this.
+Until then I'm going to keep mulling it over.
