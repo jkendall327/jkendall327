@@ -554,13 +554,29 @@ Imagine a bool which can be either true or false, but once it&#8217;s false, you
 In a sense the typestate pattern lets you express this pretty well, but this feels like a common enough desire there should be a dedicated way to express it.</p>
 </div>
 <div class="paragraph">
-<p>Here&#8217;s some other quickfire ideas for limiting the directions mutations might take:
-- A string which can only grow in length.
-- An append-only collection.
-- A hashset which maintains a constant size (values have to swap each other out).
-- A number which can only ever approach a limit (either decreasing or increasing towards it).
-- A number which must fluctuate in a repeating cycle, like a sine wave.
-- A number which can only grow <em>in an exponential fashion</em>, or must have an increasing rate of growth, etc.</p>
+<p>Here&#8217;s some other quickfire ideas for limiting the directions mutations might take:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A string which can only grow in length.</p>
+</li>
+<li>
+<p>An append-only collection.</p>
+</li>
+<li>
+<p>A hashset which maintains a constant size (values have to swap each other out).</p>
+</li>
+<li>
+<p>A number which can only ever approach a limit (either decreasing or increasing towards it).</p>
+</li>
+<li>
+<p>A number which must fluctuate in a repeating cycle, like a sine wave.</p>
+</li>
+<li>
+<p>A number which can only grow <em>in an exponential fashion</em>, or must have an increasing rate of growth, etc.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Of course, the degenerate case is the lack of direction, that is, stasis or immutability.</p>
@@ -585,7 +601,7 @@ Until then I&#8217;m going to keep mulling it over.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-02-23 11:28:11 UTC
+Last updated 2025-02-23 11:35:27 UTC
 </div>
 </div>
 </body>

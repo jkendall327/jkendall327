@@ -70,6 +70,7 @@ Imagine a bool which can be either true or false, but once it's false, you want 
 In a sense the typestate pattern lets you express this pretty well, but this feels like a common enough desire there should be a dedicated way to express it.
 
 Here's some other quickfire ideas for limiting the directions mutations might take:
+
 - A string which can only grow in length.
 - An append-only collection.
 - A hashset which maintains a constant size (values have to swap each other out).
