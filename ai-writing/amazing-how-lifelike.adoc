@@ -1,0 +1,53 @@
+# Echoes in Cedar
+
+[verse]
+____
+Beneath the moon’s cold, splintered gaze,
+the forest holds its breath—
+a fox of cedar, mid-stride, pauses
+where shadow merges with myth.
+
+Its fur, a ripple of chiseled waves,
+clings to the ghost of motion,
+paws suspended in a chase
+that outlasts seasons’ erosion.
+
+It's amazing how
+lifelike the carving is, even
+after all this time—the way its eyes
+still gather light, how grain
+
+mimics pulse beneath the bark,
+as if roots hummed a forgotten hymn.
+Centuries press like thumbprints
+into its weathered limbs,
+
+yet each groove holds a whisper:
+Art is the wound that outlives the blade.
+The sculptor’s hands are dust, but here,
+the fox refuses to fade—
+
+its amber stare still piercing
+the veil between the made
+and the maker, between a breath
+and the silence it betrays.
+____
+
+## Original prompt
+
+> write a poem containing these lines, enjambment included:
+
+[verse]
+____
+It's amazing how
+
+Lifelike the carving is, even
+
+After all this time
+____
+
+## Commentary
+
+The 'Echoes in Cedar' title is from the model, which is DeepSeek R1.
+
+I was surprised at the inventiveness of the conceit of a sculpture. The actual poetry isn't very impressive, but I do like 'Art is the wound that outlives the blade'. Not an original sentiment, but an original phrasing -- I was shocked when there were no Google hits for it.
