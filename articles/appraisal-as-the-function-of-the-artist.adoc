@@ -1,0 +1,65 @@
+= Appraisal as the function of the artist
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+
+In many things, but especially art, I am an iconoclast who doesn't care much for being bound by the thoughts and preconceptions of prior generations. I particularly dislike the Romantic image of the artist as a solitary, noble figure who by a kind of magical, semi-divine introspection taps into made-up things like 'the soul' or 'human nature', pulling back ideas which then form their works. This rubs me the wrong way for a few reasons.
+
+The first is that it relies on boringly-bad essentialisms which I'm staunchly opposed to. Phrases like 'creativity', 'imagination' or indeed 'human nature' might be useful, but taking them too seriously tends to delude us into thinking those words map onto things in the real world, and delusional approaches to the world rarely work out well for anyone.
+
+Secondly, that essentialist mode of thought sets up artists as a separate class of human being who see, think and feel in different and deeper ways than the unwashed masses. The self-mythologising of artists is invariably very tedious (one might call it cringe) and sets up a lot of the hostility to art found amongst the general public.
+
+But the most important reason I dislike the Romantic conception of artistry is that it's wrong. It just isn't how making art works.
+
+I know that everyone creates things in a different way, and has a different style for working in their preferred medium. There are certainly people who in their work lend greater control to things like inspiration, versus setting out a clear plan of action at the start and then filling in the details to support that structure.
+
+But whether you're a plotter or a pantser, you still don't work like a Romantic. Once you have an idea, you still need to actually *turn it into something*. Anyone who has sat down with a great idea and tried to turn it into a story (or some other piece of art - I am a writer so that's the language I reach for) will know that ideas ultimately don't take you very far. You still need to work out the preconditions for getting that idea across to the audience: the supplementary ideas and structure needed to make it intelligible and meaningful to them. You need to soften the idea by wrapping it in layers of form and artistry to trick people, analytical by default, into engaging with it on an emotional or intuitive level. You probably have to expend a lot of effort on things like backstories and environmental detail to build a sense of verismillitude.
+
+Suffice to say, the Romantic ideal gives a very poor impression of actual artistry. Making art is really a bunch of labour and toil. That labour can be enjoyable, but it's still plain old work. That's the angle I prefer over elegant metaphors about artists holding up mirrors to nature or excavating the human psyche.
+
+So what is the actually valuable part of artistry, if ideas are really just the fossil fuels we deal with to get things moving?
+
+I posit that the important function of the artist is the function of *appraisal*, which equivalently we could call *discernment* or *discrimination*.
+
+By this I mean the process where, given two ways a story could play out, the artist judges which of the two is better-suited for the work as a whole.
+
+I'm of course using 'way a story could play out' as synecdoche for all the little details that make up an artistic work. These can be differences as grand as which characters to introduce, what themes to present, and what POV to use. But they can also be as minor as where the commas go in a sentence.
+
+This process of appraisal is the main engine by which cohesive works are made.
+
+That's because I think we can break down artistry into two processes: creation of material, and then the aforemention appraisal of that material to decide what to use and what to discard.
+
+Now, creation is certainly a necessary component of artistry. Without a fertile bed of thought-stuff to work with, appraisal has nothing to do; it just sits around twiddling its thumbs. But by the same token, creation without appraisal is unfocused and undirected. The fruits of unappraised creation are 500,000-word fanfictions that meander on endlessly, an engine spinning its wheels, slop that gets posted nowhere and is read by no-one.
+
+The combining of creation with appraisal is a very fruitful marriage that has served humanity well for the past 10,000 years.
+
+However, of the pair, creation is actually the inferior partner: or more precisely it's the component which does not have to be located within the artist.
+
+We know this because of the long tradition which places the force of creation outside of the artist. I refer to:
+
+- Aleatory art
+- Mad libs/exquisite corpse games
+- Found poetry
+
+These practices center the function of appraisal by making the artist work with material that originated outside of themselves. The fact that intelligent and meaningful works can be produced via these processes shows that it is the intent and individual character of the artist is most strongly expressed by its supervising function, not its generative one. In contrast, while practices which remove the function of discernment - such as automatic or asemic writing - can produce engaging experiences, we can hardly say they express something 'of the artist'. The differences between two pieces of automatic writing done by two separate people are uninteresting; automatic writing is interesting for what the practice reveals about itself rather than what it reveals about the person doing it.
+
+In the final analysis, then, discernment is the higher form of artistry and what should be commended and studied.
+
+## AI
+
+Admit it, you knew this had to come up eventually. Every thinkpiece since 2022 needs to have a section about AI.
+
+Hopefully the thoughts above have already primed you to think about how generative AI impacts the status of art and artistry. Suffice it to say that their most significant function is to, like found poetry or mad libs, place the creative side of art (one could call it 'generative') outside of the artist. Working with AI tools places you in the position of reviewer, of supervisor, of planner and appraiser.
+
+In my opinion, this is the cause of a lot of hostility towards AI by artists. They have bought into the self-mythologising Romantic view (which is no great surprise, as it makes them into a Special Kind of Person), and AI directly threatens that conception of art as being fundamentally an act of creation.
+
+But when you understand your position of supervisor, AI is really a liberation from the drudgework of creation. Without them, first drafts are a kind of tax one must pay to cross the bridge from the original stage of ideation (coming up with plots, characters, etc.) to the really important parts of the process - the second and third drafts, where you whip your untamed mass of words into something resembling your real vision. AI is spectacularly efficient at paying that tax for you. You can, much more quickly, spring a story into prose form from its outline, letting you quickly judge which avenues are worth exploring and which are dead-ends. The speed of these tools is such that you can quite literally have the computer spin up five variations of your story at every juncture, providing an incredible foundation to pick-and-choose from.
+
+Can AI also aid in the discernment process?
+
+To a degree. They are able to offer intelligible insights on texts (identifying plotholes, suggesting improvements to structure) and these insights can strengthen the work when incorporated. But the human artist's own discernment is still a supervailing force that chooses which of the AI's judgments to accept. In that sense we have entered an age of *meta-appraisal*, like the master artisan directing the work of the journeyman artist. But, of course, the more one gives credence to the outside party in matters of discernment, the less the work becomes your own. In this manner AI is no different than automatic writing, and that is why unappraised AI creation is known as 'slop'.
+
+There is nothing stopping today's AI systems from exercising both the capabilities of creation and discernment.
+
+They are quite easily able to fix their mind on an ideal work, which is the necessary precondition for appraisal. And as we all know, their skill with creation is unmatched.
+The only thing missing is to hook them up to an agentic framework that empowers the underlying model to autonomously enter the loop of creation, discernment, revisement.
+This can be built today and probably already has been. Thus I believe that AI systems already have the capacity to be artists.
