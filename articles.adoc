@@ -2,7 +2,9 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
-link:articles/state-and-time-and-types[State and time and types]
+link:articles/appraisal-as-the-function-of-the-artist.html[Appraisal as the function of the artist]
+
+link:articles/state-and-time-and-types.html[State and time and types]
 
 link:articles/openai-agi-definition-is-marxist.html[OpenAI's definition of AGI is Marxist]
 
