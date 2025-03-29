@@ -12,6 +12,8 @@ I've decided to catalogue some of the more interesting pieces I've generated her
 
 Note that this is certainly not an unbiased representation of Claude's output - I'm only sharing the ones I liked well enough to bother copying into VS Code and format. But I think it still shows the state of this bizarre, alien technology.
 
+Not _everything_ here is from Claude, but when that's the case, I will mention so on that piece's individual page.
+
 * link:all-about-me.html[all about me!]
 * link:amazing-how-lifelike.html[amazing how lifelike]
 * link:anciently-preceded-by-the.html[anciently preceded by the]
