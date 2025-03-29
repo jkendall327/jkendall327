@@ -20,6 +20,7 @@ Note that this is certainly not an unbiased representation of Claude's output - 
 * link:did-not-deserve-a-quick-death.html[did not deserve a quick death]
 * link:empty-churches.html[empty churches]
 * link:highland-river-tribes.html[highland river tribes]
+* link:horse-skeleton-as-requested.html[horse skeleton (as requested)!]
 * link:i-might-need-you-to-kill.html[I might need you to kill]
 * link:i-was-dreaming-of-california-again.html[I was dreaming of California again]
 * link:leopold-bloom-at-the-museum.html[Leopold Bloom at the museum]

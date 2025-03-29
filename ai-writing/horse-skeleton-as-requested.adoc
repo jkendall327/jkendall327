@@ -1,0 +1,56 @@
+# Horse skeleton (as requested)!
+
+[verse]
+____
+Hail to the time survivor,
+weather-scoured architecture,
+once thunder on the hoof, now a stark white
+lecturer
+on stillness profound.
+
+Your skull, a hollowed gourd where sunbeams pool
+and shadows lengthen, playing the fool
+with shapes of life, eye sockets vacant, staring past the cool
+wind that whistles through your ribs, a brittle cage
+that held a lunging heart, turned history's forgotten page.
+Echoes sleep.
+
+Bleached calcium jigsaw puzzle,
+vertebrae like ancient, heavy beads strung on nothing visible,
+the memory of muscle, sinew's raw, insistent
+pull, all dissolved back to elemental.
+Only this framework, resolved
+to stand, or lie, a stark testament
+under the vast sky.
+
+The fine grass pushes through your delicate pastern bones,
+indifferent green reclaiming ground,
+heedless of whinnies or the pounding sounds
+your hooves once made. Now only the low moans
+of air moving across plains unseen
+by eyes long since gone blind.
+Dawn
+finds you patient, resigned.
+
+A map of what was speed,
+what was fluid grace and urgent need,
+reduced to this strange geometry against the patient dust.
+A lesson in rust
+and returning. Trust
+the earth's slow claim, the final name
+whispered only by wind and steady rain, perhaps.
+Gone the flesh, the living fire, the synaptic traps
+of conscious breath.
+Only bone, defiant in death.
+____
+
+## Original prompt
+> please write a poem titled 'Horse skeleton (as requested)!'. start with the phrase 'Hail to the time survivor'. give it an unconventional rhyme scheme, and avoid the stanzas all having the same amount of lines
+
+## Commentary
+
+This was generated with Google's new Gemini 2.5 Pro model, my first time using it for creative writing.
+
+The unusual title comes from the model's chain-of-thought on an unrelated prompt; it was noting to itself that it had included an element I wanted.
+
+My prompt this time around gave the model a lot to work with, relatively speaking. Seeding it with two unusual phrases and explicitly telling it to be unconventional does a good job getting it into a fertile quadrant of the latent space. That said, there's a lot here to like. I think the enjambment is quite well-done, and a lot of the phrasing is very enjoyable. The penultimate sentence ('gone the flesh') is particularly striking.
