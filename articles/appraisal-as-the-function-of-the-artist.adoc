@@ -46,6 +46,10 @@ These practices center the function of appraisal by making the artist work with 
 
 In the final analysis, then, discernment is the higher form of artistry and what should be commended and studied.
 
+> Artists have an interest in others' believing in sudden ideas, so-called inspirations; as if the idea of a work of art, of poetry, the fundamental thought of a philosophy shines down like a merciful light from heaven. In truth, the good artist's or thinker's imagination is continually producing things good, mediocre, and bad, but his power of judgment, highly sharpened and practiced, rejects, selects, joins together; thus we now see from Beethoven's notebooks that he gradually assembled the most glorious melodies and, to a degree, selected them out of disparate beginnings. The artist who separates less rigorously, liking to rely on his imitative memory, can in some circumstances become a great improviser; but artistic improvisation stands low in relation to artistic thoughts earnestly and laboriously chosen. All great men were great workers, untiring not only in invention but also in rejecting, sifting, reforming, arranging.
+
+-- Nietzsche, _Human, All Too Human_
+
 ## AI
 
 Admit it, you knew this had to come up eventually. Every thinkpiece since 2022 needs to have a section about AI.
