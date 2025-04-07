@@ -2,19 +2,28 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
-This page lists some of the programming projects I did for fun before I started working with software in a professional capacity. I keep this listing up primarily for historical interest.
-
-Everything here was made with .NET/C#.
-
-I'm not including various minor toy apps I've made just to learn specific concepts as they're not interesting to look at. The projects here are all things I made because I needed or wanted them.
+This page lists the various programming projects I've worked on in my free time, in rough chronological order. I find that writing little summaries forces me to put them into context which wasn't always clear when I was making them: why I started the project in the first place, why I made the choices I did, why it either did or didn't work out. Like an old diary, reading the retrospectives for projects I did when I was just starting out as a programmer help me remember that I'm not always as stagnant or directionless as I sometimes feel.
 
 == Octans
 
 image:./images/octans.png[]
 
-This is a WIP image management system heavily inspired by [the Hydrus Network](https://hydrusnetwork.github.io/hydrus/index.html). While I love that app, I find it rather slow and clunky. I decided to recreate it as a deliberately extravagant goal - a Serious App I could cut my teeth on architecturally. It has been a fun ride so far. As time goes on, I question the client/server split I made (both do server-style work, the distinction is between the 'core' database activities and everything else).
+This is a WIP image management system heavily inspired by https://hydrusnetwork.github.io/hydrus/index.html:[the Hydrus Network]. While I love that app, I find it rather slow and clunky. I decided to recreate it as a deliberately extravagant goal - a Serious App I could cut my teeth on architecturally. It has been a fun ride so far. As time goes on, I question the client/server split I made (both do server-style work, the distinction is between the 'core' database activities and everything else).
 
 One thing I'm proud of is the levels of code quality I've kept to here. I have ratcheted up the static analysis as far as I can, got formatting verified in CI, full integration tests, the whole works. Unsurprisingly, it makes it far easier to actually get things done without breaking stuff!
+
+== Text Mutator
+image:./images/mutator.png[]
+
+This app is a learning project moreso than an actual tool, though it is my hope it'll be useful once complete. The elevator pitch is that it weaponises defamiliarisation for the purpose of editing. That is, it deliberately introduces small errors into a passage of text, such that you are forced when reviewing it to be hyper-attentive on the word and character level. This breaks the spell every writer knows, where typos are entirely invisible until the moment you hit 'publish'.
+
+I said this was a learning project. I went into it with a clear plan in mind; I would use it to take frontend development seriously, by which I mean using something other than Blazor, which I am quite familiar with. To keep things interesting, I would also do the backend in Rust, and deploy everything to Azure. Those latter points were not entirely new ground (I had used both in the past), but this was a good real-world use-case for putting my skills into practice.
+
+I've naturally learned a lot in doing this, even though it's nowhere near complete as of yet. (For instance, the frontend UI is only starting to take shape). For instance, I've gotten to a good place of understanding with Bicep, the Microsoft-blessed infrastructure-as-code solution for Azure, such that I'd feel comfortable using it for production concerns.
+
+Amusingly, the Rust backend has been the easiest part so far, and by a wide margin. Says something about the state of the cloud and frontend development.
+
+
 
 == Civitai Firehose
 image:./images/firehose.png[]
@@ -24,6 +33,16 @@ After we got into using Blazor at work, I became enthralled at how easy it made 
 The motivation was enjoying the endless stream of cool AI images on Civitai, and wanting a live view that let me quickly save and organise them. This involved a lot of playing around with Civitai's API, including some of its annoying edge-cases (like JSON properties which change shape for seemingly arbitrary reasons!).
 
 The code quality here is only mediocre, but it was fun to quickly develop a web app that actually served a practical use to me.
+
+== DependencyInjection.Visualizer
+
+image:./images/visualizer.png[]
+
+This project was inspired by https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.configurationrootextensions.getdebugview?view=net-9.0-pp:[the `IConfiguration` type's 'GetDebugView()'] method, which provides a pretty-print view of all the configuration values composed together in your .NET app. Despite dependency injection being equally important in the .NET ecosystem, there is no equivalent for the `IServiceCollection` type.
+
+As such, I made one as a weekend project. I have found, in retrospect, that I never remember to use it when it would be useful (many such cases). It was still one of my first times making a polished NuGet package, which I found enjoyable. This was also one of the first times I really let AI take the reins and do the grunt-work of writing code, whereas I sat back in a directorial mode.
+
+Although it's a relatively simple library, there are some interesting quirks in how C# handles generic types that I had to puzzle over, especially the always-interesting 'open generic' types.
 
 == QuietTime
 
