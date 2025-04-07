@@ -463,7 +463,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This page lists the various programming projects I&#8217;ve worked on in my free time, in rough chronological order. I find that writing little summaries forces me to put them into context which wasn&#8217;t always clear when I was making them: why I started the project in the first place, why I made the choices I did, why it either did or didn&#8217;t work out. Like an old diary, reading the retrospectives for projects I did when I was just starting out as a programmer help me remember that I&#8217;m not always as stagnant or directionless as I sometimes feel.</p>
+<p>This page lists the various programming projects I&#8217;ve worked on in my free time, in rough chronological order. I find that writing little summaries forces me to put them into context which wasn&#8217;t always clear when I was making them: why I started the project in the first place, why I made the choices I did, why it either did or didn&#8217;t work out. Like an old diary, reading the retrospectives for projects I did when I was just starting out as a programmer help me remember the progress I&#8217;ve made over my career so far.</p>
 </div>
 </div>
 </div>
@@ -474,7 +474,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="image"><img src="./images/octans.png" alt="octans"></span></p>
 </div>
 <div class="paragraph">
-<p>This is a WIP image management system heavily inspired by <a href="https://hydrusnetwork.github.io/hydrus/index.html:">the Hydrus Network</a>. While I love that app, I find it rather slow and clunky. I decided to recreate it as a deliberately extravagant goal - a Serious App I could cut my teeth on architecturally. It has been a fun ride so far. As time goes on, I question the client/server split I made (both do server-style work, the distinction is between the 'core' database activities and everything else).</p>
+<p>This is a WIP image management system heavily inspired by <a href="https://hydrusnetwork.github.io/hydrus/index.html">the Hydrus Network</a>. While I love that app, I find it rather slow and clunky. I decided to recreate it as a deliberately extravagant goal - a Serious App I could cut my teeth on architecturally. It has been a fun ride so far. As time goes on, I question the client/server split I made (both do server-style work, the distinction is between the 'core' database activities and everything else).</p>
 </div>
 <div class="paragraph">
 <p>One thing I&#8217;m proud of is the levels of code quality I&#8217;ve kept to here. I have ratcheted up the static analysis as far as I can, got formatting verified in CI, full integration tests, the whole works. Unsurprisingly, it makes it far easier to actually get things done without breaking stuff!</p>
@@ -525,7 +525,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="image"><img src="./images/visualizer.png" alt="visualizer"></span></p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/jkendall327/DependencyInjection.Visualization">This project</a> was inspired by <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.configurationrootextensions.getdebugview?view=net-9.0-pp:">the <code>IConfiguration</code> type&#8217;s 'GetDebugView()'</a> method, which provides a pretty-print view of all the configuration values composed together in your .NET app. Despite dependency injection being equally important in the .NET ecosystem, there is no equivalent for the <code>IServiceCollection</code> type.</p>
+<p><a href="https://github.com/jkendall327/DependencyInjection.Visualization">This project</a> was inspired by <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.configurationrootextensions.getdebugview?view=net-9.0-pp">the <code>IConfiguration</code> type&#8217;s 'GetDebugView()'</a> method, which provides a pretty-print view of all the configuration values composed together in your .NET app. Despite dependency injection being equally important in the .NET ecosystem, there is no equivalent for the <code>IServiceCollection</code> type.</p>
 </div>
 <div class="paragraph">
 <p>As such, I made one as a weekend project. I have found, in retrospect, that I never remember to use it when it would be useful (many such cases). It was still one of my first times making a polished NuGet package, which I found enjoyable. This was also one of the first times I really let AI take the reins and do the grunt-work of writing code, whereas I sat back in a directorial mode.</p>
@@ -546,10 +546,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_waifu_2x_nccn_vulkan_gui_2022">waifu-2x-nccn-vulkan-gui - 2022</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="images/waifu.png" alt="waifu">
-</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/waifu.png" alt="waifu"></span></p>
 </div>
 <div class="paragraph">
 <p>Back in the ancient days of 2022, using AI for image upscaling still felt like a new and important development in computer science; nowadays it doesn&#8217;t even count as a party trick.
@@ -593,13 +591,11 @@ One of the big names back then was waifu2x (sigh), but the implementation I used
 <div class="sect1">
 <h2 id="_wallpapermaker_2021">WallpaperMaker - 2021</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="images/wallpapermaker.png" alt="wallpapermaker">
-</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/wallpapermaker.png" alt="wallpapermaker"></span></p>
 </div>
 <div class="paragraph">
-<p>This app <a href="https://github.com/jkendall327/WallpaperMaker:">converts an image of arbitrary size into a 1920x1080 jpg</a> suitable for a desktop wallpaper.</p>
+<p>This app <a href="https://github.com/jkendall327/WallpaperMaker">converts an image of arbitrary size into a 1920x1080 jpg</a> suitable for a desktop wallpaper.</p>
 </div>
 <div class="paragraph">
 <p>It currently fills out the side panels by taking a random snapshot of the main image. I might change this in future.</p>
@@ -625,7 +621,7 @@ One of the big names back then was waifu2x (sigh), but the implementation I used
 <p>OK, this technically isn&#8217;t a programming project.</p>
 </div>
 <div class="paragraph">
-<p>Over the past few months I&#8217;ve created <a href="https://github.com/jkendall327/dotnet-explanations:">a simple static site with clear, plain-English explanations</a> of tricky .NET and C# concepts.</p>
+<p>Over the past few months I&#8217;ve created <a href="https://github.com/jkendall327/dotnet-explanations">a simple static site with clear, plain-English explanations</a> of tricky .NET and C# concepts.</p>
 </div>
 <div class="paragraph">
 <p>Almost all tutorials I&#8217;ve found online focus too rigidly on the mechanics of programming rather than making appeals to intuition.</p>
@@ -648,7 +644,7 @@ One of the big names back then was waifu2x (sigh), but the implementation I used
 <p>I recently filed for my first self-employed tax return, which inspired me to make an app that would help the process along.</p>
 </div>
 <div class="paragraph">
-<p>The result was <a href="https://github.com/jkendall327/UK-Tax-Calculator:">a simple CRUD app that stored transactions, calculated their total and your outstanding tax</a>.</p>
+<p>The result was <a href="https://github.com/jkendall327/UK-Tax-Calculator">a simple CRUD app that stored transactions, calculated their total and your outstanding tax</a>.</p>
 </div>
 <div class="paragraph">
 <p>The tax calculation was very simple and not suitable for real use, but I&#8217;m quite happy with the UI, which is a combination of two NuGet packages.</p>
@@ -670,7 +666,7 @@ One of the big names back then was waifu2x (sigh), but the implementation I used
 <p>I have a lot of holiday photos taking up space on my PC, so I&#8217;m always searching for a good heuristic near-duplicate finder for images.</p>
 </div>
 <div class="paragraph">
-<p>I&#8217;m not satisfied with any currently existing solution, so <a href="https://github.com/jkendall327/DupFinder:">I made my my own</a>.</p>
+<p>I&#8217;m not satisfied with any currently existing solution, so <a href="https://github.com/jkendall327/DupFinder">I made my my own</a>.</p>
 </div>
 <div class="paragraph">
 <p>I made this before I got really comfortable with WPF, so the UI isn&#8217;t spectacular, but it does showcase some async work and interesting ways of comparing image data.</p>
@@ -680,7 +676,7 @@ One of the big names back then was waifu2x (sigh), but the implementation I used
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-07 14:51:27 +0100
+Last updated 2025-04-07 14:56:42 +0100
 </div>
 </div>
 </body>

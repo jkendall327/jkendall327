@@ -2,13 +2,13 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
-This page lists the various programming projects I've worked on in my free time, in rough chronological order. I find that writing little summaries forces me to put them into context which wasn't always clear when I was making them: why I started the project in the first place, why I made the choices I did, why it either did or didn't work out. Like an old diary, reading the retrospectives for projects I did when I was just starting out as a programmer help me remember that I'm not always as stagnant or directionless as I sometimes feel.
+This page lists the various programming projects I've worked on in my free time, in rough chronological order. I find that writing little summaries forces me to put them into context which wasn't always clear when I was making them: why I started the project in the first place, why I made the choices I did, why it either did or didn't work out. Like an old diary, reading the retrospectives for projects I did when I was just starting out as a programmer help me remember the progress I've made over my career so far.
 
 == Octans - 2025
 
 image:./images/octans.png[]
 
-This is a WIP image management system heavily inspired by https://hydrusnetwork.github.io/hydrus/index.html:[the Hydrus Network]. While I love that app, I find it rather slow and clunky. I decided to recreate it as a deliberately extravagant goal - a Serious App I could cut my teeth on architecturally. It has been a fun ride so far. As time goes on, I question the client/server split I made (both do server-style work, the distinction is between the 'core' database activities and everything else).
+This is a WIP image management system heavily inspired by https://hydrusnetwork.github.io/hydrus/index.html[the Hydrus Network]. While I love that app, I find it rather slow and clunky. I decided to recreate it as a deliberately extravagant goal - a Serious App I could cut my teeth on architecturally. It has been a fun ride so far. As time goes on, I question the client/server split I made (both do server-style work, the distinction is between the 'core' database activities and everything else).
 
 One thing I'm proud of is the levels of code quality I've kept to here. I have ratcheted up the static analysis as far as I can, got formatting verified in CI, full integration tests, the whole works. Unsurprisingly, it makes it far easier to actually get things done without breaking stuff!
 
@@ -36,7 +36,7 @@ The code quality here is only mediocre, but it was fun to quickly develop a web 
 
 image:./images/visualizer.png[]
 
-https://github.com/jkendall327/DependencyInjection.Visualization[This project] was inspired by https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.configurationrootextensions.getdebugview?view=net-9.0-pp:[the `IConfiguration` type's 'GetDebugView()'] method, which provides a pretty-print view of all the configuration values composed together in your .NET app. Despite dependency injection being equally important in the .NET ecosystem, there is no equivalent for the `IServiceCollection` type.
+https://github.com/jkendall327/DependencyInjection.Visualization[This project] was inspired by https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.configurationrootextensions.getdebugview?view=net-9.0-pp[the `IConfiguration` type's 'GetDebugView()'] method, which provides a pretty-print view of all the configuration values composed together in your .NET app. Despite dependency injection being equally important in the .NET ecosystem, there is no equivalent for the `IServiceCollection` type.
 
 As such, I made one as a weekend project. I have found, in retrospect, that I never remember to use it when it would be useful (many such cases). It was still one of my first times making a polished NuGet package, which I found enjoyable. This was also one of the first times I really let AI take the reins and do the grunt-work of writing code, whereas I sat back in a directorial mode.
 
@@ -47,7 +47,7 @@ Although it's a relatively simple library, there are some interesting quirks in 
 I was mainly focused on work and fiction for most of 2023, so my programming projects during this period amounted to a few failed attempts at rougelikes in Rust which never got far enough along to be worth making public.
 
 == waifu-2x-nccn-vulkan-gui - 2022
-image::images/waifu.png[]
+image:images/waifu.png[]
 
 Back in the ancient days of 2022, using AI for image upscaling still felt like a new and important development in computer science; nowadays it doesn't even count as a party trick.
 One of the big names back then was waifu2x (sigh), but the implementation I used was CLI-only and didn't support batch-processing. I took it on myself to remedy that with a GUI, specifically one that would work on Linux, since I had moved over from Windows permanently a few months prior.
@@ -71,9 +71,9 @@ I'd like to improve it further with unit testing, localisation and UI theming, b
 
 == WallpaperMaker - 2021
 
-image::images/wallpapermaker.png[]
+image:images/wallpapermaker.png[]
 
-This app https://github.com/jkendall327/WallpaperMaker:[converts an image of arbitrary size into a 1920x1080 jpg] suitable for a desktop wallpaper.
+This app https://github.com/jkendall327/WallpaperMaker[converts an image of arbitrary size into a 1920x1080 jpg] suitable for a desktop wallpaper.
 
 It currently fills out the side panels by taking a random snapshot of the main image. I might change this in future.
 
@@ -89,7 +89,7 @@ This is in active development. My plan is to try making a proper UI in one of th
 
 OK, this technically isn't a programming project.
 
-Over the past few months I've created https://github.com/jkendall327/dotnet-explanations:[a simple static site with clear, plain-English explanations] of tricky .NET and C# concepts.
+Over the past few months I've created https://github.com/jkendall327/dotnet-explanations[a simple static site with clear, plain-English explanations] of tricky .NET and C# concepts.
 
 Almost all tutorials I've found online focus too rigidly on the mechanics of programming rather than making appeals to intuition. 
 
@@ -103,7 +103,7 @@ Since I left my retail job I've been link:writing-portfolio.html[working as a fr
 
 I recently filed for my first self-employed tax return, which inspired me to make an app that would help the process along.
 
-The result was https://github.com/jkendall327/UK-Tax-Calculator:[a simple CRUD app that stored transactions, calculated their total and your outstanding tax]. 
+The result was https://github.com/jkendall327/UK-Tax-Calculator[a simple CRUD app that stored transactions, calculated their total and your outstanding tax].
 
 The tax calculation was very simple and not suitable for real use, but I'm quite happy with the UI, which is a combination of two NuGet packages.
 
@@ -115,6 +115,6 @@ image::images/dupfinder.png[]
 
 I have a lot of holiday photos taking up space on my PC, so I'm always searching for a good heuristic near-duplicate finder for images. 
 
-I'm not satisfied with any currently existing solution, so https://github.com/jkendall327/DupFinder:[I made my my own].
+I'm not satisfied with any currently existing solution, so https://github.com/jkendall327/DupFinder[I made my my own].
 
 I made this before I got really comfortable with WPF, so the UI isn't spectacular, but it does showcase some async work and interesting ways of comparing image data.
