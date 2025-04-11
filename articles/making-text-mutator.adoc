@@ -53,7 +53,31 @@ But I did have to think through how to convert it to a REST API, since it was pr
 
 Gemini indicated that axum was the safe bet for a Rust API, and seeing no reason to cut myself on the bleeding edge, that's what I chose. I spent a half-hour or so reading the axum docs and found that transforming my project into an API was surprisingly easy. The setup was almost entirely done in `main.rs`, and I could steal their boilerplate example code for all the additional features I wanted to add, such as CORS, tracing and fallback routing.
 
+My experience with .NET was of course highly relevant here. I already knew a lot of the principles behind making a 'good API', such as clear distinctions between DTO and domain models, putting in versioning from the start, graceful shutdowns and so on. There were no real conceptual challenges here: I was just learning new syntax and axum's particular mechanism for hooking up HTTP verbs to Rust functions. In general, axum was impressively easy to work with. I was completely insulated from the complex borrow-checker issues you might expect in an exploratory Rust project, and could essentially plug my existing code into a handler method. This was presumably helped by my app's simple requirements -- no auth, no persistence, no nothin' except pure business logic. But I suspect adding those features would only represent a linear amount of added labour.
+
+On a personal level, working with Rust was highly enjoyable. I've always thought of it as the 'do it right' language, and it really did give me the feeling that I knew exactly what was going on at every point. (Not so with the other parts of this project!)
+
+By the end of day one, I had the API essentially complete. I added a small HTTP file in lieu of proper E2E tests and spent a little time setting up the basic boilerplate code for the frontend. AI pointed me towards using Vite as my React framework, since that was apparently the fast and modern solution.
+
 == Day 2: infrastructure
+
+I dedicated this entire day to setting up the infrastructure and automation side of the project. In the past, I've been burned by leaving it too late and becoming discouraged by the attendant complexity of actually getting something out in front of the world, so I deliberately prioritised it for this project.
+
+Azure was my cloud of choice, purely because I was already semi-familiar with its offerings, and I figured that getting more familiar with it would also help me at work. I have zero love for manually clicking through web interfaces, so from the outset I started a Bicep file, as well as a CI pipeline for GitHub. (Bicep is Microsoft's Azure-specific infrastructure-as-code product.)
+
+My plans for the infrastructure changed significantly over the course of the day, as I learned more about Azure's offerings and their relative benefits and limitations. My initial idea was to simply start up an App Service Plan with two child App Services -- one for the frontend, one for the backend. The frontend would call the backend via an environment variable, and all would be well. There was a little confusion early on if I would need Azure's 'API Management' service, but that turned out to be extremely overkill for what I needed.
+
+The first issue was that App Services didn't support running Rust natively. That meant I needed to introduce containerisation to the project's vocabulary. No big deal there; I'm comfortable with containers. But in turn I had to introduce Azure Container Registry as a place to store the image for the backend, and set my App Service to pull from it. That complexity represented a lot of time and frustration.
+
+Additionally, I learned that Azure has a product offering specifically for static HTML/CSS/JS websites, appropriately named Azure Static Web Apps. These are incredibly cheap, almost free, so naturally I wanted to exploit that. They handily came with another feature called 'linked backends', which automagically handled funneling requests from the frontend to the backend. While useful, this feature gave me a lot of difficulty when trying to set it up in Bicep. Its implementation there seems somewhat half-baked; while it worked initially, it failed on subsequent runs, as static web apps can only have one linked backend. Maybe there is some Bicep magic that makes this operation properly idempotent, but I found some GitHub issues indicating it was actually just a bug. So I had to settle for setting up the linked backend manually, which was unfortunate.
+
+The main stumbling-block with the infrastructure for this project was that I had no clear mental model for what a Bicep solution 'should' look like.
+
+My naive intuition was that it should create _everything_ for a project: spin up the resource group de novo, the managed identities, the role permissions, everything. While all of that is technically possible, I quickly got the impression it was the wrong route to go down. Wanting to create resource groups in Azure seems to require very high-level permissions: Contributor should theoretically be enough, but failed for me, so I had to set up my managed agent which executed the deployment as a subscription-level Owner. That obviously rang alarm bells, so I scaled down my plans. I settled for creating the resource group manually and using automation just to ensure that everything within that RG was set up properly.
+
+This is an area where I still need to do plenty of research on what serious solutions look like.
+
+The actual processing of writing Bicep files was surprisingly painless -- it's a pretty good syntax, though the documentation for the various AVM 'modules' you're meant to use as a best practice was lacking. Unsurprisingly, hooking everything together in CI was frustrating and tedious. It took me around fifty failed runs to get something that worked, which is not bad for CI. By the end of the day I had a rather fragile solution, but one I was happy with, especially since I had not taken the 'easy way' out on authorisation, and gone for the full shebang of link:https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azp[managed identities with federated credentials].
 
 == Day 3: frontend
 
