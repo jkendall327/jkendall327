@@ -1,0 +1,60 @@
+= Making Text Mutator
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+
+image:../images/mutator.png[]
+
+In early 2025, I found myself having to use up a week's worth of annual leave from work. Not having anything better to do, I dedicated the time to a personal learning project. But what on? Well, I'd recently picked up Blazor for a work project and found it made web development surprisingly accessible. I was curious how that experience translated to more conventional frontend frameworks, and as such, I decided to _make a React app_. But that alone felt too small in scope, so I set myself a challenge:
+
+- The project would follow the classic frontend-calling-a-backend-API structure.
+- The backend would also be in a language slightly outside of my comfort zone -- namely, Rust.
+- It would be deployed to the cloud as a real production app, preferably with a high degree of automation.
+- I would not use AI for writing the code.
+
+I have no qualms about using AI for code in normal life. In fact I find it very useful for quick prototyping. But I find that there is a certain quality of learning for me that comes only from doing things myself: typing in the characters one after another, fixing the build errors, going through the write-test-debug cycle. This did not preclude me from using AI entirely, and I used it plenty for information purposes, such as explaining a particular concept in Bicep or what setting up automated tests for a React app looked like. This sped up my learning significantly, compared to the old ways of trawling documentation and StackOverflow (though I ended up doing plenty of that as well).
+
+I'll present the experience of making the app in rough chronological form. But first I should outline where my skills were at the outset, to put into perspective what was before me.
+
+As mentioned before, I'd been working with Blazor for a month or two prior to this, which gave me a good introduction to writing web apps more generally. As the project progressed, I was surprised by how many of the concepts had strong parallels to React; presumably this is because Blazor was naturally influenced by it. I knew the basic shape of what writing JavaScript/TypeScript looked like, but I was basically clueless when it came to the frontend environment. To me it seemed like an amorphous mass of nouns that signified very little to outsiders -- Next.js, Vite, Nuxt, Astro...
+
+What about Rust? Well, I knew a lot about the language __in the abstract__. I read a lot of blogs and essays aout Rust, partly because the language is very interesting, and partly because the people who like it tend to be good writers. So I understand the concepts of the language very well, including infamous bugbears like lifetimes, exclusive/shared references and so on. But I'd never really written any code in it myself, asides from a few console apps I abandoned after an hour or so. This project represented taking my assorted knowledge and putting it to practical use.
+
+In terms of infrastructure, we had been working on a migration to Azure from on-prem servers at my workplace at the time. As such I was reading up a lot on cloud fundamentals, so, again, I wasn't coming into this completely blind.
+
+== Day 1: design
+
+The first question was what app, exactly, I was going to build. I knew I wanted it to be a 'real' app, something that could theoretically be of use to someone, not just existing purely for the sake of showing off I could 'do frontend'. As it happened, I had an MVP project lying around in Rust from a few weeks prior that seemed like a good fit.
+
+The core idea was that when I'm proofreading a piece of text, I want to be hyperattentive to the small details. Every period, every word, every space. But as every writer knows, you quickly become far too familiar with a work to look on it with a dispassionate eye; you read what your mind thinks is there, not what the ink actually says. There are a lot of strategies for dealing with this. The most famous is to read it aloud, since that different modality gives you a different perspective on the form of the text. But I wanted to try something different: to forcibly defamiliarise the text by subtly messing it up, swapping characters around, substituting homophones for each other, that kind of thing.
+
+Since this wasn't a serious idea at the time, I'd just gotten an AI to spit out the core logic for doing this. I tried it out a few times, saw it basically worked, and my intellectual curiosity was mostly satisfied. As such I put it away until I was searching around for something to turn into a Real App, and, as mentioned, it seemed like a natural fit.
+
+Before starting the project proper, I decided to take things seriously and hammer out a design spec to guide my work. I've done this a few times and always found it useful. Decision-making is the hardest part of programming, and frontloading it often saves a significant amount of time down the line.
+
+Because I don't care about their literary qualities, my preferred method for writing specs is to use AI. Specifically, I enter a back-and-forth Q/A session with a fast, cheap model (GPT 4o), where the model teases out specific details about my plans. After twenty minutes, I had a pretty decent starting point, but it was pretty thin on the bones. I took 4o's spec and then fed it through Gemini 2.5, which as of writing is the state-of-the-art. It gave me _significantly_ more challenging and detailed questions to puzzle through, but by the end of it, I had a very detailed spec which I could begin translating into reality.
+
+If you are interested, you can read the full spec link:https://github.com/jkendall327/text-mutator/blob/master/docs/SPEC.md[here].
+
+Because this was going to be a user-facing application, I also thought it pertinent to spend a little time thinking about visuals and layout. I'm not a designer (though it's something I'm interested in, clearly), so my intuition was to head over to link:https://excalidraw.com/[Excalidraw] and just start sketching.
+
+I knew the core of the app would revolve around seeing two passages of text side-by-side: the original plaintext and the mutated text. That naturally suggested a columnar layout. My user actions mapped sensibly onto buttons, and without an overriding reason to put them anywhere else, I attached them to the most relevant text column.
+
+image:https://raw.githubusercontent.com/jkendall327/text-mutator/refs/heads/master/docs/design.png[]
+
+This design was very useful when I finally got around to making the frontend. I didn't adhere to it with 100% strictness (for example, I added the 'settings' button), but the problem of translating that image to CSS was far easier than the problem I've had in the past, which was translating a formless idea in my head to CSS.
+
+== Day 1: Rust
+
+With the design done, it was time to start actually writing code.
+
+I started with the backend for two reasons. Firstly, I felt more comfortable jumping into Rust, and didn't want to get discouraged off the bat with the more difficult topics. Secondly, I already had the MVP text mutator code written for me by AI. I felt no particular reason to rewrite that business logic myself, since it worked well enough and thinking through the algorithm for mutating text wasn't the real point of this project.
+
+But I did have to think through how to convert it to a REST API, since it was previously a simple CLI app. I knew some of the big names in the Rust web framework game, but had no particular reason to pick one over the other. As such I went back to Gemini and asked it to give me a broad overview of the ecosystem. I did this later, as well, when figuring out my choices for frontend libraries; it was very useful for seeing which options were the 'safe bet', which were more experimental, which were becoming outdated and so on.
+
+Gemini indicated that axum was the safe bet for a Rust API, and seeing no reason to cut myself on the bleeding edge, that's what I chose. I spent a half-hour or so reading the axum docs and found that transforming my project into an API was surprisingly easy. The setup was almost entirely done in `main.rs`, and I could steal their boilerplate example code for all the additional features I wanted to add, such as CORS, tracing and fallback routing.
+
+== Day 2: infrastructure
+
+== Day 3: frontend
+
+== Day 4: cleanup
