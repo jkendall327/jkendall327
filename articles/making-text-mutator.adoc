@@ -82,3 +82,6 @@ The actual processing of writing Bicep files was surprisingly painless -- it's a
 == Day 3: frontend
 
 == Day 4: cleanup
+
+- realising I could shrink the backend image significantly
+- fixing the image config set thing for the backend app service
