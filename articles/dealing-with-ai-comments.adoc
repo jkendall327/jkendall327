@@ -1,4 +1,4 @@
-= Dealing with AI comments
+= Dealing with awful AI comments
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
