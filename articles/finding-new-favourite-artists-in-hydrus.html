@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Jack Kendall">
-<title>Articles</title>
+<title>Finding new favourite artists in Hydrus</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,38 +437,136 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Articles</h1>
+<h1>Finding new favourite artists in Hydrus</h1>
 <div class="details">
 <span id="author" class="author">Jack Kendall</span><br>
 <span id="email" class="email"><a href="mailto:jkendall3096@gmail.com">jkendall3096@gmail.com</a></span><br>
 </div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_the_problem">The problem</a></li>
+<li><a href="#_just_show_me_the_script">Just show me the script</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_the_problem">The problem</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><a href="articles/finding-new-favourite-artists-in-hydrus.html">Finding new favourite artists in Hydrus</a></p>
+<p>I use <a href="https://github.com/hydrusnetwork/hydrus">the Hydrus Network</a> as my media archival and tagging tool of choice. It&#8217;s where I keep copies of my shows, family photos, and archives of art I like from places like DeviantArt or ArtStation.</p>
 </div>
 <div class="paragraph">
-<p><a href="articles/dealing-with-ai-comments.html">Dealing with awful AI comments</a></p>
+<p>Hydrus has a configurable 'rating system', where by default you have a simple dislike/like button for every image.</p>
 </div>
 <div class="paragraph">
-<p><a href="articles/appraisal-as-the-function-of-the-artist.html">Appraisal as the function of the artist</a></p>
+<p>I use this to represent my curated favourites.</p>
 </div>
 <div class="paragraph">
-<p><a href="articles/state-and-time-and-types.html">State and time and types</a></p>
+<p>Something I often wonder is, 'how many artists have I favourited just one or two pictures from, but I&#8217;ve never looked at the rest of their work, even though I&#8217;d probably enjoy a lot of it'?</p>
 </div>
 <div class="paragraph">
-<p><a href="articles/openai-agi-definition-is-marxist.html">OpenAI&#8217;s definition of AGI is Marxist</a></p>
+<p>Hydrus&#8217;s tagging system unfortunately doesn&#8217;t support this kind of deep query, so I worked with GPT-5 over half an hour to make a SQL script I could run against my local database.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_just_show_me_the_script">Just show me the script</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AI slop warning:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">-- Run this from client.db
+ATTACH 'client.mappings.db' AS mappings;
+ATTACH 'client.master.db'   AS master;
+
+-- 1) Identify the like-rating service (your "favourites")
+WITH like_service AS (
+  SELECT service_id
+  FROM services
+  WHERE service_type = 7          -- Like/Dislike rating service
+    AND name = 'favourites'       -- adjust if you renamed it
+  LIMIT 1
+),
+
+-- 2) Files that are 'liked'
+--    For Like/Dislike ratings in local_ratings, liked is typically rating &gt; 0.
+liked_files AS (
+  SELECT lr.hash_id
+  FROM local_ratings AS lr
+  JOIN like_service ls USING (service_id)
+  WHERE lr.rating IS NOT NULL AND lr.rating &gt; 0
+),
+
+-- 3) Creator-tag mappings from your "my tags" service (service_id = 9)
+creator_maps AS (
+  SELECT cm.hash_id,
+         t.subtag_id
+  FROM mappings.current_mappings_9 AS cm        -- service_id 9 = "my tags"
+  JOIN master.tags       AS tg  ON tg.tag_id = cm.tag_id
+  JOIN master.namespaces AS ns  ON ns.namespace_id = tg.namespace_id
+  JOIN master.subtags    AS t   ON t.subtag_id   = tg.subtag_id
+  WHERE ns.namespace = 'creator'
+),
+
+-- 4) Count how many files each creator has (globally)
+creator_counts AS (
+  SELECT subtag_id, COUNT(DISTINCT hash_id) AS total_files_for_creator
+  FROM creator_maps
+  GROUP BY subtag_id
+),
+
+-- 5) Keep only creators with &lt; 5 files
+small_creators AS (
+  SELECT subtag_id
+  FROM creator_counts
+  WHERE total_files_for_creator &lt; 5
+)
+
+-- 6) Final selection: liked files that have a creator in small_creators
+SELECT
+  lf.hash_id,
+  st.subtag                  AS creator,
+  cc.total_files_for_creator AS creator_file_count
+
+  -- OPTIONAL: uncomment these two lines to include sha256 hex
+  -- , LOWER(HEX(h.hash))     AS sha256
+
+FROM liked_files lf
+JOIN creator_maps cm          ON cm.hash_id = lf.hash_id
+JOIN small_creators sc        ON sc.subtag_id = cm.subtag_id
+JOIN master.subtags st        ON st.subtag_id = cm.subtag_id
+JOIN creator_counts cc        ON cc.subtag_id = cm.subtag_id
+
+-- OPTIONAL: uncomment this to include sha256 hex (requires schema master.hashes(hash_id, hash BLOB))
+-- JOIN master.hashes h         ON h.hash_id = lf.hash_id
+
+GROUP BY lf.hash_id, st.subtag, cc.total_files_for_creator
+ORDER BY cc.total_files_for_creator ASC, st.subtag ASC, lf.hash_id ASC;</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p><a href="articles/practical-dotnet-modernisation.html">.NET modernisation: a view from the trenches (unfinished)</a></p>
+<p>Place it in the db folder of your Hydrus installation, and run like so:
+<code>sqlite3 client.db &lt; find_artists.sql</code>.</p>
 </div>
 <div class="paragraph">
-<p><a href="articles/what-i-learned-making-quiettime.html">What I learned making QuietTime</a></p>
+<p>It will output a list of artist names where you&#8217;ve favourited at least one image attributed to them, but have less than five total images from them in your library.</p>
+</div>
+<div class="paragraph">
+<p>I make no claim that this will work in your installation without tweaks.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, even though this is pure SELECT statements and thus should have no mechanism for harming your Hydrus installation, I take no liability if you somehow nuke your treasured childhood photos with this.</p>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-08-09 10:18:16 +0100
+Last updated 2025-08-09 10:17:52 +0100
 </div>
 </div>
 </body>

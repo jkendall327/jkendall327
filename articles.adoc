@@ -2,6 +2,8 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
+link:articles/finding-new-favourite-artists-in-hydrus.html[Finding new favourite artists in Hydrus]
+
 link:articles/dealing-with-ai-comments.html[Dealing with awful AI comments]
 
 link:articles/appraisal-as-the-function-of-the-artist.html[Appraisal as the function of the artist]
