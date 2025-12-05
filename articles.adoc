@@ -2,6 +2,8 @@
 Jack Kendall <jkendall3096@gmail.com>
 :toc:
 
+link:articles/an-interesting-bug-with-task-completion-source.html[An interesting bug caused by .NET's TaskCompletionSource]
+
 link:articles/finding-new-favourite-artists-in-hydrus.html[Finding new favourite artists in Hydrus]
 
 link:articles/dealing-with-ai-comments.html[Dealing with awful AI comments]
