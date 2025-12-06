@@ -105,15 +105,12 @@ public abstract class Actor<TState> where TState : class
 {
     private readonly Channel<IActorMessage<TState>> _mailbox;
     protected readonly TState State;
-    private string _typeName;
 
     protected Actor(TState state, ILoggerFactory loggerFactory)
     {
         State = state;
 
         _mailbox = Channel.CreateBounded<IActorMessage<TState>>(100);
-
-        _typeName = state.GetType().Name;
 
         // Start the long-running task that processes messages.
         Task.Run(ProcessMailboxAsync);
