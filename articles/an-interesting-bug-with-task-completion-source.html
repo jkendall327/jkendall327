@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Siddhartha speedruns enlightenment</title>
+<meta name="author" content="Jack Kendall">
+<title>An interesting bug caused by .NET&#8217;s TaskCompletionSource</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,150 +440,477 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
+<h1>An interesting bug caused by .NET&#8217;s TaskCompletionSource</h1>
+<div class="details">
+<span id="author" class="author">Jack Kendall</span><br>
+<span id="email" class="email"><a href="mailto:jkendall3096@gmail.com">jkendall3096@gmail.com</a></span><br>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_the_bug">The bug</a></li>
+<li><a href="#_a_crack_in_the_slab">A crack in the slab</a></li>
+<li><a href="#_the_crime_scene">The crime scene</a></li>
+<li><a href="#_the_other_half_of_the_puzzle">The other half of the puzzle</a></li>
+<li><a href="#_the_real_answer">The real answer</a></li>
+<li><a href="#_lessons_learned">Lessons learned</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_siddhartha_speedruns_enlightenment">Siddhartha speedruns enlightenment</h2>
+<h2 id="_introduction">Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>What&#8217;s poppin' chat! SiddharthaGaming here coming at you live from underneath this bodhi tree. We&#8217;re on day 49 of the meditation speedrun attempt, and I&#8217;ve got a feeling today might be the day we finally crack this suffering mechanic. Don&#8217;t forget to use your channel points to predict whether we&#8217;ll reach enlightenment this stream!</p>
+<p>I recently got bit by an interesting bug that I thought was worth writing up. Like all good bugs, it happened because I was fiddling with things I wasn&#8217;t familiar with, and as such it became a learning experience.</p>
 </div>
 <div class="paragraph">
-<p><strong>reading chat</strong> "Touch grass?" Bruh, I&#8217;ve been touching grass for literally seven weeks straight. I&#8217;m basically a grass touching world champion at this point.</p>
+<p>The context requires some explanation.</p>
 </div>
 <div class="paragraph">
-<p>Yo hold up&#8230;&#8203; hold up chat&#8230;&#8203; I think&#8230;&#8203; I think something&#8217;s happening&#8230;&#8203;</p>
+<p>I&#8217;ve been recently working on a toy MOO in C#, unoriginally called MooSharp. For those unaware, MOOs are an offshoot of MUDs ('multi-user dungeons'), an old style of text-based games which were basically multiplayer interactive fiction. You type commands into a parser to move between rooms, pick up swords and Slay Monsters or whatever.</p>
 </div>
 <div class="paragraph">
-<p><strong>eyes suddenly widen, jaw drops</strong></p>
-</div>
-<div class="paragraph">
-<p>YOOOOOOO! Chat! Chat! You&#8217;re not gonna believe this! This is ACTUALLY INSANE! <strong>rapidly tapping temple with index finger</strong></p>
-</div>
-<div class="paragraph">
-<p>Okay, okay, let me break this down - you know how we&#8217;ve been trying to figure out why everyone&#8217;s constantly stuck in these L-taking cycles? <strong>leans into camera</strong> Chat, it&#8217;s actually so simple - DESIRE IS THE ROOT OF ALL SUFFERING!</p>
-</div>
-<div class="paragraph">
-<p><strong>jumps up, runs around bodhi tree</strong></p>
-</div>
-<div class="paragraph">
-<p>ACTUAL POGGERS MOMENT! Can we get some enlightenment emotes in the chat?! This is the biggest discovery since xQc found out about juice!</p>
-</div>
-<div class="paragraph">
-<p><strong>sits back down, adjusts robe</strong></p>
-</div>
-<div class="paragraph">
-<p>But wait wait wait - there&#8217;s more! <strong>dramatic pause</strong> The suffering&#8230;&#8203; it has a SOURCE! And it has an END! And there&#8217;s a PATH! Chat, this is like finding all the speedrun strats at once!</p>
-</div>
-<div class="paragraph">
-<p><strong>reading donations</strong>
-"Sid, what&#8217;s the path?"
-"Touch more grass?"
-"Have you tried getting good?"</p>
-</div>
-<div class="paragraph">
-<p>No no no, listen - we need a whole new META! It&#8217;s called the Eightfold Path, and it&#8217;s gonna revolutionize the whole game! We&#8217;re talking Right View, Right Intention, Right Speech&#8230;&#8203; <strong>counts on fingers</strong> actually there&#8217;s eight of them, who would&#8217;ve guessed?</p>
-</div>
-<div class="paragraph">
-<p><strong>stands up, pointing at camera</strong></p>
-</div>
-<div class="paragraph">
-<p>Chat, this is not a drill! We just discovered the actual solution to the entire suffering mechanic! No cap, no bait, this is real! I&#8217;m literally shaking right now!</p>
-</div>
-<div class="paragraph">
-<p><strong>pacing excitedly</strong></p>
-</div>
-<div class="paragraph">
-<p>And the best part? This isn&#8217;t some pay-to-win strategy - anyone can do this! We&#8217;re gonna make suffering REAL REAL QUIET!</p>
-</div>
-<div class="paragraph">
-<p><strong>freezes, staring into middle distance</strong></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;chat, I think I just became a Buddha.</p>
-</div>
-<div class="paragraph">
-<p><strong>dabs</strong></p>
-</div>
-<div class="paragraph">
-<p>LETS GOOOOOOOOO! World first enlightenment speedrun! Can we get some POG in the chat?! Don&#8217;t forget to clip that moment!</p>
-</div>
-<div class="paragraph">
-<p><strong>composes self briefly</strong></p>
-</div>
-<div class="paragraph">
-<p>Okay, we need to make this information accessible to everyone. Mods, can we get a !dharma command in the chat? Also, don&#8217;t forget to join the Discord where we&#8217;ll be dropping the full guide. We&#8217;re about to create the most fire sangha community ever!</p>
-</div>
-<div class="paragraph">
-<p><strong>reading chat</strong>
-"Touch nirvana?"
-Literally just did, chat. Literally just did.</p>
-</div>
-<div class="paragraph">
-<p>Big shoutout to everyone who believed in the meditation meta! Special thanks to my five ascetic homies who stuck with me through the early streams - even though y&#8217;all were kind of pushing some weird strats with the whole extreme fasting thing. Sometimes the best path is the middle path, you know what I&#8217;m saying?</p>
-</div>
-<div class="paragraph">
-<p>Alright chat, I think that&#8217;s gonna do it for today&#8217;s stream. We made some ACTUAL HISTORY today! Don&#8217;t forget to smash that follow button, and remember - existence is suffering, but the sub button is eternal! Peace out, future Buddhas!</p>
+<p>The project was an excuse for me to try out the Actor pattern in a real app. This is the pattern where you conceptualise your program as a network of small isolated nodes which work by sending messages to each other, in the style of Erlang. Akka.NET is a famous implementation of this in the .NET space, but it felt too heavy for me; I wanted to see how much I could do by myself with some AI assistance.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_original_prompt">Original prompt</h2>
+<h2 id="_the_bug">The bug</h2>
 <div class="sectionbody">
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>could you write a scene where Siddhartha first realises the noble truths, and sees the path out of suffering, but he reacts to this like a twitch streamer - pogging out and mugging for his chat</p>
+<p>After a while, I noticed some unusual behaviour.</p>
 </div>
-</blockquote>
+<div class="paragraph">
+<p>My world had three or four rooms seeded from a JSON file on launch. You could move between them just fine with commands like <code>move atrium</code> or <code>go closet</code>.</p>
+</div>
+<div class="paragraph">
+<p>But - whenever you went into <em>one specific room</em>, the entire game would lock up. The text interface would hang indefinitely and you wouldn&#8217;t get pushed any further updates from the engine. A hard refresh of the browser (this was running in Blazor, a web framework) would reset things back to normal, but the bug was completely reproducible and consistent. What on earth?</p>
+</div>
+<div class="paragraph">
+<p>Naturally, my first thought was that something about the room was causing an exception to be thrown. But there was nothing particularly special about its data. I changed each of its fields independently to some obviously-safe value, and the bug still reproduced. No logs in STDOUT or exceptions thrown, no matter where I put my try-catches.</p>
+</div>
+<div class="paragraph">
+<p>The only clue I could figure out was this. The room which broke things was the <em>final room specified in the seed .json file</em>.</p>
+</div>
+<div class="paragraph">
+<p>That is, the file looked like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "Rooms": [
+    {
+      "Name": "atrium",
+      "Description": "A beautiful atrium.",
+      "Slug": "atrium",
+      "ConnectedRooms": ["side-room"]
+    },
+    {
+      "Name": "side-room",
+      "Description": "A small side-room for drinking coffee.",
+      "Slug": "side-room",
+      "ConnectedRooms": ["atrium", "closet"]
+    },
+    {
+      "Name": "closet",
+      "Description": "A cramped and dark closet.",
+      "Slug": "closet",
+      "ConnectedRooms": ["side-room", "dark-world"]
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Going into the 'closet' room always broke the game. I confirmed my theory by adding a new dummy room to the end of the file. Entering the closet now worked perfectly fine. But when I then tried to enter the room I&#8217;d just added - the final one in the file - it broke.</p>
+</div>
+<div class="paragraph">
+<p>To call this suspicious would be an understatement. It wasn&#8217;t data and it wasn&#8217;t a one-in-a-thousand Heisenbug. There was clearly a definite mechanical cause here.</p>
+</div>
+<div class="paragraph">
+<p>I tore apart the code which seeded the world from the JSON file. Was it setting the exits incorrectly for the last item in the list, causing some kind of secret stack overflow or infinite recursion? I wrote checks for that, and no, it was setting up exits OK. What about the room IDs/slugs? Was one of them broken somehow? But that wouldn&#8217;t explain why it was always the last item in the list. I tried shrinking the list down to just one room, and as expected, the game hung immediately.</p>
+</div>
+<div class="paragraph">
+<p>It doesn&#8217;t shame me to admit that I admitted defeat here for several weeks. This was just a fun toy project, and the bug was giving me very few clues to work with - no logs, no exceptions, just an absence of behaviour. I had a creeping suspicion that it was due to some of the concurrency stuff I&#8217;d done in my implementation of the Actor model, but no matter how many times I stepped through things with a debugger, I couldn&#8217;t spot anything that felt wrong.</p>
+</div>
+<div class="paragraph">
+<p>I put the project aside, for a time.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_commentary">Commentary</h2>
+<h2 id="_a_crack_in_the_slab">A crack in the slab</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This is amusing mainly for how well Claude emulates the Twitch lexicon - unsurprising, in retrospect, since it&#8217;s no doubt been trained on innumerable chatlogs.</p>
+<p>I&#8217;ve been using AI to write code and debug code for a long time now, and as you might expect, I threw every frontier model I could at this problem. The codebase was small enough that it was trivial to markdown-ify it and paste it into whatever LLM I wanted, but unfortunately, none of them made real progress in figuring out what was happening. To be sure, they came up with many extremely plausible-sounding solutions, suggesting locks and semaphores a-plenty. But their spells, when cast, failed.</p>
 </div>
 <div class="paragraph">
-<p>I later asked Claude to revamp the scene:</p>
+<p>Things finally changed with the release of Gemini 3.0 Pro Preview a few weeks ago.</p>
 </div>
+<div class="paragraph">
+<p>After hearing the wonder stories from other people online, I decided to dust off the codebase and take another crack at things. Gemini, unsurprisingly, failed to identify the cause of the bug when I simply gave it the code. But this time I was more determined; I felt there surely <em>had</em> to be a way to make it easier to diagnose.</p>
+</div>
+<div class="paragraph">
+<p>Following Gemini&#8217;s suggestions, I added boatloads more logging and instrumentation to the app, including hardcoded <code>Debug.WriteLine</code> statements in case my logger was getting stifled. I also manually gave it the action output log from the game itself.</p>
+</div>
+<div class="paragraph">
+<p>After one or two rounds of this, Gemini abruptly and quite arbitrarily stopped in its tracks. It said it now understood the bug and gave me a one-line fix. I was quite skeptical, of course, but a strange feeling blossomed in my chest. Could this actually be it? Had the computer seen something I&#8217;d failed to, all this time?</p>
+</div>
+<div class="paragraph">
+<p>I made the suggested change, and started the game. And moved from one room to the next. And the next. And then, I typed the command to move to the final room. And hit enter.</p>
+</div>
+<div class="paragraph">
+<p>And it worked.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_crime_scene">The crime scene</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s now see the gory details of where my original mistake was.</p>
+</div>
+<div class="paragraph">
+<p>Below is a copy of the file where the bug lived, sans logging and error handling: take a look and see if the error stands out to you. This is the living heart of the Actor implementation in the project. My players, objects and (importantly) my rooms all inherited from this class. It encapsulated the following behaviour:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can send messages to this thing.</p>
+</li>
+<li>
+<p>It will process its messages sequentially forever.</p>
+</li>
+<li>
+<p>You can get responses from your messages to it.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>TState</code> below would be something like <code>RoomDto</code> or <code>ObjectDto</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-csharp" data-lang="csharp">using System.Threading.Channels;
+using Microsoft.Extensions.Logging;
+
+namespace MooSharp;
+
+public interface IActorMessage&lt;in T&gt;
+{
+    /// The context is the state object that the actor protects.
+    Task Process(T context);
+}
+
+public abstract class Actor&lt;TState&gt; where TState : class
+{
+    private readonly Channel&lt;IActorMessage&lt;TState&gt;&gt; _mailbox;
+    protected readonly TState State;
+
+    protected Actor(TState state, ILoggerFactory loggerFactory)
+    {
+        State = state;
+
+        _mailbox = Channel.CreateBounded&lt;IActorMessage&lt;TState&gt;&gt;(100);
+
+        // Start the long-running task that processes messages.
+        Task.Run(ProcessMailboxAsync);
+    }
+
+    // The main loop for the actor. It runs forever, processing one message at a time.
+    private async Task ProcessMailboxAsync()
+    {
+
+        await foreach (var message in _mailbox.Reader.ReadAllAsync())
+        {
+            await message.Process(State);
+        }
+    }
+
+    public void Post(IActorMessage&lt;TState&gt; message)
+    {
+        var posted = _mailbox.Writer.TryWrite(message);
+
+        if (!posted)
+        {
+            _logger.LogWarning("Failed to post message to mailbox");
+        }
+    }
+
+    public Task&lt;TResult&gt; Ask&lt;TResult&gt;(IRequestMessage&lt;TState, TResult&gt; message)
+    {
+        Post(message);
+
+        return message.GetResponseAsync();
+    }
+
+    public async Task&lt;TResult&gt; QueryAsync&lt;TResult&gt;(Func&lt;TState, TResult&gt; func)
+    {
+        var message = new RequestMessage&lt;TState, TResult&gt;(state =&gt; Task.FromResult(func(state)));
+
+        return await Ask(message);
+    }
+
+    public override string? ToString() =&gt; State.ToString();
+}
+
+/// A message that just performs an action and doesn't return anything.
+public class ActionMessage&lt;T&gt; : IActorMessage&lt;T&gt;
+{
+    private readonly Func&lt;T, Task&gt; _action;
+    public ActionMessage(Func&lt;T, Task&gt; action) =&gt; _action = action;
+    public async Task Process(T context) =&gt; await _action(context);
+}
+
+// An interface for messages that need to return a value.
+public interface IRequestMessage&lt;TState, TResult&gt; : IActorMessage&lt;TState&gt;
+{
+    Task&lt;TResult&gt; GetResponseAsync();
+}
+
+// The implementation uses a TaskCompletionSource to bridge the async gap.
+public class RequestMessage&lt;TState, TResult&gt; : IRequestMessage&lt;TState, TResult&gt; where TState : class
+{
+    private readonly TaskCompletionSource&lt;TResult&gt; _tcs = new();
+    private readonly Func&lt;TState, Task&lt;TResult&gt;&gt; _request;
+
+    public RequestMessage(Func&lt;TState, Task&lt;TResult&gt;&gt; request) =&gt; _request = request;
+
+    public async Task Process(TState context)
+    {
+        try
+        {
+            var result = await _request(context);
+            _tcs.SetResult(result);
+        }
+        catch (Exception ex)
+        {
+            _tcs.SetException(ex);
+        }
+    }
+
+    public Task&lt;TResult&gt; GetResponseAsync() =&gt; _tcs.Task;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I will now reveal the bug. It&#8217;s here:</p>
+</div>
+<div class="paragraph">
+<p><code>private readonly TaskCompletionSource&lt;TResult&gt; _tcs = new();</code></p>
+</div>
+<div class="paragraph">
+<p>The fix was changing it to this:</p>
+</div>
+<div class="paragraph">
+<p><code>private readonly TaskCompletionSource&lt;TResult&gt; _tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);</code></p>
+</div>
+<div class="paragraph">
+<p>If you have dealt with TaskCompletionSources before, your eyebrows are probably raising right now, though maybe with a slight measure of confusion.</p>
+</div>
+<div class="paragraph">
+<p>For those unfamiliar, <code>TaskCompletionSource</code> (TCS) is a fairly low-level part of the async/await machinery in C#. The language represents asynchronous operations through the <code>Task</code> type, and while these are usually created for you with helper methods like <code>Task.FromResult</code> or the async machinery itself, you sometimes have to manage them manually when interfacing with older asynchrony patterns.</p>
+</div>
+<div class="paragraph">
+<p>That&#8217;s where TCS comes in. It owns a <code>Task</code>, but lets you arbitrarily say when it&#8217;s completed, failed or cancelled. I was using it in the example above to decouple the <em>processing</em> of a message by an Actor from the <em>availability of the message&#8217;s result</em> to consumers. I could <code>.SetResult</code> the task in my <code>Process</code> method, and then expose the task itself in <code>GetResponseAsync()</code> so external code could simply <code>await</code> it.</p>
+</div>
+<div class="paragraph">
+<p>OK, that&#8217;s great and all. But why was my app hanging?</p>
+</div>
+<div class="paragraph">
+<p>The reason it took me so long to find this bug is because the answer to that question was not in this file at all. To fully understand the bug, we must go to the source of all crimes - <code>Program.cs</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_other_half_of_the_puzzle">The other half of the puzzle</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My <code>Program.cs</code> looked like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-csharp" data-lang="csharp">var builder = WebApplication.CreateBuilder(args);
+
+// ... other stuff ...
+
+var app = builder.Build();
+
+// ... other stuff ...
+
+// The 'world' is my type containing all my rooms, objects and other actors.
+var world = app.Services.GetRequiredService&lt;World&gt;();
+
+// Seed the world from the JSON file.
+await world.InitializeAsync();
+
+app.Run();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nothing immediately untoward here.</p>
+</div>
+<div class="paragraph">
+<p>I won&#8217;t share the implementation of <code>world.InitializeAsync</code>, because it&#8217;s quite verbose and uninteresting. It loaded the JSON file and then mapped the resulting barebones DTOs into the <code>Actor</code> types I showed previously. That is, we were creating and starting our <code>Actor</code> mailboxes here. To set up exits between them, they naturally sent messages to each other:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-csharp" data-lang="csharp">                await currentRoomActor.Ask(new RequestMessage&lt;Room, bool&gt;(roomState =&gt;
+                {
+                    foreach (var exit in exits)
+                    {
+                        roomState.Exits.Add(exit.Key, exit.Value);
+                    }
+                    return Task.FromResult(true);
+                }));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You now have all the pieces of the puzzle to understand why the app was hanging.</p>
+</div>
+<div class="paragraph">
+<p>Here is a final clue - changing this line in <code>Program.cs</code> also fixed the bug, independently of my change to the <code>TaskCompletionSource</code> line.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-csharp" data-lang="csharp">await world.InitializeAsync();
+
+await app.RunAsync();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_real_answer">The real answer</h2>
+<div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Splendid and terrible. Could you now depict the moment of awakening in an understated, realistic style?</p>
+<p>N.B. My knowledge here is not perfect. That&#8217;s why I wrote the bug in the first place!</p>
 </div>
 </blockquote>
 </div>
 <div class="paragraph">
-<p>Its response there was decent but not too interesting, so I tweaked my request:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Actually, could you do it from the perspective of some random other person who happens to be observing Siddhartha? To them, of course, it looks like nothing much is happening. I have in mind Auden&#8217;s "Musee Des Beaux Arts" as a kind of touchpoint.</p>
-</div>
-</blockquote>
+<p>By default, <code>TaskCompletionSource</code> runs continuations <strong>synchronously</strong>.</p>
 </div>
 <div class="paragraph">
-<p>That time Claude gave me something pretty good (though still not interesting enough to bother sharing). What I really liked, though, was the explanation it gave on its piece:</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>I&#8217;ve written a piece that tries to capture something of Auden&#8217;s insight about how momentous events occur while ordinary life continues unaware around them. Like his observation of Breughel&#8217;s Icarus - where the ploughman might have heard the splash but had somewhere else to be - I&#8217;ve tried to show how the profound moment of enlightenment appeared as just another morning to someone preoccupied with their own pressing concerns. Would you like me to adjust anything about the perspective or tone?</p>
-</div>
-</blockquote>
+<p>This means that when its task gets <code>await</code> ed, the flow of execution does not continue on another thread. It continues on the same thread. Why? As a performance optimisation. In normal code, this saves some work (as I understand it) with the bookkeeping that comes from maintaining the async context.</p>
 </div>
 <div class="paragraph">
-<p>Like emulating the voice of Twitch streamers, it&#8217;s not actually surprising that Claude was able to work with my reference to Auden and point out details of that text. But I do think it&#8217;s a striking example of the flexibility of these tools. You can give it input as vague as 'the kind of vibe from this poem I like' and the system will actually do something meaningful with it.</p>
+<p>So what thread is the continuation going to run on? Well, the TCS is `await`ed when an Actor processes a message from its mailbox. So it&#8217;s the Actor&#8217;s thread -the one running ProcessMailboxAsync.</p>
+</div>
+<div class="paragraph">
+<p>When we&#8217;re cycling through rooms in <code>world.InitializeAsync</code>, we posted messages to each of them to set up their exits.</p>
+</div>
+<div class="paragraph">
+<p>When we did this, the thread of execution 'hopped' onto the thread of the first room&#8217;s Actor. More specifically: when the Actor calls <code>_tcs.SetResult()</code>, because of the default synchronous behaviour, the rest of InitializeAsync (the continuation) executed immediately on the Actor&#8217;s thread. It moved to the second room, and the same thing happened again. Another hop, this time onto the second Actor&#8217;s thread. It repeated this chain until it reached the final room.</p>
+</div>
+<div class="paragraph">
+<p>What then?</p>
+</div>
+<div class="paragraph">
+<p>Well, then we get to here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-csharp" data-lang="csharp">await world.InitializeAsync();
+
+app.Run();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>app.Run()</code> is a <strong>blocking method</strong>. The mailbox thread for the last room has now been kidnapped to work as the app&#8217;s Kestrel server. The poor room&#8217;s mailbox thread is now trapped there until <code>app.Run</code> completes.</p>
+</div>
+<div class="paragraph">
+<p>This has the following immediate implications:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The web app itself will run completely normally. After all, it has a thread working for it!</p>
+</li>
+<li>
+<p>The last room won&#8217;t respond to any messages at all. Its thread for listening to messages is busy elsewhere.</p>
+</li>
+<li>
+<p>Because it&#8217;s never going to respond, whoever sent it the message will never get an answer.</p>
+</li>
+<li>
+<p>If you&#8217;re trying to move into the room, you&#8217;ll never get the 'OK, you can move into me' signal.</p>
+</li>
+<li>
+<p>You will be stuck in limbo forever. The game hangs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With this in mind, you can likely understand why the fixes worked.</p>
+</div>
+<div class="paragraph">
+<p>Specifying <code>TaskCreationOptions.RunContinuationsAsynchronously</code> forces the TCS to schedule continuations on a separate thread. This completely avoids the issue with thread-hijacking.</p>
+</div>
+<div class="paragraph">
+<p><code>await app.RunAsync</code> was not a 'real fix'. The <code>await</code> here let the mailbox thread bubble up the stack, finish its work and get back to processing the actor&#8217;s messages. But this is a band-aid over the real problem; introducing some other blocking/synchronous call after <code>world.InitializeAsync</code> would&#8217;ve brought the bug back in force.</p>
+</div>
+<div class="paragraph">
+<p>(Note: this doesn&#8217;t mean that we shouldn&#8217;t be using <code>await app.RunAsync</code> - we should. It&#8217;s strictly better than <code>app.Run</code>. I used the synchronous version originally purely out of carelessness.)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lessons_learned">Lessons learned</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When Gemini finally pointed out the bug here, I was elated. I&#8217;d mulled this nightmare over in my mind for weeks, and getting a real, definitive answer felt impossible. It was the best kind of bug-fix - one where I learned something interesting and concrete that I could carry into the future.</p>
+</div>
+<div class="paragraph">
+<p>My main lesson was simple. Treat <code>TaskCompletionSource</code> with respect!</p>
+</div>
+<div class="paragraph">
+<p>There are some types which <em>always</em> demand additional scrutiny when they&#8217;re used. Anything that implements <code>IDisposable</code>. Many kinds of <code>Stream</code>. <code>HttpClient</code>.</p>
+</div>
+<div class="paragraph">
+<p>I foolishly did not consider TCS as one of these types. I hacked together a pattern that seemed to work and walked away self-satisfied. I was peering one layer of abstraction deeper than I usually do, and toying with something low-level; that is not unsafe by itself, but it warrants reading the documentation deeply, or at least searching 'taskcompletionsource things to avoid' on Google.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m not going to be too hard on myself, however. I think this was a legitimately tricky bug, for a few reasons.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The genesis was a type exhibiting unusual behaviour when in its default configuration (no <code>RunContinuationsAsynchronously</code> in the constructor) for the sake of a performance optimisation.</p>
+</li>
+<li>
+<p>There&#8217;s no compelling reason <em>prima facie</em> to think the TCS would run continuations synchronously. It makes sense in retrospect, but it&#8217;s something you 'just have to know'.</p>
+</li>
+<li>
+<p>The bug wasn&#8217;t caused by the TCS in isolation. It was its interaction with the blocking <code>app.Run()</code> call.</p>
+</li>
+<li>
+<p>Even then, the bug wouldn&#8217;t have happened in the same way for most normal blocking calls. The game only hung because <code>app.Run</code> hijacks the thread in perpetuity.</p>
+</li>
+<li>
+<p>The behaviour only exhibiting for the last room in the JSON file was a hell of a red herring. I think looking in the world-seeding logic, and not <code>Actor.cs</code>, would be anyone&#8217;s natural response.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ultimately, getting caught in beartraps like these is how you learn the thorny details of an ecosystem. Better to find them in toy projects than in production.</p>
+</div>
+<div class="paragraph">
+<p>Of course, it was not really me who found the bug. The ultimate credit goes to Gemini: I doubt I would&#8217;ve ever figured this out by myself, unless I randomly read up on TCS at some point. The fact that the model was able to reason what happened just from the code and the logs legitimately gobsmacked me when it happened. It didn&#8217;t just display a piece of fairly niche .NET knowledge (how many developers have never even seen <code>TaskCompletionSource</code> in the wild?), but integrated that with its knowledge of the overall codebase to build a coherent and ultimately correct hypothesis.</p>
+</div>
+<div class="paragraph">
+<p>People can denigrate AI for ultimately being based on statistics, rather than principled reasoning. But behold the dark truth: the easiest way to hit bullseye is to throw a thousand darts at the board.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-01-05 15:05:36 UTC
+Last updated 2025-12-05 22:06:36 UTC
 </div>
 </div>
 </body>
