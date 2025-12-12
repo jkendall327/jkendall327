@@ -12,8 +12,6 @@ link:articles/appraisal-as-the-function-of-the-artist.html[Appraisal as the func
 
 link:articles/state-and-time-and-types.html[State and time and types]
 
-link:articles/openai-agi-definition-is-marxist.html[Considering OpenAI's definition of AGI]
-
 link:articles/practical-dotnet-modernisation.html[.NET modernisation: a view from the trenches (unfinished)]
 
 link:articles/what-i-learned-making-quiettime.html[What I learned making QuietTime]
