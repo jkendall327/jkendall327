@@ -1,0 +1,95 @@
+= Reviewing the big three asynchronous coding agents
+Jack Kendall <jkendall3096@gmail.com>
+:toc:
+
+== Introduction
+The past year has seen the rise of a new paradigm in AI coding; like many things in computing it is very useful and has no good name.
+
+I think the closest we have is 'asynchronous coding agent'.
+*Coding agent* meant in the sense of Claude Code and similar products, *asynchronous* in that it's a fire-and-forget workflow: you send in tasks and walk away from the keyboard.
+No babysitting an agent in a terminal.
+
+I'm referring to the new pattern of running an AI agent in a container on someone else's computer. The typical workflow is:
+- You go to a website.
+- You fire off a request, task or question.
+- A container or virtual machine of some kind is spun up.
+- Your codebase is pulled from your GitHub profile.
+- The agent has free reign within their little container to go wild and try to fulfill your request.
+
+Some implications immediately fall out of this pattern.
+- The risk profile of running the agent is essentially zero, especially if they are working on publicly-available code.
+    - After all, what do I care if they trash some ephemeral container running on Anthropic's servers?
+- It makes parallelising AI work very easy. Fire off five requests at once if you want. It's just containers.
+- You now have to deal with parallelising the work! That is not trivial. You have to be careful to avoid merge conflicts.
+- You don't need to be at a proper development station to trigger work. You can do it from anything with an internet connection.
+
+I've found this pattern very effective for working on a codebase.
+When I was just running Claude Code in a terminal, I often found my mind racing ahead of the agent.
+'Next I want to do this - and this - and this. Just got to wait for this request to finish...'
+You can get around this by exploiting Git's worktree feature, but I frankly found it quite unergonomic to work with.
+The async agent pattern, in contrast, is very low-friction.
+I can spool up requests on a whim and then just check the PRs I need to review an hour later.
+
+There are some downsides, naturally.
+Because you are less in-the-loop, the feedback cycle is slower.
+If the AI makes stupid choices, it takes longer for you to realise and set it back on track.
+The planning modes found in most recent products does alleviate this.
+
+The other main issue is a psychological one.
+Once you get access to a new fountain of basically free labour, you can feel guilty for not using it.
+Google gives me *one hundred Jules tasks per day* -- an insane amount of compute for an individual developer.
+If I were only more dedicated, and slept less hours in the day, I could make better use of that compute.
+Oh well!
+
+== Reviewing the platforms
+
+== Claude Code for web
+
+This is Anthropic's offering, built on the back of Claude Code's meteoric success.
+I must immediately deduct 5000 points for the absolutely awful branding/naming scheme.
+Without a nice definite noun like 'Jules' or 'Codex', it's annoying to search for official information on this product.
+
+It's the async agent I've used the least.
+
+That's because...
+
+no environment configuration??? makes it a nonstarter for .net.
+
+
+== Jules
+
+jules pros
+
+the auto-suggested changes are cool
+it's not clear when it looks for suggestions. how long between checks?
+
+snapshotting the environment after a successful setup script makes sense, not sure why codex doesn't do this - or does it?
+
+auto-updating knowledge from the project as it works on tasks is neat - but wouldn't storing that info in the repository be better?
+
+it will freely use playwright to visually inspect and verify its changes - this is cool!
+
+it making a draft branch automatically is great because it means your CI has already finished by the time you open the github page.
+
+also means you're not waiting for it to make the pr like with codex, which takes a weirdly long time.
+
+jules cons
+
+the tab takes up a gigabyte of memory!
+
+no apparent way to select specific lines to bring to the ai's attention when reviewing
+tasks do not reliably update as being complete once the pr has been merged; they must not check it automatically
+
+the interface gets laggy when there's a large diff
+and in general it feels slow and clunky
+this is frustrating - the UI isn't particularly crazy, doesn't have loads of features, it should be fast!
+
+it offers an option to download a zip of the changes - no clue why i would care about that!
+
+it marked a task as complete when jules failed to complete it and i had to nudge it along - only updated several minutes later.
+
+in general it seems very slow to update the status of tasks.
+
+the message it posts on every github PR is corny as hell.
+
+== Codex
