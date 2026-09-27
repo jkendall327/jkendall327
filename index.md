@@ -11,11 +11,3 @@ Hi, I'm Jack. I'm a .NET developer based in Alameda, California, specializing in
 [**Programming projects**](programming-projects.html)
 
 [**Colophon**](colophon.html)
-
-## Links
-
-- [Email](mailto:jkendall3096@gmail.com)
-
-- [GitHub](https://github.com/jkendall327)
-
-- [LinkedIn](https://www.linkedin.com/in/jack-kendall-6b107811b/)
