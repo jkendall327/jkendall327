@@ -1,6 +1,6 @@
 = Jack Kendall
 
-Hi, I'm Jack. I'm a .NET programmer based in Alameda, California. In a past life I was a freelance copywriter. This site is my dusty little corner of the internet.
+Hi, I'm Jack. I'm a .NET developer based in Alameda, California, specializing in AI and modernizing complex legacy systems. In a past life I was a freelance copywriter. This site is my dusty little corner of the internet.
 
 link:articles.html[**Blog**]
 
