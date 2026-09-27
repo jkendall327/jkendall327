@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+$if(author)$
+<meta name="author" content="$author$">
+$endif$
+<title>$pagetitle$</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="$root$style.css">
+<script>
+  // Apply the saved theme (or the system preference) before the page draws, to avoid a flash.
+  (function () {
+    var theme = null;
+    try { theme = localStorage.getItem("theme"); } catch (e) {}
+    if (!theme) theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    document.documentElement.dataset.theme = theme;
+  })();
+</script>
+$if(highlighting-css)$
+<style>
+$highlighting-css$
+</style>
+$endif$
+</head>
+<body>
+<div id="header">
+$if(back)$
+<a class="back" href="$back$">&larr; Back</a>
+$endif$
+<h1>$title$</h1>
+$if(author)$
+<div class="details">$author$</div>
+$endif$
+$if(toc)$
+$if(table-of-contents)$
+<nav id="toc">
+<div id="toctitle">Table of Contents</div>
+$table-of-contents$
+</nav>
+$endif$
+$endif$
+</div>
+<div id="content">
+$body$
+</div>
+<div id="footer">
+<span>Last updated $lastmod$</span>
+<span class="links">
+<a href="https://github.com/jkendall327">GitHub</a>
+<a href="https://www.linkedin.com/in/jack-kendall-6b107811b/">LinkedIn</a>
+<button id="theme-toggle" type="button"></button>
+</span>
+</div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var button = document.getElementById("theme-toggle");
+    function label() { button.textContent = root.dataset.theme === "dark" ? "Light mode" : "Dark mode"; }
+    label();
+    button.addEventListener("click", function () {
+      root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+      try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+      label();
+    });
+  })();
+</script>
+</body>
+</html>

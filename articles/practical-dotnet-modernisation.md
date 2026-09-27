@@ -1,0 +1,101 @@
+---
+title: ".NET modernisation: a view from the trenches"
+author: Jack Kendall
+toc: true
+---
+
+Over the past year I've modernised a large enterprise .NET solution consisting of over a hundred projects. This page will list some of my experiences from this and practical tips that are of use to others. Emphasis on practical -- everyone knows writing unit tests is great, and all, but I want to get down into the nuts-and-bolts of it all.
+
+This will be focused on the 'raw code'. That is, I won't talk about the improvements I made to our CI/CD pipelines or releases processes. Those are interesting and important, but what I did there likely isn't cleanly applicable to anyone else's organisation, whereas .NET is .NET, no matter who's using it.
+
+A quick note on terminology: I'll use '.NET Core' to refer to anything from 3.1 onwards, even though modern versions are just called '.NET', e.g. '.NET 8'. This is to make the contrast clear when I bring up .NET Framework or .NET Standard.
+
+## The battlefield
+
+Let's start with an overview of what I was tackling. In many ways it was the archetypical legacy solution, but like unhappy families, every legacy codebase is frustrating in its own way.
+
+The solution centered around a home-grown ERP WinForms desktop app originally written in the early 2010s. What the app did is highly industry-specific and not particularly important. It was a great example of the 'distributed monolith' architecture pattern: around the core desktop project floated a nebulous orbit of webapps and Windows services, all ostensibly independent but in actuality highly conjoined to each other. I won't iterate the difficulties of working with that architectural style, but suffice to say it was very hard to to discern whether making a change in project A would affect projects B, C or Z.
+
+You can assume that, unless stated otherwise, every bit of code started out at a late version of .NET Framework (4.8 specifically). This was highly useful as it made .NET Standard a viable strategy, which I'll outline later.
+
+### The web apps
+
+These were a rather mixed bag. We had a dozen or so APIs in total -- thankfully nothing that served the public internet or outside consumers. One or two of these were already on .NET Core, though still several years out of date; nothing was on .NET 6 or above.
+
+Two particularly thorny projects were on legacy ASP.NET (as opposed to ASP.NET Core). This meant they couldn't be built when I ran a simple `dotnet build` on the solution file, which was a personal goal of mine. Thankfully, these were already on life support and not getting any meaningful code updates.
+
+### The services
+
+We had twenty or so backend services that ran as Windows services on an AWS EC2 instance to mimic a traditional Windows server environment.
+
+Some of these manifestly didn't need to exist; for example, one service ran all day, but the only work it did was send out emails at a specified time every morning, something that could be done with Amazon SNS.
+
+The more interesting fact, however, is that they were run with an ingeniously janky homegrown version of Microsoft.Extensions.Hosting. I'll refer to it as 'Hoster' to protect the innocent.
+
+Hoster worked by dynamically loading assemblies at runtime. You built your projects as libraries, compiling to simple .dlls, and supplied a config file specifying the name of the method and type that would serve as your entrypoint.
+
+The promise of Hoster was that it setup logging for you, handled graceful restarts and shutdowns, and supported arbitrary numbers of projects running under one executable. You could theoretically even add or remove projects between app invocations by just removing their config file, though in practice this was never done.
+
+Naturally this solution gave us plenty of problems. It was horribly brittle -- without knowing the special places you had to put .dlls and configs, things failed silently. Exceptions in the hosted code would not reliably be transmitted to the Hoster shell. Dynamically loading the assemblies led to days of pain with binding exceptions, and was also only supported on .NET Framework. The implementation used AppDomains, which were essentially deprecated in .NET Core. Deployment was unnecessarily complex; we had to marshal together not only the correct version of Hoster, but all the code we actually cared about. It was a quintessential example of taking flexibility too far. And the vast majority of the time, we only ever hosted one service per executable anyway, so its flexibility was of little use. Hoster was written before Microsoft.Extensions.Hosting, and it wasn't a bad bit of work for the time. But it was sorely past its use-by date.
+
+### The UI
+
+I think every .NET dev has touched this kind of old Winforms app at some point. Lots of complex, bespoke forms built up of DevExpress widgets customised into unrecognisability. Code-behind files that easily broke five thousand lines in length.
+
+This is the one part of the solution I've yet to seriously touch, because it's obviously business-critical and has a lot of moving parts. Watch this space.
+
+## Strategies
+
+In my first months on the job, the team lead attempted to upgrade the UI project to .NET 5. After a week of struggle, they only got it down to a hundred compilation errors. From that it was clear to me that any successful modernisation drive would need to work incrementally, and from the bottom up. In practice, that meant the following:
+
+1. Analyse the project hierarchy in the solution.
+
+2. Find the 'lowest' projects, that is, simple libraries that had no references to other projects.
+
+3. Transition those fundamental projects to .NET Standard 2.0.
+
+4. Repeat on the next layer up. If all of a project's dependencies were .NET Standard, it too could go to .NET Standard (or .NET Core, if it was an executable).
+
+This was a simple algorithm, but an effective one.
+
+It let me shift the solution's code off of .NET Framework in a seamless, low-risk manner. It built a safe bedrock that future work could stand on top of. Around twenty of our projects fell into this simple case, and I upgraded most of them in a single Monday at the start of the project. In many cases it was as simple as changing the \<TargetFramework\> property in their .csproj; I'll outline some of the more complex cases later. Incidentally, this made it very easy to check my overall progress as the modernisation advanced. I could Ctrl-Shift-F for '\<TargetFramework\>' to quickly see how many projects were on net48, netstandard2.0, etc. Metrics like that, even rough-and-ready ones, were vital for communication to the bosses who wanted to know how my work was progressing.
+
+You may wonder why I'm specifying .NET Standard 2.0, when a 2.1 exists. The answer is pretty simple. 2.0 can interoperate seamlessly with both .NET Framework and .NET Core. .NET Framework projects can't use .NET Standard 2.1. This actually gave me a lot of trouble when it came to dealing with Entity Framework 6, which I'll talk about later.
+
+### Dealing with dependencies
+
+Assume in this section, and really this entire document, that when I say 'dependency' I mean a reference between projects. NuGet packages can sometimes be troublesome, if they only support specific framework versions -- EF6 comes to mind -- but they are generally a lesser concern. To put it simply, a project is only allowed to reference projects with a lower-or-matching framework version, or .NET Standard. .NET Framework can't depend on .NET Core and vice versa. One of the biggest issues when modernising a big solution is untangling the Gordian knot of project dependencies, slowly carving out an island of .NET Standard code that you can ride, raft-like, to safety.
+
+Anyway, let's not get carried away with metaphors. A project with no dependencies is easier to upgrade than one which does. So naturally we should try to trim down the dependencies of our projects as much as possible. Naturally this isn't important if the dependencies are themselves .NET Standard already. The bottom-up approach should make this the case a lot of the time, but it's not feasible to follow with 100% consistency, so sometimes you'll need to migrate away from a .NET Framework dependency.
+
+Trimming dependencies takes two forms: removing unnecessary dependencies and narrowing your dependencies.
+
+By 'unnecessary', I mean a project dependency that is entirely unused and can be removed with no ill effect in the consumer. This happens more frequently than you might think in a legacy codebase with lots of churn; if a piece of code moves from HelperLibrary.Imp to BasicCode.Core, you might not realise the HelperLibrary reference is no longer needed. Manually auditing all your project references is a pain -- the best approach I know of is to comment them out one-by-one in the .csproj, build the project and see if it breaks. It's much better to use tooling for this. I use Rider as my daily driver, and it has a 'find unused references' feature which identifies unused assemblies most of the time. Doing this let me cut out dozens of dependency-links between projects and made more than a few of them entirely isolated (and, thereby, trivial to upgrade).
+
+What about 'narrowing' your dependencies? This means only depending on what you actually **need**. There are two scenarios where you can end up depending on more than what's necessary.
+
+1. You require code in project A, but you get it through a transitive dependency on project B, which you don't need.
+
+2. You require some code in project A, but not all of it, or even a majority of it. In the extreme case, you have a reference to an entire project just to use one or two methods.
+
+Fixing the first step is fairly easy. Reference the project you need directly. Transitive project dependencies are useful, but they also hide information, and during a modernisation drive that should be avoided. I didn't have access to any fancy tools like NDepend to map out the project hierarchy in my solution, so I just played this part by ear. Note that this usually requires the projects in questions to have SDK-style .csprojs, which I talk about in a later point.
+
+As for 2), this is where we get into splitting up projects or reorganising code.
+
+A project might be 'held back' to .NET Framework by one small little class that happens to use WCF or an API that's not supported on later versions. In those cases it's often valuable to extract that 1% of the project out to somewhere else, potentially even its own project. This does lead to solution bloat, but sometimes things have to get worse before they can get better. You can also take the route of quarantining all the legacy code into its own project. Besides making other projects safe to upgrade, it also makes it very clear to other developers that they should avoid using anything in the legacy project for new work, if at all possible.
+
+### SDK-style .csprojs
+
+### Automated tooling
+
+### The compatibility shim
+
+I told a white lie previously when I said that .NET Core could only interoperate with .NET Standard seamlessly. .NET Core assemblies will, in fact, try to 'just work' with .NET Framework dependencies. In a lot of cases, this will be fine and you won't notice the difference. But you get very few guarantees, working this way; if the runtime encounters something it can't handle it reserves the right to explode at runtime. So this should be considered a last resort. You'll thankfully get some very noticeable compiler warnings when you do this, which is actually quite useful, as it's easy to do this accidentally via transitive dependencies.
+
+## Pain-points
+
+### SOAP
+
+### WCF
+
+### EF6

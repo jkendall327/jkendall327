@@ -1,0 +1,33 @@
+---
+title: "Dealing with awful AI comments"
+author: Jack Kendall
+toc: true
+---
+
+## The problem
+
+Newer AI models, like Claude 3.7 and especially Gemini 2.5 Pro, have an annoying tendency to over-comment their code. It doesn't matter how fiercely you tell them not to do this. They simply love adding pointless comments:
+
+``` cs
+if (whatever)
+{
+    // Exiting early because whatever was true.
+    return;
+}
+```
+
+## The solution
+
+The models won't follow your instructions to stop leaving comments. But, I've found, they *will* follow your instructions to *mark* their comments.
+
+In the CONVENTIONS.md file I use with aider, I have this line:
+
+`- Prefix all of your comments with 'AI:'. For example, '// AI: Added so we can access FooService.'`
+
+This works like a charm. The model will consistently include the 'AI' tag in its comments.
+
+Then, it's a simple case of using a regular expression to find and delete them.
+
+Naturally, I used some other model to come up with this regex, but it works well:
+
+`\s*//\s*AI:.*\r?\n?`
