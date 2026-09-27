@@ -1,14 +1,12 @@
 = Jack Kendall
 
-Hi, I'm Jack. I'm a .NET programmer based in Doncaster, England. In a past life I was a freelance copywriter. This site is my dusty little corner of the internet.
+Hi, I'm Jack. I'm a .NET programmer based in Alameda, California. In a past life I was a freelance copywriter. This site is my dusty little corner of the internet.
 
 link:articles.html[**Blog**]
 
 link:cv.html[**Experience**]
 
 link:programming-projects.html[**Programming projects**]
-
-link:ai-writing/index.html[**AI writing**]
 
 link:colophon.html[**Colophon**]
 
