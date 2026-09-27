@@ -122,7 +122,7 @@ To counter that, I try to always foreground what problem a particular language f
 
 ![Image](https://raw.githubusercontent.com/jkendall327/UK-Tax-Calculator/master/TaxCrud/Image.png)
 
-Since I left my retail job I've been [working as a freelance copywriter](writing-portfolio.html).
+Since I left my retail job I've been working as a freelance copywriter.
 
 I recently filed for my first self-employed tax return, which inspired me to make an app that would help the process along.
 

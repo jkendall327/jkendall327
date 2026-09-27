@@ -1,12 +1,48 @@
 /* Based on the Asciidoctor default stylesheet (MIT License), cut down to what this site uses. */
 
+/* Colors. The dark theme below overrides these; the footer toggle switches between them. */
+:root {
+  --bg: #fff;
+  --text: rgba(0, 0, 0, .8);
+  --text-strong: rgba(0, 0, 0, .85);
+  --text-code: rgba(0, 0, 0, .9);
+  --text-muted: rgba(0, 0, 0, .6);
+  --heading: #ba3925;
+  --heading-alt: #7a2518;
+  --link: #2156a5;
+  --link-hover: #1d4b8f;
+  --border: #dddddf;
+  --border-light: #e7e7e9;
+  --code-bg: #f7f7f8;
+  --footer-bg: rgba(0, 0, 0, .8);
+  --footer-text: hsla(0, 0%, 100%, .8);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1c1d20;
+  --text: #cfcbc4;
+  --text-strong: #e3dfd8;
+  --text-code: #d8d4cd;
+  --text-muted: #9d988f;
+  --heading: #db6a54;
+  --heading-alt: #e0826d;
+  --link: #7eaae3;
+  --link-hover: #a3c3ee;
+  --border: #36383c;
+  --border-light: #2e3034;
+  --code-bg: #26282c;
+  --footer-bg: #060606;
+  --footer-text: #bdb8b0;
+}
+
 html { font-size: 100%; -webkit-text-size-adjust: 100%; }
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: #fff;
-  color: rgba(0, 0, 0, .8);
+  background: var(--bg);
+  color: var(--text);
   font-family: "Noto Serif", "DejaVu Serif", serif;
   line-height: 1;
   tab-size: 4;
@@ -23,8 +59,8 @@ body {
 
 /* Text */
 
-a { color: #2156a5; text-decoration: underline; }
-a:hover, a:focus { color: #1d4b8f; }
+a { color: var(--link); text-decoration: underline; }
+a:hover, a:focus { color: var(--link-hover); }
 
 p {
   font-size: 1.0625rem;
@@ -37,7 +73,7 @@ p {
 h1, h2, h3, h4, h5, h6, #toctitle {
   font-family: "Open Sans", "DejaVu Sans", sans-serif;
   font-weight: 300;
-  color: #ba3925;
+  color: var(--heading);
   margin: 1em 0 .5em;
   line-height: 1.2;
   word-spacing: -.05em;
@@ -62,22 +98,22 @@ li p { margin-bottom: .625em; }
 
 img { max-width: 100%; height: auto; vertical-align: middle; }
 
-hr { border: solid #dddddf; border-width: 1px 0 0; margin: 1.25em 0 1.1875em; }
+hr { border: solid var(--border); border-width: 1px 0 0; margin: 1.25em 0 1.1875em; }
 
 /* Code */
 
-code, pre { font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace; color: rgba(0, 0, 0, .9); }
+code, pre { font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace; color: var(--text-code); }
 
 :not(pre) > code {
   font-size: .9375em;
   padding: .1em .5ex;
-  background: #f7f7f8;
+  background: var(--code-bg);
   border-radius: 4px;
   line-height: 1.45;
 }
 
 pre {
-  background: #f7f7f8;
+  background: var(--code-bg);
   border-radius: 4px;
   padding: 1em;
   margin: 0 0 1.25em;
@@ -96,7 +132,7 @@ blockquote {
   padding: 0;
 }
 blockquote p {
-  color: rgba(0, 0, 0, .85);
+  color: var(--text-strong);
   font-size: 1.15rem;
   line-height: 1.75;
   word-spacing: .1em;
@@ -110,17 +146,17 @@ blockquote::before {
   font-weight: bold;
   line-height: .6em;
   margin-left: -.6em;
-  color: #7a2518;
+  color: var(--heading-alt);
   text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 }
 
 /* Header */
 
 #header > h1 {
-  color: rgba(0, 0, 0, .85);
+  color: var(--text-strong);
   margin: 2.25rem 0 0;
   padding-bottom: 8px;
-  border-bottom: 1px solid #dddddf;
+  border-bottom: 1px solid var(--border);
 }
 #header > .back + h1 { margin-top: .75rem; }
 #header > h1:has(+ .details) { border-bottom: 0; padding-bottom: 0; }
@@ -135,20 +171,19 @@ blockquote::before {
 .back:hover { text-decoration: underline; }
 
 #header .details {
-  border-bottom: 1px solid #dddddf;
+  border-bottom: 1px solid var(--border);
   line-height: 1.45;
   padding: .25em;
-  color: rgba(0, 0, 0, .6);
+  color: var(--text-muted);
 }
-#header .details a { color: rgba(0, 0, 0, .85); }
 
 /* Table of contents */
 
 #toc {
-  border-bottom: 1px solid #e7e7e9;
+  border-bottom: 1px solid var(--border-light);
   padding-bottom: .5em;
 }
-#toctitle { color: #7a2518; font-size: 1.2em; }
+#toctitle { color: var(--heading-alt); font-size: 1.2em; }
 @media screen and (min-width: 768px) { #toctitle { font-size: 1.375em; } }
 #toc ul {
   font-family: "Open Sans", "DejaVu Sans", sans-serif;
@@ -167,7 +202,7 @@ blockquote::before {
 #content:has(> section) > p:first-child {
   font-size: 1.21875em;
   line-height: 1.6;
-  color: rgba(0, 0, 0, .85);
+  color: var(--text-strong);
 }
 
 #content { margin: 1.25em auto .625em; }
@@ -176,14 +211,14 @@ blockquote::before {
 section.level2 { padding-bottom: .625em; }
 @media screen and (min-width: 768px) { section.level2 { padding-bottom: 1.25em; } }
 section.level2:last-child { padding-bottom: 0; }
-section.level2 + section.level2 { border-top: 1px solid #e7e7e9; }
+section.level2 + section.level2 { border-top: 1px solid var(--border-light); }
 
 /* Footer */
 
 #footer {
   max-width: none;
-  background: rgba(0, 0, 0, .8);
-  color: hsla(0, 0%, 100%, .8);
+  background: var(--footer-bg);
+  color: var(--footer-text);
   line-height: 1.44;
   padding: 1.25em;
   display: flex;
@@ -191,6 +226,33 @@ section.level2 + section.level2 { border-top: 1px solid #e7e7e9; }
   justify-content: space-between;
   gap: .5em 1.5em;
 }
-#footer .links { display: flex; gap: 1.25em; }
-#footer a { color: hsla(0, 0%, 100%, .8); }
+#footer .links { display: flex; gap: 1.25em; align-items: baseline; }
+#theme-toggle {
+  font: inherit;
+  color: var(--footer-text);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#theme-toggle:hover, #theme-toggle:focus { color: #fff; }
+#footer a { color: var(--footer-text); }
 #footer a:hover, #footer a:focus { color: #fff; }
+
+/* Syntax highlighting colors for the dark theme (Pandoc's defaults are for light backgrounds). */
+:root[data-theme="dark"] code span.kw,
+:root[data-theme="dark"] code span.cf,
+:root[data-theme="dark"] code span.ot { color: #cc99cd; }
+:root[data-theme="dark"] code span.dt { color: #e5c07b; }
+:root[data-theme="dark"] code span.dv,
+:root[data-theme="dark"] code span.bn,
+:root[data-theme="dark"] code span.fl { color: #d19a66; }
+:root[data-theme="dark"] code span.st,
+:root[data-theme="dark"] code span.ch,
+:root[data-theme="dark"] code span.vs { color: #98c379; }
+:root[data-theme="dark"] code span.co { color: #7f848e; }
+:root[data-theme="dark"] code span.fu { color: #61afef; }
+:root[data-theme="dark"] code span.op { color: #abb2bf; }
+:root[data-theme="dark"] code span.at,
+:root[data-theme="dark"] code span.va { color: #e06c75; }
