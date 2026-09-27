@@ -6,13 +6,31 @@ toc: true
 
 This page lists the various programming projects I've worked on in my free time, in rough chronological order. I find that writing little summaries forces me to put them into context which wasn't always clear when I was making them: why I started the project in the first place, why I made the choices I did, why it either did or didn't work out. Like an old diary, reading the retrospectives for projects I did when I was just starting out as a programmer help me remember the progress I've made over my career so far.
 
-## Octans - 2025
+## Keeper - 2026
+
+[GitHub](https://github.com/jkendall327/keeper)
+
+Full-featured replacement of Google Keep. TypeScript.
+
+<!-- TODO: write this up -->
+
+## Octans - 2024 - 2026
+
+[GitHub](https://github.com/jkendall327/octans)
 
 ![octans](./images/octans.png)
 
 This is a WIP image management system heavily inspired by [the Hydrus Network](https://hydrusnetwork.github.io/hydrus/index.html). While I love that app, I find it rather slow and clunky. I decided to recreate it as a deliberately extravagant goal - a Serious App I could cut my teeth on architecturally. It has been a fun ride so far. As time goes on, I question the client/server split I made (both do server-style work, the distinction is between the 'core' database activities and everything else).
 
 One thing I'm proud of is the levels of code quality I've kept to here. I have ratcheted up the static analysis as far as I can, got formatting verified in CI, full integration tests, the whole works. Unsurprisingly, it makes it far easier to actually get things done without breaking stuff!
+
+## voynich-lgp - 2025
+
+[GitHub](https://github.com/jkendall327/voynich-lgp)
+
+Linear genetic programming solution for identifying potential cryptographic composition methods of the [Voynich Manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript). Rust.
+
+<!-- TODO: write this up -->
 
 ## Text Mutator - 2025
 
