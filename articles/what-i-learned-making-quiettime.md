@@ -1,6 +1,8 @@
-= What I learned making QuietTime
-Jack Kendall <jkendall3096@gmail.com>
-:toc:
+---
+title: "What I learned making QuietTime"
+author: Jack Kendall
+toc: true
+---
 
 You can read this post on Medium here.
 
@@ -8,17 +10,19 @@ I recently released the 1.0 version of QuietTime, my first 'serious' app.
 
 This naturally taught me a few things. I'm going to record those things here because it might be interesting to read -- to myself, if nobody else.
 
-== Not being (as) scared of Git
+## Not being (as) scared of Git
 
 I used to think I was comfortable using Git, when in reality I was like the hapless people in this XKCD:
 
-image:https://imgs.xkcd.com/comics/git.png[]
+![git](https://imgs.xkcd.com/comics/git.png)
 
 More precisely, I had X major faults in how I used Git.
 
-* I didn't care about a clean history.
-* I was too scared to use rebases.
-* I was stingy with branches.
+- I didn't care about a clean history.
+
+- I was too scared to use rebases.
+
+- I was stingy with branches.
 
 My workflow on previous projects and the first half of QuietTime was to keep a set of long-running branches active at all times for sections of work -- one branch for UI work, one for writing tests, one for improving the backend, etc.
 
@@ -28,11 +32,11 @@ As a result, the project's history was full of noise: merge commits, tiny commit
 
 Thankfully, this suffering led me to bite the bullet and finally understand `git rebase -i`.
 
-Now that I understand the basic workflow of 'create branch -> commit regularly -> squash commits -> rebase -> checkout -> merge/fast-forward', life is much, much easier.
+Now that I understand the basic workflow of 'create branch → commit regularly → squash commits → rebase → checkout → merge/fast-forward', life is much, much easier.
 
-*Lesson: don't be afraid of learning the tools you use regularly.*
+**Lesson: don't be afraid of learning the tools you use regularly.**
 
-== I shouldn't want everything that I want
+## I shouldn't want everything that I want
 
 For most of QuietTime's development I was obsessed with the idea that the UI's text should scale with the size of the window.
 
@@ -42,7 +46,7 @@ The whole idea of WPF, after all, is that your UI is reactive and can scale, rig
 
 While there weren't many resources online for this, there were -- regrettably -- enough for me to hack together a working solution.
 
-For those experienced with WPF, this meant stuffing every `Label` in the program inside a `ViewBox`. 
+For those experienced with WPF, this meant stuffing every `Label` in the program inside a `ViewBox`.
 
 The result was ugly and bad for performance, but because I was set on the idea of scaling text, I thought I had to live with it.
 
@@ -50,9 +54,9 @@ Mercifully, when I asked a developer community on Discord for advice, people qui
 
 This led me to fundamentally redesign the app, using more images throughout the UI to avoid the issue altogether.
 
-*Lesson: if you're stuck on something and there aren't any good resources for it, maybe you're heading in the wrong direction.*
+**Lesson: if you're stuck on something and there aren't any good resources for it, maybe you're heading in the wrong direction.**
 
-== CI/CD is cool, but frustrating to set up
+## CI/CD is cool, but frustrating to set up
 
 When I started QuietTime, CI/CD seemed like witchcraft. The ability to compile, test, publish and deploy an app from a single commit seemed too good to be true.
 
@@ -76,4 +80,4 @@ While I eventually got a system halfway working, I learned soon afterwards that 
 
 In the end, I threw in the towel and simply released QuietTime manually.
 
-*Lesson: study file formats and language syntax for CI/CD platforms extensively before trying to use them. Also, crib from known-good examples more liberally.*
+**Lesson: study file formats and language syntax for CI/CD platforms extensively before trying to use them. Also, crib from known-good examples more liberally.**

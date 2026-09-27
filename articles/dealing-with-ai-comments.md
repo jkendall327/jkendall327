@@ -1,14 +1,14 @@
-= Dealing with awful AI comments
-Jack Kendall <jkendall3096@gmail.com>
-:toc:
+---
+title: "Dealing with awful AI comments"
+author: Jack Kendall
+toc: true
+---
 
-== The problem
+## The problem
 
-Newer AI models, like Claude 3.7 and especially Gemini 2.5 Pro, have an annoying tendency to over-comment their code.
-It doesn't matter how fiercely you tell them not to do this.
-They simply love adding pointless comments:
+Newer AI models, like Claude 3.7 and especially Gemini 2.5 Pro, have an annoying tendency to over-comment their code. It doesn't matter how fiercely you tell them not to do this. They simply love adding pointless comments:
 
-```cs
+``` cs
 if (whatever)
 {
     // Exiting early because whatever was true.
@@ -16,10 +16,9 @@ if (whatever)
 }
 ```
 
-== The solution
+## The solution
 
-The models won't follow your instructions to stop leaving comments.
-But, I've found, they _will_ follow your instructions to _mark_ their comments.
+The models won't follow your instructions to stop leaving comments. But, I've found, they *will* follow your instructions to *mark* their comments.
 
 In the CONVENTIONS.md file I use with aider, I have this line:
 

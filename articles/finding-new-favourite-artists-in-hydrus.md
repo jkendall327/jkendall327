@@ -1,10 +1,12 @@
-= Finding new favourite artists in Hydrus
-Jack Kendall <jkendall3096@gmail.com>
-:toc:
+---
+title: "Finding new favourite artists in Hydrus"
+author: Jack Kendall
+toc: true
+---
 
-== The problem
+## The problem
 
-I use https://github.com/hydrusnetwork/hydrus[the Hydrus Network] as my media archival and tagging tool of choice. It's where I keep copies of my shows, family photos, and archives of art I like from places like DeviantArt or ArtStation.
+I use [the Hydrus Network](https://github.com/hydrusnetwork/hydrus) as my media archival and tagging tool of choice. It's where I keep copies of my shows, family photos, and archives of art I like from places like DeviantArt or ArtStation.
 
 Hydrus has a configurable 'rating system', where by default you have a simple dislike/like button for every image.
 
@@ -14,11 +16,11 @@ Something I often wonder is, 'how many artists have I favourited just one or two
 
 Hydrus's tagging system unfortunately doesn't support this kind of deep query, so I worked with GPT-5 over half an hour to make a SQL script I could run against my local database.
 
-== Just show me the script
+## Just show me the script
 
 AI slop warning:
 
-```sql
+``` sql
 -- Run this from client.db
 ATTACH 'client.mappings.db' AS mappings;
 ATTACH 'client.master.db'   AS master;
@@ -88,12 +90,10 @@ GROUP BY lf.hash_id, st.subtag, cc.total_files_for_creator
 ORDER BY cc.total_files_for_creator ASC, st.subtag ASC, lf.hash_id ASC;
 ```
 
-Place it in the db folder of your Hydrus installation, and run like so:
-`sqlite3 client.db < find_artists.sql`.
+Place it in the db folder of your Hydrus installation, and run like so: `sqlite3 client.db < find_artists.sql`.
 
 It will output a list of artist names where you've favourited at least one image attributed to them, but have less than five total images from them in your library.
 
 I make no claim that this will work in your installation without tweaks.
 
 Additionally, even though this is pure SELECT statements and thus should have no mechanism for harming your Hydrus installation, I take no liability if you somehow nuke your treasured childhood photos with this.
-

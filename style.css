@@ -1,0 +1,189 @@
+/* Based on the Asciidoctor default stylesheet (MIT License), cut down to what this site uses. */
+
+html { font-size: 100%; -webkit-text-size-adjust: 100%; }
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: rgba(0, 0, 0, .8);
+  font-family: "Noto Serif", "DejaVu Serif", serif;
+  line-height: 1;
+  tab-size: 4;
+  word-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#header, #content, #footer {
+  max-width: 62.5em;
+  margin: 0 auto;
+  padding: 0 .9375em;
+}
+
+/* Text */
+
+a { color: #2156a5; text-decoration: underline; }
+a:hover, a:focus { color: #1d4b8f; }
+
+p {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+  letter-spacing: -.01em;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle {
+  font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  font-weight: 300;
+  color: #ba3925;
+  margin: 1em 0 .5em;
+  line-height: 1.2;
+  word-spacing: -.05em;
+  text-rendering: optimizeLegibility;
+}
+h1 { font-size: 2.125em; }
+h2 { font-size: 1.6875em; }
+h3, #toctitle { font-size: 1.375em; }
+h4 { font-size: 1.125em; }
+
+@media screen and (min-width: 768px) {
+  h1 { font-size: 2.75em; }
+  h2 { font-size: 2.3125em; }
+  h3, #toctitle { font-size: 1.6875em; }
+  h4 { font-size: 1.4375em; }
+}
+
+ul, ol { line-height: 1.6; margin: 0 0 1.25em 1.5em; padding: 0; }
+ol { margin-left: 1.75em; }
+li > ul, li > ol { margin-left: 1.25em; margin-bottom: 0; }
+li p { margin-bottom: .625em; }
+
+img { max-width: 100%; height: auto; vertical-align: middle; }
+
+hr { border: solid #dddddf; border-width: 1px 0 0; margin: 1.25em 0 1.1875em; }
+
+/* Code */
+
+code, pre { font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace; color: rgba(0, 0, 0, .9); }
+
+:not(pre) > code {
+  font-size: .9375em;
+  padding: .1em .5ex;
+  background: #f7f7f8;
+  border-radius: 4px;
+  line-height: 1.45;
+}
+
+pre {
+  background: #f7f7f8;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 0 0 1.25em;
+  overflow-x: auto;
+  line-height: 1.45;
+  font-size: .8125em;
+}
+@media screen and (min-width: 768px) { pre { font-size: .90625em; } }
+@media screen and (min-width: 1280px) { pre { font-size: 1em; } }
+pre code { font-size: inherit; color: inherit; background: none; }
+
+/* Quotes */
+
+blockquote {
+  margin: 0 1em 1.25em 1.5em;
+  padding: 0;
+}
+blockquote p {
+  color: rgba(0, 0, 0, .85);
+  font-size: 1.15rem;
+  line-height: 1.75;
+  word-spacing: .1em;
+  font-style: italic;
+  text-align: justify;
+}
+blockquote::before {
+  content: "\201c";
+  float: left;
+  font-size: 2.75em;
+  font-weight: bold;
+  line-height: .6em;
+  margin-left: -.6em;
+  color: #7a2518;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+/* Header */
+
+#header > h1 {
+  color: rgba(0, 0, 0, .85);
+  margin: 2.25rem 0 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #dddddf;
+}
+#header > .back + h1 { margin-top: .75rem; }
+#header > h1:has(+ .details) { border-bottom: 0; padding-bottom: 0; }
+
+.back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  font-size: .95em;
+  text-decoration: none;
+}
+.back:hover { text-decoration: underline; }
+
+#header .details {
+  border-bottom: 1px solid #dddddf;
+  line-height: 1.45;
+  padding: .25em;
+  color: rgba(0, 0, 0, .6);
+}
+#header .details a { color: rgba(0, 0, 0, .85); }
+
+/* Table of contents */
+
+#toc {
+  border-bottom: 1px solid #e7e7e9;
+  padding-bottom: .5em;
+}
+#toctitle { color: #7a2518; font-size: 1.2em; }
+@media screen and (min-width: 768px) { #toctitle { font-size: 1.375em; } }
+#toc ul {
+  font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  list-style-type: none;
+  margin-left: .125em;
+  margin-bottom: 0;
+}
+#toc ul ul { margin-left: 1.25em; }
+#toc li { line-height: 1.3334; margin-top: .3334em; }
+#toc a { text-decoration: none; }
+#toc a:active { text-decoration: underline; }
+
+/* Content */
+
+/* On pages with sections, the opening paragraph is set slightly larger. */
+#content:has(> section) > p:first-child {
+  font-size: 1.21875em;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, .85);
+}
+
+#content { margin: 1.25em auto .625em; }
+@media screen and (min-width: 768px) { #content { margin-bottom: 1.25em; } }
+
+section.level2 { padding-bottom: .625em; }
+@media screen and (min-width: 768px) { section.level2 { padding-bottom: 1.25em; } }
+section.level2:last-child { padding-bottom: 0; }
+section.level2 + section.level2 { border-top: 1px solid #e7e7e9; }
+
+/* Footer */
+
+#footer {
+  max-width: none;
+  background: rgba(0, 0, 0, .8);
+  color: hsla(0, 0%, 100%, .8);
+  line-height: 1.44;
+  padding: 1.25em;
+}

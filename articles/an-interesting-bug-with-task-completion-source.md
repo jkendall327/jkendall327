@@ -1,8 +1,10 @@
-= An interesting bug caused by .NET's TaskCompletionSource
-Jack Kendall <jkendall3096@gmail.com>
-:toc:
+---
+title: "An interesting bug caused by .NET's TaskCompletionSource"
+author: Jack Kendall
+toc: true
+---
 
-== Introduction
+## Introduction
 
 I recently got bit by an interesting bug that I thought was worth writing up. Like all good bugs, it happened because I was fiddling with things I wasn't familiar with, and as such it became a learning experience.
 
@@ -12,21 +14,21 @@ I've been recently working on a toy MOO in C#, unoriginally called MooSharp. For
 
 The project was an excuse for me to try out the Actor pattern in a real app. This is the pattern where you conceptualise your program as a network of small isolated nodes which work by sending messages to each other, in the style of Erlang. Akka.NET is a famous implementation of this in the .NET space, but it felt too heavy for me; I wanted to see how much I could do by myself with some AI assistance.
 
-== The bug
+## The bug
 
 After a while, I noticed some unusual behaviour.
 
 My world had three or four rooms seeded from a JSON file on launch. You could move between them just fine with commands like `move atrium` or `go closet`.
 
-But - whenever you went into _one specific room_, the entire game would lock up. The text interface would hang indefinitely and you wouldn't get pushed any further updates from the engine. A hard refresh of the browser (this was running in Blazor, a web framework) would reset things back to normal, but the bug was completely reproducible and consistent. What on earth?
+But - whenever you went into *one specific room*, the entire game would lock up. The text interface would hang indefinitely and you wouldn't get pushed any further updates from the engine. A hard refresh of the browser (this was running in Blazor, a web framework) would reset things back to normal, but the bug was completely reproducible and consistent. What on earth?
 
 Naturally, my first thought was that something about the room was causing an exception to be thrown. But there was nothing particularly special about its data. I changed each of its fields independently to some obviously-safe value, and the bug still reproduced. No logs in STDOUT or exceptions thrown, no matter where I put my try-catches.
 
-The only clue I could figure out was this. The room which broke things was the __final room specified in the seed .json file__.
+The only clue I could figure out was this. The room which broke things was the *final room specified in the seed .json file*.
 
 That is, the file looked like this:
 
-```json
+``` json
 {
   "Rooms": [
     {
@@ -61,13 +63,13 @@ It doesn't shame me to admit that I admitted defeat here for several weeks. This
 
 I put the project aside, for a time.
 
-== A crack in the slab
+## A crack in the slab
 
 I've been using AI to write code and debug code for a long time now, and as you might expect, I threw every frontier model I could at this problem. The codebase was small enough that it was trivial to markdown-ify it and paste it into whatever LLM I wanted, but unfortunately, none of them made real progress in figuring out what was happening. To be sure, they came up with many extremely plausible-sounding solutions, suggesting locks and semaphores a-plenty. But their spells, when cast, failed.
 
 Things finally changed with the release of Gemini 3.0 Pro Preview a few weeks ago.
 
-After hearing the wonder stories from other people online, I decided to dust off the codebase and take another crack at things. Gemini, unsurprisingly, failed to identify the cause of the bug when I simply gave it the code. But this time I was more determined; I felt there surely __had__ to be a way to make it easier to diagnose.
+After hearing the wonder stories from other people online, I decided to dust off the codebase and take another crack at things. Gemini, unsurprisingly, failed to identify the cause of the bug when I simply gave it the code. But this time I was more determined; I felt there surely *had* to be a way to make it easier to diagnose.
 
 Following Gemini's suggestions, I added boatloads more logging and instrumentation to the app, including hardcoded `Debug.WriteLine` statements in case my logger was getting stifled. I also manually gave it the action output log from the game itself.
 
@@ -77,19 +79,21 @@ I made the suggested change, and started the game. And moved from one room to th
 
 And it worked.
 
-== The crime scene
+## The crime scene
 
 Let's now see the gory details of where my original mistake was.
 
 Below is a copy of the file where the bug lived, sans logging and error handling: take a look and see if the error stands out to you. This is the living heart of the Actor implementation in the project. My players, objects and (importantly) my rooms all inherited from this class. It encapsulated the following behaviour:
 
 - You can send messages to this thing.
+
 - It will process its messages sequentially forever.
+
 - You can get responses from your messages to it.
 
 `TState` below would be something like `RoomDto` or `ObjectDto`.
 
-```csharp
+``` csharp
 using System.Threading.Channels;
 using Microsoft.Extensions.Logging;
 
@@ -204,17 +208,17 @@ If you have dealt with TaskCompletionSources before, your eyebrows are probably 
 
 For those unfamiliar, `TaskCompletionSource` (TCS) is a fairly low-level part of the async/await machinery in C#. The language represents asynchronous operations through the `Task` type, and while these are usually created for you with helper methods like `Task.FromResult` or the async machinery itself, you sometimes have to manage them manually when interfacing with older asynchrony patterns.
 
-That's where TCS comes in. It owns a `Task`, but lets you arbitrarily say when it's completed, failed or cancelled. I was using it in the example above to decouple the __processing__ of a message by an Actor from the __availability of the message's result__ to consumers. I could `.SetResult` the task in my `Process` method, and then expose the task itself in `GetResponseAsync()` so external code could simply `await` it.
+That's where TCS comes in. It owns a `Task`, but lets you arbitrarily say when it's completed, failed or cancelled. I was using it in the example above to decouple the *processing* of a message by an Actor from the *availability of the message's result* to consumers. I could `.SetResult` the task in my `Process` method, and then expose the task itself in `GetResponseAsync()` so external code could simply `await` it.
 
 OK, that's great and all. But why was my app hanging?
 
 The reason it took me so long to find this bug is because the answer to that question was not in this file at all. To fully understand the bug, we must go to the source of all crimes - `Program.cs`.
 
-== The other half of the puzzle
+## The other half of the puzzle
 
 My `Program.cs` looked like this:
 
-```csharp
+``` csharp
 var builder = WebApplication.CreateBuilder(args);
 
 // ... other stuff ...
@@ -236,7 +240,7 @@ Nothing immediately untoward here.
 
 I won't share the implementation of `world.InitializeAsync`, because it's quite verbose and uninteresting. It loaded the JSON file and then mapped the resulting barebones DTOs into the `Actor` types I showed previously. That is, we were creating and starting our `Actor` mailboxes here. To set up exits between them, they naturally sent messages to each other:
 
-```csharp
+``` csharp
                 await currentRoomActor.Ask(new RequestMessage<Room, bool>(roomState =>
                 {
                     foreach (var exit in exits)
@@ -245,20 +249,19 @@ I won't share the implementation of `world.InitializeAsync`, because it's quite 
                     }
                     return Task.FromResult(true);
                 }));
-
 ```
 
 You now have all the pieces of the puzzle to understand why the app was hanging.
 
 Here is a final clue - changing this line in `Program.cs` also fixed the bug, independently of my change to the `TaskCompletionSource` line.
 
-```csharp
+``` csharp
 await world.InitializeAsync();
 
 await app.RunAsync();
 ```
 
-== The real answer
+## The real answer
 
 > N.B. My knowledge here is not perfect. That's why I wrote the bug in the first place!
 
@@ -266,7 +269,7 @@ By default, `TaskCompletionSource` runs continuations **synchronously**.
 
 This means that when its task gets `await` ed, the flow of execution does not continue on another thread. It continues on the same thread. Why? As a performance optimisation. In normal code, this saves some work (as I understand it) with the bookkeeping that comes from maintaining the async context.
 
-So what thread is the continuation going to run on? Well, the TCS is `await`ed when an Actor processes a message from its mailbox. So it's the Actor's thread -the one running ProcessMailboxAsync.
+So what thread is the continuation going to run on? Well, the TCS is \`await\`ed when an Actor processes a message from its mailbox. So it's the Actor's thread -the one running ProcessMailboxAsync.
 
 When we're cycling through rooms in `world.InitializeAsync`, we posted messages to each of them to set up their exits.
 
@@ -276,20 +279,24 @@ What then?
 
 Well, then we get to here:
 
-```csharp
+``` csharp
 await world.InitializeAsync();
 
 app.Run();
 ```
 
-`app.Run()` is a *blocking method*. The mailbox thread for the last room has now been kidnapped to work as the app's Kestrel server. The poor room's mailbox thread is now trapped there until `app.Run` completes.
+`app.Run()` is a **blocking method**. The mailbox thread for the last room has now been kidnapped to work as the app's Kestrel server. The poor room's mailbox thread is now trapped there until `app.Run` completes.
 
 This has the following immediate implications:
 
 - The web app itself will run completely normally. After all, it has a thread working for it!
+
 - The last room won't respond to any messages at all. Its thread for listening to messages is busy elsewhere.
+
 - Because it's never going to respond, whoever sent it the message will never get an answer.
+
 - If you're trying to move into the room, you'll never get the 'OK, you can move into me' signal.
+
 - You will be stuck in limbo forever. The game hangs.
 
 With this in mind, you can likely understand why the fixes worked.
@@ -300,22 +307,26 @@ Specifying `TaskCreationOptions.RunContinuationsAsynchronously` forces the TCS t
 
 (Note: this doesn't mean that we shouldn't be using `await app.RunAsync` - we should. It's strictly better than `app.Run`. I used the synchronous version originally purely out of carelessness.)
 
-== Lessons learned
+## Lessons learned
 
 When Gemini finally pointed out the bug here, I was elated. I'd mulled this nightmare over in my mind for weeks, and getting a real, definitive answer felt impossible. It was the best kind of bug-fix - one where I learned something interesting and concrete that I could carry into the future.
 
 My main lesson was simple. Treat `TaskCompletionSource` with respect!
 
-There are some types which _always_ demand additional scrutiny when they're used. Anything that implements `IDisposable`. Many kinds of `Stream`. `HttpClient`.
+There are some types which *always* demand additional scrutiny when they're used. Anything that implements `IDisposable`. Many kinds of `Stream`. `HttpClient`.
 
 I foolishly did not consider TCS as one of these types. I hacked together a pattern that seemed to work and walked away self-satisfied. I was peering one layer of abstraction deeper than I usually do, and toying with something low-level; that is not unsafe by itself, but it warrants reading the documentation deeply, or at least searching 'taskcompletionsource things to avoid' on Google.
 
 I'm not going to be too hard on myself, however. I think this was a legitimately tricky bug, for a few reasons.
 
 - The genesis was a type exhibiting unusual behaviour when in its default configuration (no `RunContinuationsAsynchronously` in the constructor) for the sake of a performance optimisation.
-- There's no compelling reason _prima facie_ to think the TCS would run continuations synchronously. It makes sense in retrospect, but it's something you 'just have to know'.
+
+- There's no compelling reason *prima facie* to think the TCS would run continuations synchronously. It makes sense in retrospect, but it's something you 'just have to know'.
+
 - The bug wasn't caused by the TCS in isolation. It was its interaction with the blocking `app.Run()` call.
+
 - Even then, the bug wouldn't have happened in the same way for most normal blocking calls. The game only hung because `app.Run` hijacks the thread in perpetuity.
+
 - The behaviour only exhibiting for the last room in the JSON file was a hell of a red herring. I think looking in the world-seeding logic, and not `Actor.cs`, would be anyone's natural response.
 
 Ultimately, getting caught in beartraps like these is how you learn the thorny details of an ecosystem. Better to find them in toy projects than in production.

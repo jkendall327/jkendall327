@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+$if(author)$
+<meta name="author" content="$author$">
+$endif$
+<title>$pagetitle$</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="$root$style.css">
+$if(highlighting-css)$
+<style>
+$highlighting-css$
+</style>
+$endif$
+</head>
+<body>
+<div id="header">
+$if(back)$
+<a class="back" href="$back$">&larr; Back</a>
+$endif$
+<h1>$title$</h1>
+$if(author)$
+<div class="details">$author$ &ndash; <a href="mailto:jkendall3096@gmail.com">jkendall3096@gmail.com</a></div>
+$endif$
+$if(toc)$
+$if(table-of-contents)$
+<nav id="toc">
+<div id="toctitle">Table of Contents</div>
+$table-of-contents$
+</nav>
+$endif$
+$endif$
+</div>
+<div id="content">
+$body$
+</div>
+<div id="footer">
+Last updated $lastmod$
+</div>
+</body>
+</html>

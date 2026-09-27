@@ -1,14 +1,19 @@
-= Making Text Mutator
-Jack Kendall <jkendall3096@gmail.com>
-:toc:
+---
+title: "Making Text Mutator"
+author: Jack Kendall
+toc: true
+---
 
-image:../images/mutator.png[]
+![mutator](../images/mutator.png)
 
-In early 2025, I found myself having to use up a week's worth of annual leave from work. Not having anything better to do, I dedicated the time to a personal learning project. But what on? Well, I'd recently picked up Blazor for a work project and found it made web development surprisingly accessible. I was curious how that experience translated to more conventional frontend frameworks, and as such, I decided to _make a React app_. But that alone felt too small in scope, so I set myself a challenge:
+In early 2025, I found myself having to use up a week's worth of annual leave from work. Not having anything better to do, I dedicated the time to a personal learning project. But what on? Well, I'd recently picked up Blazor for a work project and found it made web development surprisingly accessible. I was curious how that experience translated to more conventional frontend frameworks, and as such, I decided to *make a React app*. But that alone felt too small in scope, so I set myself a challenge:
 
 - The project would follow the classic frontend-calling-a-backend-API structure.
+
 - The backend would also be in a language slightly outside of my comfort zone -- namely, Rust.
+
 - It would be deployed to the cloud as a real production app, preferably with a high degree of automation.
+
 - I would not use AI for writing the code.
 
 I have no qualms about using AI for code in normal life. In fact I find it very useful for quick prototyping. But I find that there is a certain quality of learning for me that comes only from doing things myself: typing in the characters one after another, fixing the build errors, going through the write-test-debug cycle. This did not preclude me from using AI entirely, and I used it plenty for information purposes, such as explaining a particular concept in Bicep or what setting up automated tests for a React app looked like. This sped up my learning significantly, compared to the old ways of trawling documentation and StackOverflow (though I ended up doing plenty of that as well).
@@ -17,11 +22,11 @@ I'll present the experience of making the app in rough chronological form. But f
 
 As mentioned before, I'd been working with Blazor for a month or two prior to this, which gave me a good introduction to writing web apps more generally. As the project progressed, I was surprised by how many of the concepts had strong parallels to React; presumably this is because Blazor was naturally influenced by it. I knew the basic shape of what writing JavaScript/TypeScript looked like, but I was basically clueless when it came to the frontend environment. To me it seemed like an amorphous mass of nouns that signified very little to outsiders -- Next.js, Vite, Nuxt, Astro...
 
-What about Rust? Well, I knew a lot about the language __in the abstract__. I read a lot of blogs and essays aout Rust, partly because the language is very interesting, and partly because the people who like it tend to be good writers. So I understand the concepts of the language very well, including infamous bugbears like lifetimes, exclusive/shared references and so on. But I'd never really written any code in it myself, asides from a few console apps I abandoned after an hour or so. This project represented taking my assorted knowledge and putting it to practical use.
+What about Rust? Well, I knew a lot about the language *in the abstract*. I read a lot of blogs and essays aout Rust, partly because the language is very interesting, and partly because the people who like it tend to be good writers. So I understand the concepts of the language very well, including infamous bugbears like lifetimes, exclusive/shared references and so on. But I'd never really written any code in it myself, asides from a few console apps I abandoned after an hour or so. This project represented taking my assorted knowledge and putting it to practical use.
 
 In terms of infrastructure, we had been working on a migration to Azure from on-prem servers at my workplace at the time. As such I was reading up a lot on cloud fundamentals, so, again, I wasn't coming into this completely blind.
 
-== Day 1: design
+## Day 1: design
 
 The first question was what app, exactly, I was going to build. I knew I wanted it to be a 'real' app, something that could theoretically be of use to someone, not just existing purely for the sake of showing off I could 'do frontend'. As it happened, I had an MVP project lying around in Rust from a few weeks prior that seemed like a good fit.
 
@@ -31,19 +36,19 @@ Since this wasn't a serious idea at the time, I'd just gotten an AI to spit out 
 
 Before starting the project proper, I decided to take things seriously and hammer out a design spec to guide my work. I've done this a few times and always found it useful. Decision-making is the hardest part of programming, and frontloading it often saves a significant amount of time down the line.
 
-Because I don't care about their literary qualities, my preferred method for writing specs is to use AI. Specifically, I enter a back-and-forth Q/A session with a fast, cheap model (GPT 4o), where the model teases out specific details about my plans. After twenty minutes, I had a pretty decent starting point, but it was pretty thin on the bones. I took 4o's spec and then fed it through Gemini 2.5, which as of writing is the state-of-the-art. It gave me _significantly_ more challenging and detailed questions to puzzle through, but by the end of it, I had a very detailed spec which I could begin translating into reality.
+Because I don't care about their literary qualities, my preferred method for writing specs is to use AI. Specifically, I enter a back-and-forth Q/A session with a fast, cheap model (GPT 4o), where the model teases out specific details about my plans. After twenty minutes, I had a pretty decent starting point, but it was pretty thin on the bones. I took 4o's spec and then fed it through Gemini 2.5, which as of writing is the state-of-the-art. It gave me *significantly* more challenging and detailed questions to puzzle through, but by the end of it, I had a very detailed spec which I could begin translating into reality.
 
-If you are interested, you can read the full spec link:https://github.com/jkendall327/text-mutator/blob/master/docs/SPEC.md[here].
+If you are interested, you can read the full spec [here](https://github.com/jkendall327/text-mutator/blob/master/docs/SPEC.md).
 
-Because this was going to be a user-facing application, I also thought it pertinent to spend a little time thinking about visuals and layout. I'm not a designer (though it's something I'm interested in, clearly), so my intuition was to head over to link:https://excalidraw.com/[Excalidraw] and just start sketching.
+Because this was going to be a user-facing application, I also thought it pertinent to spend a little time thinking about visuals and layout. I'm not a designer (though it's something I'm interested in, clearly), so my intuition was to head over to [Excalidraw](https://excalidraw.com/) and just start sketching.
 
 I knew the core of the app would revolve around seeing two passages of text side-by-side: the original plaintext and the mutated text. That naturally suggested a columnar layout. My user actions mapped sensibly onto buttons, and without an overriding reason to put them anywhere else, I attached them to the most relevant text column.
 
-image:https://raw.githubusercontent.com/jkendall327/text-mutator/refs/heads/master/docs/design.png[]
+![design](https://raw.githubusercontent.com/jkendall327/text-mutator/refs/heads/master/docs/design.png)
 
 This design was very useful when I finally got around to making the frontend. I didn't adhere to it with 100% strictness (for example, I added the 'settings' button), but the problem of translating that image to CSS was far easier than the problem I've had in the past, which was translating a formless idea in my head to CSS.
 
-== Day 1: Rust
+## Day 1: Rust
 
 With the design done, it was time to start actually writing code.
 
@@ -59,7 +64,7 @@ On a personal level, working with Rust was highly enjoyable. I've always thought
 
 By the end of day one, I had the API essentially complete. I added a small HTTP file in lieu of proper E2E tests and spent a little time setting up the basic boilerplate code for the frontend. AI pointed me towards using Vite as my React framework, since that was apparently the fast and modern solution.
 
-== Day 2: infrastructure
+## Day 2: infrastructure
 
 I dedicated this entire day to setting up the infrastructure and automation side of the project. In the past, I've been burned by leaving it too late and becoming discouraged by the attendant complexity of actually getting something out in front of the world, so I deliberately prioritised it for this project.
 
@@ -73,15 +78,16 @@ Additionally, I learned that Azure has a product offering specifically for stati
 
 The main stumbling-block with the infrastructure for this project was that I had no clear mental model for what a Bicep solution 'should' look like.
 
-My naive intuition was that it should create _everything_ for a project: spin up the resource group de novo, the managed identities, the role permissions, everything. While all of that is technically possible, I quickly got the impression it was the wrong route to go down. Wanting to create resource groups in Azure seems to require very high-level permissions: Contributor should theoretically be enough, but failed for me, so I had to set up my managed agent which executed the deployment as a subscription-level Owner. That obviously rang alarm bells, so I scaled down my plans. I settled for creating the resource group manually and using automation just to ensure that everything within that RG was set up properly.
+My naive intuition was that it should create *everything* for a project: spin up the resource group de novo, the managed identities, the role permissions, everything. While all of that is technically possible, I quickly got the impression it was the wrong route to go down. Wanting to create resource groups in Azure seems to require very high-level permissions: Contributor should theoretically be enough, but failed for me, so I had to set up my managed agent which executed the deployment as a subscription-level Owner. That obviously rang alarm bells, so I scaled down my plans. I settled for creating the resource group manually and using automation just to ensure that everything within that RG was set up properly.
 
 This is an area where I still need to do plenty of research on what serious solutions look like.
 
-The actual processing of writing Bicep files was surprisingly painless -- it's a pretty good syntax, though the documentation for the various AVM 'modules' you're meant to use as a best practice was lacking. Unsurprisingly, hooking everything together in CI was frustrating and tedious. It took me around fifty failed runs to get something that worked, which is not bad for CI. By the end of the day I had a rather fragile solution, but one I was happy with, especially since I had not taken the 'easy way' out on authorisation, and gone for the full shebang of link:https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azp[managed identities with federated credentials].
+The actual processing of writing Bicep files was surprisingly painless -- it's a pretty good syntax, though the documentation for the various AVM 'modules' you're meant to use as a best practice was lacking. Unsurprisingly, hooking everything together in CI was frustrating and tedious. It took me around fifty failed runs to get something that worked, which is not bad for CI. By the end of the day I had a rather fragile solution, but one I was happy with, especially since I had not taken the 'easy way' out on authorisation, and gone for the full shebang of [managed identities with federated credentials](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azp).
 
-== Day 3: frontend
+## Day 3: frontend
 
-== Day 4: cleanup
+## Day 4: cleanup
 
 - realising I could shrink the backend image significantly
+
 - fixing the image config set thing for the backend app service
