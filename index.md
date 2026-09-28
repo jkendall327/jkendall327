@@ -2,14 +2,15 @@
 title: "Jack Kendall"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. You can reach me at [jkendall3096@gmail.com](mailto:jkendall3096@gmail.com).
+I'm Jack, a software engineer based in the Bay Area. You can reach me at [jkendall3096@gmail.com](mailto:jkendall3096@gmail.com).
 
 ## Things I've done
 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
-- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
+- I've migrated large enterprise ecosystems from on-prem to the cloud.
+- I made [my own agent harness for writing fiction](https://github.com/jkendall327/scribal) before Claude Code was a thing.
+- I've successfully led teams through intense periods of business change.
+- I migrated sprawling legacy codebases and processes with zero business downtime, before AI.
+- I've written novels I'll never publish.
 
 [Full experience →](cv.html)
 
@@ -23,8 +24,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 ## Projects
 
-- [Octans](https://github.com/jkendall327/octans) — lorem ipsum dolor sit amet. C#.
-- [voynich-lgp](https://github.com/jkendall327/voynich-lgp) — lorem ipsum dolor sit amet. Rust.
-- [Keeper](https://github.com/jkendall327/keeper) — lorem ipsum dolor sit amet. TypeScript.
+- [Keeper](https://github.com/jkendall327/keeper) — power-user-focused clone of Google Keep. TypeScript.
+- [Octans](https://github.com/jkendall327/octans) — expansive WIP tag-based media solution. C#.
+- [voynich-lgp](https://github.com/jkendall327/voynich-lgp) — research program for understanding the Voynich Manuscript through genetic programming. Rust.
 
 [All projects →](programming-projects.html)
