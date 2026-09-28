@@ -12,7 +12,17 @@ This page lists the various programming projects I've worked on in my free time,
 
 Full-featured replacement of Google Keep. TypeScript.
 
-<!-- TODO: write this up -->
+I use Keep a lot, but because Google has a vested interest in maintaining a walled garden, they make it tedious to export your stuff from it.
+This app was the result of my 'there has to be a better way' impulse.
+All the other options were too bloated for what I wanted, which was really a digital inbox/staging ground moreso than a note-taking app.
+
+This was, I think, my first entirely vibecoded project, probably done with one of the early post-GPT 5 models in Codex.
+I was still fairly low-down in the code and architecture, which meant a lot of churn when I wasn't satisfied with the agent's early choices.
+
+I use this thing on a daily basis and it's been a great advertisement for building your own tools.
+Getting to scrub away all the minor frustrations I had with Google Keep was deeply satisfying.
+
+One day I might make this into a real web app with a domain and users.
 
 ## Octans - 2024 - 2026
 
@@ -24,25 +34,41 @@ This is a WIP image management system heavily inspired by [the Hydrus Network](h
 
 One thing I'm proud of is the levels of code quality I've kept to here. I have ratcheted up the static analysis as far as I can, got formatting verified in CI, full integration tests, the whole works. Unsurprisingly, it makes it far easier to actually get things done without breaking stuff!
 
+## Scribal - 2025
+
+[GitHub](https://github.com/jkendall327/scribal)
+
+Agentic harness in the style of Aider (remember that?) tuned for writing and editing fiction.
+Made completely obsolete by the Claude Code revolution immediately after.
+
+I've written other harness-style things before and after, but this is the first project where I started from a `while` loop.
+It was a fun experience to pull back the curtain and see how a token-predictor becomes an agent.
+
 ## voynich-lgp - 2025
 
 [GitHub](https://github.com/jkendall327/voynich-lgp)
 
 Linear genetic programming solution for identifying potential cryptographic composition methods of the [Voynich Manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript). Rust.
 
-<!-- TODO: write this up -->
+This was one of my first projects where I went really hard on AI.
+The original C# codebase was, to my memory, mostly me, and a very fun learning experience into the realm of genetic programming.
+That wasn't performant enough, so I worked with whatever Opus model was prevalent at the time to boil the app down into a massive specification.
+I then had it build it all up again in Rust, which delivered massive perf wins and made me really fall in love with the language.
+
+GP is the sibling of machine learning that never really got the limelight, because it scales poorly.
+But it was a good fit for this domain, where I had concepts mapping very neatly onto the notion of genomes.
+
+This project never really bore academic fruit because I couldn't get clean enough statistics for it to be really useful.
 
 ## Text Mutator - 2025
 
 ![mutator](./images/mutator.png)
 
-This app is a learning project moreso than an actual tool, though my hope is it'll be useful once complete. The elevator pitch is that it weaponises defamiliarisation for the purpose of editing. That is, it deliberately introduces small errors into a passage of text, such that you are forced when reviewing it to be hyper-attentive on the word and character level. This breaks the spell every writer knows, where typos are entirely invisible until the moment you hit 'publish'.
+This app was a learning project moreso than an actual tool. The elevator pitch was a defamiliarisation tool for the purpose of editing. That is, it deliberately introduced small errors into a passage of text, such that you were forced when reviewing it to be hyper-attentive on the word and character level.
 
-I said this was a learning project. I went into it with a clear plan in mind; I would use it to take frontend development seriously, by which I mean using something other than Blazor, which I am quite familiar with. To keep things interesting, I would also do the backend in Rust, and deploy everything to Azure. Those latter points were not entirely new ground (I had used both in the past), but this was a good real-world use-case for putting my skills into practice.
+I went into it with a clear plan in mind; I would use it to take frontend development seriously, by which I mean using something other than Blazor, which I am quite familiar with. To keep things interesting, I would also do the backend in Rust, and deploy everything to Azure. Those latter points were not entirely new ground (I had used both in the past), but this was a good real-world use-case for putting my skills into practice.
 
-I've naturally learned a lot in doing this, even though it's nowhere near complete as of yet. (For instance, the frontend UI is only starting to take shape). For instance, I've gotten to a good place of understanding with Bicep, the Microsoft-blessed infrastructure-as-code solution for Azure, such that I'd feel comfortable using it for production concerns.
-
-Amusingly, the Rust backend has been the easiest part so far, and by a wide margin. Says something about the state of the cloud and frontend development.
+The Rust backend was the easiest part, and by a wide margin. Says something about the state of the cloud.
 
 ## Civitai Firehose - 2024
 
@@ -72,25 +98,27 @@ I was mainly focused on work and fiction for most of 2023, so my programming pro
 
 ![waifu](images/waifu.png)
 
-Back in the ancient days of 2022, using AI for image upscaling still felt like a new and important development in computer science; nowadays it doesn't even count as a party trick. One of the big names back then was waifu2x (sigh), but the implementation I used was CLI-only and didn't support batch-processing. I took it on myself to remedy that with a GUI, specifically one that would work on Linux, since I had moved over from Windows permanently a few months prior.
+In 2022, using AI for image upscaling still felt like a new and important development in computer science. One of the big names back then was waifu2x (sigh), but the implementation I used was CLI-only and didn't support batch-processing. I took it on myself to remedy that with a GUI, specifically one that would work on Linux, since I had moved over from Windows permanently a few months prior.
 
-This was my attempt to use Avalonia in earnest, which is the modern, cross-platform desktop UI descended from Microsoft's WPF. It's a pretty pleasing platform to work with, though the iron law of frameworks applied: hard things were impressively easy, easy things were unfortunately hard.
+This was my first attempt to use Avalonia in earnest. It's the modern, cross-platform desktop UI descended from Microsoft's WPF. It's a pretty pleasing platform to work with, though the iron law of frameworks applied: hard things were easy, easy things were hard.
 
-There is essentially no reason to look at this app nowadays, since anyone and their pet dog can do AI upscaling with some free web service, but it was fun at the time.
+There is essentially no reason to look at this app nowadays, since anyone and their dog can do AI upscaling with some free web service.
+But it was fun at the time.
 
 ## QuietTime - 2021
 
 ![main window screenshot](https://raw.githubusercontent.com/jkendall327/QuietTime/main/docs/main_window_screenshot.png)
 
-I [describe this project on GitHub](https://github.com/jkendall327/QuietTime) as 'f.lux for your ears'. It's a WPF app that automatically caps your computer's volume. I made it for two reasons:
+I [describe this project on GitHub](https://github.com/jkendall327/QuietTime) as 'f.lux for your ears'. 
+It's a WPF app that automatically caps your computer's volume. 
+I made it for two reasons:
 
-- Preventing long-term hearing damage, which I was worried about
+- Preventing long-term hearing damage, which I was bizarrely worried about at the time
+- Stopping my then-new bluetooth headphones from maxing out my volume randomly
 
-- Stopping my new bluetooth headphones from maxing out my volume randomly
-
-QuietTime was my first attempting making an app with 'all the bells and whistles' -- logging and DI from day one, clean architecture, keyboard shortcuts, a responsive UI, formal releases, etc. My hope is that someone else out there in the world might actually find it useful, so I held myself to a high standard of quality.
-
-I'd like to improve it further with unit testing, localisation and UI theming, but it's currently feature-complete.
+QuietTime was my first attempting making an app with 'all the bells and whistles'.
+That is, logging and DI from day one, clean architecture, keyboard shortcuts, a responsive UI, formal releases, etc. 
+I'd hoped someone else out there in the world might actually find it useful, so I held myself to a high standard of quality.
 
 ## WallpaperMaker - 2021
 
@@ -98,46 +126,30 @@ I'd like to improve it further with unit testing, localisation and UI theming, b
 
 This app [converts an image of arbitrary size into a 1920x1080 jpg](https://github.com/jkendall327/WallpaperMaker) suitable for a desktop wallpaper.
 
-It currently fills out the side panels by taking a random snapshot of the main image. I might change this in future.
-
-My big weakness is web stuff, so I made this ASP.NET Core webapp as a learning experience.
-
-Pages are served with Razor, image conversion through a backend API in the same project.
-
-Frighteningly, it also includes a little JavaScript.
-
-This is in active development. My plan is to try making a proper UI in one of the big three JS frameworks (probably Angular).
+Simple learning app for web stuff.
 
 ## dotnet explanations
 
-OK, this technically isn't a programming project.
+[A simple static site with some didactic material](https://github.com/jkendall327/dotnet-explanations) I wrote for tricky .NET and C# concepts.
 
-Over the past few months I've created [a simple static site with clear, plain-English explanations](https://github.com/jkendall327/dotnet-explanations) of tricky .NET and C# concepts.
+I was annoyed by how almost all tutorials I found online focused too rigidly on the mechanics of programming rather than making appeals to intuition.
 
-Almost all tutorials I've found online focus too rigidly on the mechanics of programming rather than making appeals to intuition.
-
-To counter that, I try to always foreground what problem a particular language feature or technology is meant to solve, and avoid jargon.
+To counter that, I wanted to make something that foregrounded what problems a particular language feature or technology was meant to solve.
 
 ## UK Tax Calculator - 2021
 
 ![Image](https://raw.githubusercontent.com/jkendall327/UK-Tax-Calculator/master/TaxCrud/Image.png)
 
-Since I left my retail job I've been working as a freelance copywriter.
+[A simple CRUD app that stored transactions, calculated their total and your outstanding tax](https://github.com/jkendall327/UK-Tax-Calculator).
 
-I recently filed for my first self-employed tax return, which inspired me to make an app that would help the process along.
+Learning project for figuring out what these databases I'd heard so much about were good for.
 
-The result was [a simple CRUD app that stored transactions, calculated their total and your outstanding tax](https://github.com/jkendall327/UK-Tax-Calculator).
-
-The tax calculation was very simple and not suitable for real use, but I'm quite happy with the UI, which is a combination of two NuGet packages.
-
-This was my first project working seriously with databases (I used SQLite), which was very instructive.
+I was doing freelance work at the time, hence the interest in taxes; in England you don't file anything manually in normal employment.
 
 ## DupFinder - 2021
 
 ![dupfinder](images/dupfinder.png)
 
-I have a lot of holiday photos taking up space on my PC, so I'm always searching for a good heuristic near-duplicate finder for images.
+[Old duplicate image-finder app](https://github.com/jkendall327/DupFinder).
 
-I'm not satisfied with any currently existing solution, so [I made my my own](https://github.com/jkendall327/DupFinder).
-
-I made this before I got really comfortable with WPF, so the UI isn't spectacular, but it does showcase some async work and interesting ways of comparing image data.
+A relic of the pre-AI age. Uses some heuristics I forgot the name of which didn't work.
