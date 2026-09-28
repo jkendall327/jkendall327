@@ -1,6 +1,7 @@
 ---
 title: "Making Text Mutator"
 author: Jack Kendall
+date: 2025-04-11
 toc: true
 ---
 

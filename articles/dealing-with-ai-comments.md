@@ -1,6 +1,7 @@
 ---
 title: "Dealing with awful AI comments"
 author: Jack Kendall
+date: 2025-05-16
 toc: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "What I learned making QuietTime"
 author: Jack Kendall
+date: 2021-08-01
 toc: true
 ---
 
