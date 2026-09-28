@@ -1,6 +1,7 @@
 ---
 title: ".NET modernisation: a view from the trenches"
 author: Jack Kendall
+date: 2024-04-20
 toc: true
 ---
 

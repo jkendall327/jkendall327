@@ -6,6 +6,8 @@ cd "$(dirname "$0")"
 rm -rf _site
 mkdir -p _site
 cp -r images style.css _site/
+# The résumé PDF lives at the repo root; copy it if it's there.
+if [ -f resume.pdf ]; then cp resume.pdf _site/; fi
 
 find . -name '*.md' -not -name 'README.md' -not -path './_site/*' | while read -r src; do
   src="${src#./}"
@@ -16,12 +18,9 @@ find . -name '*.md' -not -name 'README.md' -not -path './_site/*' | while read -
   root=""
   for _ in $(seq 1 "$(tr -cd '/' <<< "$src" | wc -c)"); do root+="../"; done
 
-  # Back button: articles go to the blog index, everything else to the homepage.
-  case "$src" in
-    index.md) back="" ;;
-    articles/*) back="${root}articles.html" ;;
-    *) back="${root}index.html" ;;
-  esac
+  # The homepage hides the "Jack Kendall" link in the nav, since its title already says that.
+  home=()
+  if [ "$src" = index.md ]; then home=(--metadata home=true); fi
 
   # Last-updated date comes from the file's latest commit, or today if uncommitted.
   lastmod=$(git log -1 --format=%cs -- "$src" 2>/dev/null || true)
@@ -40,7 +39,7 @@ find . -name '*.md' -not -name 'README.md' -not -path './_site/*' | while read -
     --section-divs \
     "${toc[@]}" \
     --metadata root="$root" \
-    --metadata back="$back" \
+    "${home[@]}" \
     --metadata lastmod="$lastmod" \
     -o "$out"
 done

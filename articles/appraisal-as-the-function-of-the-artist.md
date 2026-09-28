@@ -1,6 +1,7 @@
 ---
 title: "Appraisal as the function of the artist"
 author: Jack Kendall
+date: 2025-03-04
 toc: true
 ---
 

@@ -26,12 +26,18 @@ $endif$
 </head>
 <body>
 <div id="header">
-$if(back)$
-<a class="back" href="$back$">&larr; Back</a>
+<nav id="site-nav">
+$if(home)$
+$else$
+<a class="home" href="$root$index.html">Jack Kendall</a>
 $endif$
+<a href="$root$articles.html">Writing</a>
+<a href="$root$cv.html">Experience</a>
+<a href="$root$programming-projects.html">Projects</a>
+</nav>
 <h1>$title$</h1>
 $if(author)$
-<div class="details">$author$</div>
+<div class="details">$author$$if(date)$ &middot; $date$$endif$</div>
 $endif$
 $if(toc)$
 $if(table-of-contents)$
@@ -48,8 +54,11 @@ $body$
 <div id="footer">
 <span>Last updated $lastmod$</span>
 <span class="links">
+<a href="mailto:jkendall3096@gmail.com">jkendall3096@gmail.com</a>
+<a href="$root$resume.pdf">Résumé (PDF)</a>
 <a href="https://github.com/jkendall327">GitHub</a>
 <a href="https://www.linkedin.com/in/jack-kendall-6b107811b/">LinkedIn</a>
+<a href="$root$colophon.html">Colophon</a>
 <button id="theme-toggle" type="button"></button>
 </span>
 </div>

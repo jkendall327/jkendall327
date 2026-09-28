@@ -1,6 +1,7 @@
 ---
 title: "Finding new favourite artists in Hydrus"
 author: Jack Kendall
+date: 2025-08-09
 toc: true
 ---
 

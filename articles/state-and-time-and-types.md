@@ -1,6 +1,7 @@
 ---
 title: "State and time and types"
 author: Jack Kendall
+date: 2025-02-23
 toc: true
 ---
 

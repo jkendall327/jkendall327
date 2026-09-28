@@ -1,6 +1,7 @@
 ---
 title: "An interesting bug caused by .NET's TaskCompletionSource"
 author: Jack Kendall
+date: 2025-12-05
 toc: true
 ---
 
