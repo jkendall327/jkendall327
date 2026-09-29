@@ -14,14 +14,6 @@ I'm Jack, a software engineer based in the Bay Area. You can reach me at [jkenda
 
 [Full experience →](cv.html)
 
-## Writing
-
-- 2025-12-05 — [An interesting bug caused by .NET's TaskCompletionSource](articles/an-interesting-bug-with-task-completion-source.html)
-- 2025-08-09 — [Finding new favourite artists in Hydrus](articles/finding-new-favourite-artists-in-hydrus.html)
-- 2025-05-16 — [Dealing with awful AI comments](articles/dealing-with-ai-comments.html)
-
-[All writing →](articles.html)
-
 ## Projects
 
 - [Keeper](https://github.com/jkendall327/keeper) — power-user-focused clone of Google Keep. TypeScript.
@@ -29,3 +21,11 @@ I'm Jack, a software engineer based in the Bay Area. You can reach me at [jkenda
 - [voynich-lgp](https://github.com/jkendall327/voynich-lgp) — research program for understanding the Voynich Manuscript through genetic programming. Rust.
 
 [All projects →](programming-projects.html)
+
+## Writing
+
+- 2025-12-05 — [An interesting bug caused by .NET's TaskCompletionSource](articles/an-interesting-bug-with-task-completion-source.html)
+- 2025-08-09 — [Finding new favourite artists in Hydrus](articles/finding-new-favourite-artists-in-hydrus.html)
+- 2025-05-16 — [Dealing with awful AI comments](articles/dealing-with-ai-comments.html)
+
+[All writing →](articles.html)
