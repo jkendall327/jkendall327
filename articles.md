@@ -3,6 +3,7 @@ title: "Writing"
 author: Jack Kendall
 ---
 
+- 2026-10-04 — [Google still offers Jules as a service](articles/jules.html)
 - 2025-12-05 — [An interesting bug caused by .NET's TaskCompletionSource](articles/an-interesting-bug-with-task-completion-source.html)
 - 2025-08-09 — [Finding new favourite artists in Hydrus](articles/finding-new-favourite-artists-in-hydrus.html)
 - 2025-05-16 — [Dealing with awful AI comments](articles/dealing-with-ai-comments.html)
