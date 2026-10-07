@@ -10,6 +10,8 @@ This page lists the various programming projects I've worked on in my free time,
 
 [GitHub](https://github.com/jkendall327/keeper)
 
+![Keeper inbox with notes, checklists, and tags](./images/keeper-inbox.jpg)
+
 Full-featured replacement of Google Keep. TypeScript.
 
 I use Keep a lot, but because Google has a vested interest in maintaining a walled garden, they make it tedious to export your stuff from it.
