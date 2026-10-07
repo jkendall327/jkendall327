@@ -50,6 +50,8 @@ It was a fun experience to pull back the curtain and see how a token-predictor b
 
 [GitHub](https://github.com/jkendall327/voynich-lgp)
 
+![A close-up of handwritten text in the Voynich Manuscript](./images/voynich-manuscript.png)
+
 Linear genetic programming solution for identifying potential cryptographic composition methods of the [Voynich Manuscript](https://en.wikipedia.org/wiki/Voynich_manuscript). Rust.
 
 This was one of my first projects where I went really hard on AI.
