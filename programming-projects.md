@@ -36,16 +36,6 @@ This is a WIP image management system heavily inspired by [the Hydrus Network](h
 
 One thing I'm proud of is the levels of code quality I've kept to here. I have ratcheted up the static analysis as far as I can, got formatting verified in CI, full integration tests, the whole works. Unsurprisingly, it makes it far easier to actually get things done without breaking stuff!
 
-## Scribal - 2025
-
-[GitHub](https://github.com/jkendall327/scribal)
-
-Agentic harness in the style of Aider (remember that?) tuned for writing and editing fiction.
-Made completely obsolete by the Claude Code revolution immediately after.
-
-I've written other harness-style things before and after, but this is the first project where I started from a `while` loop.
-It was a fun experience to pull back the curtain and see how a token-predictor becomes an agent.
-
 ## voynich-lgp - 2025
 
 [GitHub](https://github.com/jkendall327/voynich-lgp)
@@ -63,6 +53,16 @@ GP is the sibling of machine learning that never really got the limelight, becau
 But it was a good fit for this domain, where I had concepts mapping very neatly onto the notion of genomes.
 
 This project never really bore academic fruit because I couldn't get clean enough statistics for it to be really useful.
+
+## Scribal - 2025
+
+[GitHub](https://github.com/jkendall327/scribal)
+
+Agentic harness in the style of Aider (remember that?) tuned for writing and editing fiction.
+Made completely obsolete by the Claude Code revolution immediately after.
+
+I've written other harness-style things before and after, but this is the first project where I started from a `while` loop.
+It was a fun experience to pull back the curtain and see how a token-predictor becomes an agent.
 
 ## Text Mutator - 2025
 
